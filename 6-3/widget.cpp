@@ -15,7 +15,10 @@ Widget::Widget(QWidget *parent)
     //疑问：按钮点击信号和槽是自动绑定的？？？
     //连接打印引号和槽
     //connect(this, SIGNAL(printLog(int)), this, SLOT(onPrintLog(int)));
-    connect(this, &Widget::printLog, this, &Widget::onPrintLog);
+    //connect(this, &Widget::printLog, this, &Widget::onPrintLog);
+    connect(this, &Widget::printLog, this, [=](){
+        qDebug() << "onPrintLog";
+    });
 }
 
 Widget::~Widget()
@@ -41,7 +44,7 @@ void Widget::on_pushButton_clicked()
     emit printLog(1);
 }
 
-void Widget::onPrintLog(int a)
-{
-    qDebug() << "onPrintLog";
-}
+//void Widget::onPrintLog(int a)
+//{
+//    qDebug() << "onPrintLog";
+//}

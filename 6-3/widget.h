@@ -25,7 +25,7 @@ private slots:
     void onNumChanged(int val);
 
     void on_pushButton_clicked();
-    void onPrintLog(int a);
+    //void onPrintLog(int a);
 
 private:
     Ui::Widget *ui;
