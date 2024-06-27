@@ -11,6 +11,10 @@ Widget::Widget(QWidget *parent)
 
     connect(ui->spinBox, SIGNAL(valueChanged(int)), this, SIGNAL(numChanged(int)));
     connect(this, SIGNAL(numChanged(int)), this, SLOT(onNumChanged(int)));
+
+    //疑问：按钮点击信号和槽是自动绑定的？？？
+    //连接打印引号和槽
+    connect(this, SIGNAL(printLog(int)), this, SLOT(onPrintLog(int)));
 }
 
 Widget::~Widget()
@@ -30,3 +34,13 @@ void Widget::onNumChanged(int val)
     ui->progressBar->setValue(val);
 }
 
+
+void Widget::on_pushButton_clicked()
+{
+    emit printLog(1);
+}
+
+void Widget::onPrintLog(int a)
+{
+    qDebug() << "onPrintLog";
+}

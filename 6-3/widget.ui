@@ -46,6 +46,19 @@
     <number>0</number>
    </property>
   </widget>
+  <widget class="QPushButton" name="pushButton">
+   <property name="geometry">
+    <rect>
+     <x>200</x>
+     <y>310</y>
+     <width>81</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>发送信号</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>

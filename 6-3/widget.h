@@ -18,9 +18,14 @@ public:
 signals:
     void numChanged(int val);
 
+    void printLog(int a);
+
 private slots:
     //void onSpinBoxValueChanged(int val);
     void onNumChanged(int val);
+
+    void on_pushButton_clicked();
+    void onPrintLog(int a);
 
 private:
     Ui::Widget *ui;
