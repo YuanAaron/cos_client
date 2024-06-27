@@ -39,7 +39,9 @@ Widget::Widget(QWidget *parent)
     //因为valueChanged存在函数重载，此情况下使用函数指针，connect不知道使用哪个valueChanged，只能其进行强转
     //connect(ui->spinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), this, &Widget::onNumChanged);
     //这时候使用宏写法就更简单
-    connect(ui->spinBox,  SIGNAL(valueChanged(int)), this, SLOT(onNumChanged(int)));
+    //connect(ui->spinBox,  SIGNAL(valueChanged(int)), this, SLOT(onNumChanged(int)));
+
+    connect(ui->spinBox, SIGNAL(valueChanged(int)), ui->progressBar, SLOT(setValue(int)));
 }
 
 Widget::~Widget()
