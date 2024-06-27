@@ -19,7 +19,7 @@ signals:
     void numChanged(int val);
 
 private slots:
-    void onSpinBoxValueChanged(int val);
+    //void onSpinBoxValueChanged(int val);
     void onNumChanged(int val);
 
 private:

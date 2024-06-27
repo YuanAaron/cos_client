@@ -9,7 +9,7 @@ Widget::Widget(QWidget *parent)
 {
     ui->setupUi(this);
 
-    connect(ui->spinBox, SIGNAL(valueChanged(int)), this, SLOT(onSpinBoxValueChanged(int)));
+    connect(ui->spinBox, SIGNAL(valueChanged(int)), this, SIGNAL(numChanged(int)));
     connect(this, SIGNAL(numChanged(int)), this, SLOT(onNumChanged(int)));
 }
 
@@ -18,11 +18,11 @@ Widget::~Widget()
     delete ui;
 }
 
-void Widget::onSpinBoxValueChanged(int val)
-{
-    qDebug()<<"onSpinBoxValueChanged";
-    emit numChanged(val);
-}
+//void Widget::onSpinBoxValueChanged(int val)
+//{
+//    qDebug()<<"onSpinBoxValueChanged";
+//    emit numChanged(val);
+//}
 
 void Widget::onNumChanged(int val)
 {
