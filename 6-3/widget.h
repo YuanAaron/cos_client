@@ -20,12 +20,27 @@ signals:
 
     void printLog(int a);
 
+    void printLog1(int a);
+    void printLog2(int a, int b);
+    void printLog3();
+
+    void printLog4(char c);
+    void printLog5(double f);
+
+
 private slots:
     //void onSpinBoxValueChanged(int val);
     void onNumChanged(int val);
 
     void on_pushButton_clicked();
     //void onPrintLog(int a);
+
+    void onPrintLog1(QString val);
+    void onPrintLog2(int a);
+    void onPrintLog3(int a);
+
+    void onPrintLog4(int a);
+    void onPrintLog5(int a);
 
 private:
     Ui::Widget *ui;
