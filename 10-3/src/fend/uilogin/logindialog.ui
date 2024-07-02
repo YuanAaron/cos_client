@@ -207,7 +207,7 @@
          </font>
         </property>
         <property name="text">
-         <string>&amp;备注</string>
+         <string>备注</string>
         </property>
        </widget>
       </item>

@@ -1,4 +1,4 @@
-#ifndef TOOLBARWIDGET_H
+﻿#ifndef TOOLBARWIDGET_H
 #define TOOLBARWIDGET_H
 
 #include <QWidget>
@@ -14,6 +14,9 @@ class ToolbarWidget : public QWidget
 public:
     explicit ToolbarWidget(QWidget *parent = nullptr);
     ~ToolbarWidget();
+
+signals:
+    void quitLogin();
 
 private:
     Ui::ToolbarWidget *ui;

@@ -26,7 +26,7 @@
      <widget class="QWidget" name="layoutWidget">
       <layout class="QVBoxLayout" name="verticalLayout" stretch="0,0,1,0">
        <item>
-        <widget class="ToolbarWidget" name="widget" native="true"/>
+        <widget class="ToolbarWidget" name="widgetToolbar" native="true"/>
        </item>
        <item>
         <widget class="BreadWidget" name="widget_2" native="true"/>
