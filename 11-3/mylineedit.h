@@ -12,6 +12,7 @@ public:
 
 protected:
     void keyPressEvent(QKeyEvent *event);
+    bool event(QEvent *e);
 };
 
 #endif // MYLINEEDIT_H
