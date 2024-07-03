@@ -18,6 +18,11 @@ public:
 signals:
     void quitLogin();
 
+private slots:
+    void on_btnUpload_clicked();
+
+    void on_btnDownload_clicked();
+
 private:
     Ui::ToolbarWidget *ui;
 };
