@@ -18,6 +18,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     main.cpp \
     src/fend/uicommon/breadwidget.cpp \
+    src/fend/uicommon/mylineedit.cpp \
     src/fend/uicommon/pagewidget.cpp \
     src/fend/uilogin/logindialog.cpp \
     src/fend/uimain/bucketswidget.cpp \
@@ -27,6 +28,7 @@ SOURCES += \
 
 HEADERS += \
     src/fend/uicommon/breadwidget.h \
+    src/fend/uicommon/mylineedit.h \
     src/fend/uicommon/pagewidget.h \
     src/fend/uilogin/logindialog.h \
     src/fend/uimain/bucketswidget.h \
