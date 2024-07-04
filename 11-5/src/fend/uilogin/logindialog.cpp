@@ -18,6 +18,8 @@ LoginDialog::LoginDialog(QWidget *parent)
 //    ui->labelLogo->setPixmap(pixmap);
 //    ui->labelLogo->setScaledContents(true);
     ui->labelLogo->setPixmap(pixmap.scaled(ui->labelLogo->size()));
+
+    ui->lineSecretKey->installEventFilter(this);
 }
 
 LoginDialog::~LoginDialog()
@@ -46,6 +48,28 @@ void LoginDialog::mouseMoveEvent(QMouseEvent *e)
         this->move(target);
     }
     QDialog::mouseMoveEvent(e);
+}
+
+bool LoginDialog::eventFilter(QObject *watched, QEvent *event)
+{
+    //watched：需要关注的控件对象
+    //event：传递给事件对象的事件
+    if(watched == ui->lineSecretKey)
+    {
+        if(event->type() == QEvent::KeyPress)
+        {
+            QKeyEvent* e = static_cast<QKeyEvent*>(event);
+            //捕获Ctrl+C和Ctrl+V
+            if(e->modifiers() == Qt::ControlModifier)
+            {
+                if(e->key() == Qt::Key_C || e->key() == Qt::Key_V)
+                {
+                    return true; //true表示事件已被处理，不再向下传递；false表示继续传递
+                }
+            }
+        }
+    }
+    return QDialog::eventFilter(watched, event);
 }
 
 

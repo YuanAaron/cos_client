@@ -176,7 +176,7 @@
        </widget>
       </item>
       <item>
-       <widget class="MyLineEdit" name="lineSecretKey">
+       <widget class="QLineEdit" name="lineSecretKey">
         <property name="minimumSize">
          <size>
           <width>0</width>
@@ -291,13 +291,6 @@
    </item>
   </layout>
  </widget>
- <customwidgets>
-  <customwidget>
-   <class>MyLineEdit</class>
-   <extends>QLineEdit</extends>
-   <header>src/fend/uicommon/mylineedit.h</header>
-  </customwidget>
- </customwidgets>
  <resources/>
  <connections/>
 </ui>
