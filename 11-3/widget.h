@@ -18,6 +18,8 @@ public:
 protected:
     void keyPressEvent(QKeyEvent *event);
 
+    bool eventFilter(QObject *watched, QEvent *event);
+
 private:
     Ui::Widget *ui;
 };
