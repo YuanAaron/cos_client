@@ -15,6 +15,10 @@ public:
     LoginDialog(QWidget *parent = nullptr);
     ~LoginDialog();
 
+protected:
+    void mousePressEvent(QMouseEvent *e);
+    void mouseMoveEvent(QMouseEvent *e);
+
 private slots:
     void on_btnClose_clicked();
 
@@ -22,5 +26,6 @@ private slots:
 
 private:
     Ui::LoginDialog *ui;
+    QPoint m_start;
 };
 #endif // LOGINDIALOG_H

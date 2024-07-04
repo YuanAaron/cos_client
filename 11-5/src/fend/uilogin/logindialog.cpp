@@ -2,6 +2,8 @@
 #include "ui_logindialog.h"
 
 #include <QMessageBox>
+#include <QMouseEvent>
+#include <QDebug>
 
 LoginDialog::LoginDialog(QWidget *parent)
     : QDialog(parent)
@@ -21,6 +23,29 @@ LoginDialog::LoginDialog(QWidget *parent)
 LoginDialog::~LoginDialog()
 {
     delete ui;
+}
+
+void LoginDialog::mousePressEvent(QMouseEvent *e)
+{
+    //鼠标左键
+    if(e->button() == Qt::LeftButton)
+    {
+        m_start = e->pos(); //相对于父控件坐标原点的位置
+    }
+    QDialog::mousePressEvent(e);
+
+}
+
+void LoginDialog::mouseMoveEvent(QMouseEvent *e)
+{
+//    qDebug() << e->buttons()<<Qt::LeftButton;
+    //原项目中使用e->buttons() & Qt::LeftButton屏蔽右键，这样即可同时按下鼠标左右键（右键被屏蔽了）也可以移动窗口
+    if(e->buttons() == Qt::LeftButton)
+    {
+        QPoint target =  e->pos() - m_start + pos();
+        this->move(target);
+    }
+    QDialog::mouseMoveEvent(e);
 }
 
 

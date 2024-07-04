@@ -11,7 +11,7 @@ int main(int argc, char *argv[])
         //失败 弹出提示信息
     //退出登录 显示登录界面
     UiMain w;
-    w.show();
-//    w.showLoginDialog();
+//    w.show();
+    w.showLoginDialog();
     return a.exec();
 }
