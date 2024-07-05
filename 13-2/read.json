@@ -1,0 +1,12 @@
+{
+	"bool"  : true,
+	"number": 12.3,
+	"string": "hello",
+	"array" : ["check", "element"],
+	"object": {
+		"key1": "value1",
+		"key2": "value2"
+	},
+	"null": null
+}
+
