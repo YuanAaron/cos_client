@@ -10,6 +10,9 @@ ToolbarWidget::ToolbarWidget(QWidget *parent) :
 {
     ui->setupUi(this);
     connect(ui->btnQuit, &QPushButton::clicked, this, &ToolbarWidget::quitLogin);
+
+//    connect(ui->btnRefresh, &QPushButton::clicked, this, &ToolbarWidget::refreshSig);
+
 }
 
 ToolbarWidget::~ToolbarWidget()

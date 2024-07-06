@@ -19,6 +19,9 @@ public:
 
     void showLoginDialog();
 
+protected slots:
+//    void onRefresh();
+
 private:
     Ui::UiMain *ui;
     LoginDialog* m_loginDialog;

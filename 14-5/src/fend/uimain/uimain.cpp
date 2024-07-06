@@ -3,6 +3,8 @@
 
 #include <src/fend/uilogin/logindialog.h>
 
+#include <QDebug>
+
 UiMain::UiMain(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::UiMain)
@@ -12,6 +14,8 @@ UiMain::UiMain(QWidget *parent) :
     //使用分割器后，设置窗口占用的初始比例
     ui->splitter->setStretchFactor(0,1);
     ui->splitter->setStretchFactor(1,4);
+
+//    connect(ui->widgetToolbar, &ToolbarWidget::refreshSig, this, &UiMain::onRefresh);
 }
 
 UiMain::~UiMain()
@@ -35,3 +39,8 @@ void UiMain::showLoginDialog()
     hide();
     m_loginDialog->show();
 }
+
+//void UiMain::onRefresh()
+//{
+//    qDebug() << "UiMain::onRefresh";
+//}
