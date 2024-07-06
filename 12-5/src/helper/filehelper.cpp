@@ -1,0 +1,21 @@
+﻿#include "filehelper.h"
+
+#include <QFile>
+
+FileHelper::FileHelper()
+{
+
+}
+
+QString FileHelper::readAllTxt(const QString &filePath)
+{
+    QFile file(filePath);
+    if (file.exists() && file.open(QIODevice::ReadOnly))
+    {
+        QByteArray data = file.readAll(); //TODO QByteArray赋值给QString?
+        file.close();
+        return data;
+    }
+    throw "读取文件失败";
+}
+

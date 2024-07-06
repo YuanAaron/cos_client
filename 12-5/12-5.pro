@@ -24,7 +24,8 @@ SOURCES += \
     src/fend/uimain/bucketswidget.cpp \
     src/fend/uimain/objectswidget.cpp \
     src/fend/uimain/toolbarwidget.cpp \
-    src/fend/uimain/uimain.cpp
+    src/fend/uimain/uimain.cpp \
+    src/helper/filehelper.cpp
 
 HEADERS += \
     src/fend/uicommon/breadwidget.h \
@@ -34,7 +35,8 @@ HEADERS += \
     src/fend/uimain/bucketswidget.h \
     src/fend/uimain/objectswidget.h \
     src/fend/uimain/toolbarwidget.h \
-    src/fend/uimain/uimain.h
+    src/fend/uimain/uimain.h \
+    src/helper/filehelper.h
 
 FORMS += \
     src/fend/uicommon/breadwidget.ui \
@@ -49,3 +51,6 @@ FORMS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+    resource.qrc

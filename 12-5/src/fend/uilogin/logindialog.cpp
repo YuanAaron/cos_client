@@ -14,12 +14,20 @@ LoginDialog::LoginDialog(QWidget *parent)
     //设置窗口无标题栏
     this->setWindowFlags(Qt::CustomizeWindowHint);
 
-    QPixmap pixmap("C:/Users/oshacker/Documents/qt/10-3/qt.png");
-//    ui->labelLogo->setPixmap(pixmap);
-//    ui->labelLogo->setScaledContents(true);
-    ui->labelLogo->setPixmap(pixmap.scaled(ui->labelLogo->size()));
+//    QPixmap pixmap("C:/Users/oshacker/Documents/qt/10-3/qt.png");
+////    ui->labelLogo->setPixmap(pixmap);
+////    ui->labelLogo->setScaledContents(true);
+//    ui->labelLogo->setPixmap(pixmap.scaled(ui->labelLogo->size()));
 
     ui->lineSecretKey->installEventFilter(this);
+
+    //设置"登录窗口"的样式
+    ui->labelTitle->setProperty("style","h3");
+    ui->labelSecretId->setProperty("style","h4");
+    ui->labelSecretKey->setProperty("style","h4");
+    ui->labelRemark->setProperty("style","h4");
+    ui->btnClose->setProperty("style","h3");
+    ui->btnLogin->setProperty("style","h4");
 }
 
 LoginDialog::~LoginDialog()
