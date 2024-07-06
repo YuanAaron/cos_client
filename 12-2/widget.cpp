@@ -22,9 +22,7 @@ void Widget::on_pushButton_clicked()
     QString path = QFileDialog::getOpenFileName(this, QString::fromLocal8Bit("上传"), "./");
     if(path != "")
     {
-        qDebug() << path;
         QString style = "border-image:url(\"" + path + "\");";
-        qDebug() << style;
         ui->frame_2->setStyleSheet(style);
     }
 }
