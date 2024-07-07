@@ -21,6 +21,8 @@ signals:
     //不使用QSignalMapper的情况下，工具栏按钮与uimain中组件的交互
 //    void refreshSig();
 
+    void btnClicked(const QString& text);
+
 private slots:
     void on_btnUpload_clicked();
 

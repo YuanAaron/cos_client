@@ -22,6 +22,8 @@ public:
 protected slots:
 //    void onRefresh();
 
+    void onBtnClicked(const QString& text);
+
 private:
     Ui::UiMain *ui;
     LoginDialog* m_loginDialog;

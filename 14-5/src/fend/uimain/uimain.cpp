@@ -16,6 +16,8 @@ UiMain::UiMain(QWidget *parent) :
     ui->splitter->setStretchFactor(1,4);
 
 //    connect(ui->widgetToolbar, &ToolbarWidget::refreshSig, this, &UiMain::onRefresh);
+
+    connect(ui->widgetToolbar, &ToolbarWidget::btnClicked, this, &UiMain::onBtnClicked);
 }
 
 UiMain::~UiMain()
@@ -38,6 +40,26 @@ void UiMain::showLoginDialog()
     }
     hide();
     m_loginDialog->show();
+}
+
+void UiMain::onBtnClicked(const QString &text)
+{
+    if(text == QString::fromLocal8Bit("创建桶"))
+    {
+        //处理 创建桶
+        qDebug() << "UiMain::onBtnClicked:" << text;
+    }
+    else if(text == QString::fromLocal8Bit("刷新"))
+    {
+        //处理 刷新
+        qDebug() << "UiMain::onBtnClicked:" << text;
+    }
+    else if(text == QString::fromLocal8Bit("传输列表"))
+    {
+        //处理 传输列表
+        qDebug() << "UiMain::onBtnClicked:" << text;
+    }
+
 }
 
 //void UiMain::onRefresh()
