@@ -1,5 +1,7 @@
-#include "bucketswidget.h"
+﻿#include "bucketswidget.h"
 #include "ui_bucketswidget.h"
+
+#include <QDebug>
 
 BucketsWidget::BucketsWidget(QWidget *parent) :
     QWidget(parent),
@@ -11,4 +13,5 @@ BucketsWidget::BucketsWidget(QWidget *parent) :
 BucketsWidget::~BucketsWidget()
 {
     delete ui;
+    qDebug() << "delete BucketsWidget";
 }

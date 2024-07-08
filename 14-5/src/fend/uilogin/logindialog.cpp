@@ -33,6 +33,7 @@ LoginDialog::LoginDialog(QWidget *parent)
 LoginDialog::~LoginDialog()
 {
     delete ui;
+    qDebug() << "delete LoginDialog";
 }
 
 void LoginDialog::mousePressEvent(QMouseEvent *e)

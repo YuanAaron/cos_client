@@ -23,6 +23,9 @@ UiMain::UiMain(QWidget *parent) :
 UiMain::~UiMain()
 {
     delete ui;
+    qDebug() << "delete UiMain";
+
+    //未加入UiMain对象树，因此需要单独删除，否则会造成内存泄漏
     if(m_loginDialog)
     {
         delete m_loginDialog;
@@ -33,6 +36,7 @@ void UiMain::showLoginDialog()
 {
     if(!m_loginDialog)
     {
+        //new时没有指定其父窗口，那么它就是一个顶层窗口
         m_loginDialog = new LoginDialog;
 
         connect(m_loginDialog, &LoginDialog::accepted, this, &UiMain::show);

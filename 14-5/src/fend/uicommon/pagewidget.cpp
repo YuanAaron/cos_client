@@ -1,5 +1,7 @@
-#include "pagewidget.h"
+﻿#include "pagewidget.h"
 #include "ui_pagewidget.h"
+
+#include <QDebug>
 
 PageWidget::PageWidget(QWidget *parent) :
     QWidget(parent),
@@ -11,4 +13,5 @@ PageWidget::PageWidget(QWidget *parent) :
 PageWidget::~PageWidget()
 {
     delete ui;
+    qDebug() << "delete PageWidget";
 }

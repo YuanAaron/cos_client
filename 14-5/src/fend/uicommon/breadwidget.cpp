@@ -1,5 +1,7 @@
-#include "breadwidget.h"
+﻿#include "breadwidget.h"
 #include "ui_breadwidget.h"
+
+#include <QDebug>
 
 BreadWidget::BreadWidget(QWidget *parent) :
     QWidget(parent),
@@ -11,4 +13,5 @@ BreadWidget::BreadWidget(QWidget *parent) :
 BreadWidget::~BreadWidget()
 {
     delete ui;
+    qDebug() << "delete BreadWidget";
 }

@@ -36,6 +36,7 @@ ToolbarWidget::ToolbarWidget(QWidget *parent) :
 ToolbarWidget::~ToolbarWidget()
 {
     delete ui;
+    qDebug() <<"delete ToolbarWidget";
 }
 
 void ToolbarWidget::on_btnUpload_clicked()

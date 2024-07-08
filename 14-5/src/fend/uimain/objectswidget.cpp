@@ -1,5 +1,7 @@
-#include "objectswidget.h"
+﻿#include "objectswidget.h"
 #include "ui_objectswidget.h"
+
+#include <QDebug>
 
 ObjectsWidget::ObjectsWidget(QWidget *parent) :
     QWidget(parent),
@@ -11,4 +13,5 @@ ObjectsWidget::ObjectsWidget(QWidget *parent) :
 ObjectsWidget::~ObjectsWidget()
 {
     delete ui;
+    qDebug() << "delete ObjectsWidget";
 }
