@@ -27,7 +27,7 @@ void ManagerBucket::setBucket()
     QList<MyBucket> buckets = dao.bucketsFromMock(":/static/test/buckets2.json");
 
     m_model->setRowCount(buckets.size());
-    m_model->setColumnCount(3);
+//    m_model->setColumnCount(3); //objectswidget.cpp已经设置过了
 
     for(int i=0; i<buckets.size(); i++)
     {
@@ -41,6 +41,9 @@ void ManagerBucket::setBucket()
         QModelIndex index2 = m_model->index(i,2);
         m_model->setData(index2,bucket.createDate);
     }
+
+    //设置默认按照创建时间倒序
+    m_model->sort(2,Qt::DescendingOrder);
 }
 
 QStandardItemModel *ManagerBucket::model() const
