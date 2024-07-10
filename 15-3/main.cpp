@@ -2,8 +2,10 @@
 #include "src\helper\filehelper.h"
 
 #include "src/bend/dao/daobucket.h"
+#include <src/bend/manager/managerbucket.h>
 
 #include <QApplication>
+#include <QDebug>
 
 int main(int argc, char *argv[])
 {
@@ -28,5 +30,7 @@ int main(int argc, char *argv[])
     UiMain w;
 //    w.show();
     w.showLoginDialog();
+
+    MB->print();
     return a.exec();
 }

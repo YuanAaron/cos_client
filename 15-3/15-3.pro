@@ -18,6 +18,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     main.cpp \
     src/bend/dao/daobucket.cpp \
+    src/bend/manager/managerbucket.cpp \
     src/bend/models/mybucket.cpp \
     src/fend/uicommon/breadwidget.cpp \
     src/fend/uicommon/mylineedit.cpp \
@@ -31,6 +32,7 @@ SOURCES += \
 
 HEADERS += \
     src/bend/dao/daobucket.h \
+    src/bend/manager/managerbucket.h \
     src/bend/models/mybucket.h \
     src/fend/uicommon/breadwidget.h \
     src/fend/uicommon/mylineedit.h \

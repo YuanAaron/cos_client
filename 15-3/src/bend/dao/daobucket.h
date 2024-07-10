@@ -1,7 +1,7 @@
 ﻿#ifndef DAOBUCKET_H
 #define DAOBUCKET_H
 
-#include "src/bend/models/mybucket.h";
+#include "src/bend/models/mybucket.h"
 #include <QList>
 
 class DaoBucket
