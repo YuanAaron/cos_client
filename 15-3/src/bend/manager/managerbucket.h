@@ -2,6 +2,8 @@
 #define MANAGERBUCKET_H
 
 #include <QObject>
+#include <QStandardItemModel>
+
 #define MB ManagerBucket::instance()
 
 class ManagerBucket : public QObject
@@ -14,9 +16,14 @@ public:
     static ManagerBucket* instance();
 
     void print();
+    void setBucket();
+
+    QStandardItemModel *model() const;
 
 signals:
 
+private:
+    QStandardItemModel* m_model;
 };
 
 #endif // MANAGERBUCKET_H

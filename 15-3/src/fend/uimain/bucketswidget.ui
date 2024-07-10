@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>168</width>
-    <height>503</height>
+    <width>241</width>
+    <height>405</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -41,7 +41,7 @@
     </layout>
    </item>
    <item>
-    <widget class="QListWidget" name="listWidget"/>
+    <widget class="QListView" name="listView"/>
    </item>
   </layout>
  </widget>

@@ -23,7 +23,7 @@ QList<MyBucket> DaoBucket::bucketsFromMock(const QString &path)
         bucket.name=v["name"].toString();
         bucket.location=v["location"].toString();
         bucket.createDate=v["create_date"].toString();
-        qDebug() << bucket.name << bucket.location << bucket.createDate;
+//        qDebug() << bucket.name << bucket.location << bucket.createDate;
 
         buckets.append(bucket);
     }
