@@ -23,6 +23,7 @@ SOURCES += \
     src/fend/uicommon/breadwidget.cpp \
     src/fend/uicommon/mylineedit.cpp \
     src/fend/uicommon/pagewidget.cpp \
+    src/fend/uidelegate/bucketdelegate.cpp \
     src/fend/uilogin/logindialog.cpp \
     src/fend/uimain/bucketswidget.cpp \
     src/fend/uimain/objectswidget.cpp \
@@ -37,6 +38,7 @@ HEADERS += \
     src/fend/uicommon/breadwidget.h \
     src/fend/uicommon/mylineedit.h \
     src/fend/uicommon/pagewidget.h \
+    src/fend/uidelegate/bucketdelegate.h \
     src/fend/uilogin/logindialog.h \
     src/fend/uimain/bucketswidget.h \
     src/fend/uimain/objectswidget.h \

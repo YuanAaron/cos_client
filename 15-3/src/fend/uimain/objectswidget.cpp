@@ -3,6 +3,7 @@
 
 #include "src/bend/manager/managerbucket.h"
 #include <QDebug>
+#include <src/fend/uidelegate/bucketdelegate.h>
 
 ObjectsWidget::ObjectsWidget(QWidget *parent) :
     QWidget(parent),
@@ -10,6 +11,8 @@ ObjectsWidget::ObjectsWidget(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->tableView->setModel(MB->model());
+//    ui->tableView->setItemDelegate(new BucketDelegate());
+    ui->tableView->setItemDelegateForColumn(1,new BucketDelegate());
 }
 
 ObjectsWidget::~ObjectsWidget()
