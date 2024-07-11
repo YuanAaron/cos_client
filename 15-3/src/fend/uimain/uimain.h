@@ -26,7 +26,7 @@ protected slots:
 
 private:
     Ui::UiMain *ui;
-    LoginDialog* m_loginDialog;
+    LoginDialog* m_loginDialog = nullptr;
 };
 
 #endif // UIMAIN_H

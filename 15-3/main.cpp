@@ -38,5 +38,7 @@ int main(int argc, char *argv[])
     MB->print();
 
     MB->setBucket();
+
+    qDebug() << QString::fromLocal8Bit("无意中发现了bug: uimain.h中的m_loginDialog必须设为nullptr");
     return a.exec();
 }

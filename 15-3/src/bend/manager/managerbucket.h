@@ -23,7 +23,7 @@ public:
 signals:
 
 private:
-    QStandardItemModel* m_model;
+    QStandardItemModel* m_model = nullptr; //这里好像不加也不会报错
 };
 
 #endif // MANAGERBUCKET_H
