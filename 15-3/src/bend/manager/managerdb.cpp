@@ -16,9 +16,16 @@ ManagerDB *ManagerDB::instance()
 void ManagerDB::init()
 {
     connect();
+    createLoginInfoTable();
 }
 
 void ManagerDB::connect()
 {
     m_db.connect(CONFIG::SQLITE::NAME);
+}
+
+void ManagerDB::createLoginInfoTable()
+{
+    QString sql = FileHelper::readAllTxt(CONFIG::SQL::LOGIN_INFO_TABLE);
+    m_db.exec(sql);
 }

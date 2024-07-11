@@ -11,6 +11,7 @@ public:
     ~DBSqlite();
 
     void connect(const QString& DBPath);
+    void exec(const QString& sql);
 
 private:
     QSqlDatabase m_db;

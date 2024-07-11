@@ -22,7 +22,7 @@ int main(int argc, char *argv[])
     //2.QApplication加载qss
     a.setStyleSheet(qss);
 
-    //连接数据库
+    //数据库
     MDB->init();
 
     //用户登录窗口和主窗口切换的需求：

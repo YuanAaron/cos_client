@@ -15,6 +15,10 @@ namespace CONFIG {
         static const QString NAME = FileHelper::joinPath(PATH::TMP,"my.db");
     }
 
+    namespace SQL {
+        static const QString LOGIN_INFO_TABLE = ":/static/sql/login_info.sql";
+    }
+
     static bool init()
     {
         return FileHelper::mkPath(PATH::TMP);
