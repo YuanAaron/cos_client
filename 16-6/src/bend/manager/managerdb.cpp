@@ -65,3 +65,25 @@ int ManagerDB::indexOfLoginInfo(const QString &secretId)
     }
     throw QString::fromLocal8Bit("从缓存获取登录信息失败：%1").arg(secretId);
 }
+
+QStringList ManagerDB::loginNameList()
+{
+    QStringList strList;
+    for(LoginInfo& loginInfo: m_loginInfoList)
+    {
+        strList.append(loginInfo.name);
+    }
+    return strList;
+}
+
+LoginInfo ManagerDB::loginInfoByName(const QString& name)
+{
+    for(LoginInfo& loginInfo: m_loginInfoList)
+    {
+        if(loginInfo.name==name)
+        {
+            return loginInfo;
+        }
+    }
+    throw QString::fromLocal8Bit("通过登录名查找登录信息失败：%1").arg(name);
+}

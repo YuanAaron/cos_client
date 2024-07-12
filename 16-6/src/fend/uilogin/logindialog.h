@@ -15,6 +15,9 @@ public:
     LoginDialog(QWidget *parent = nullptr);
     ~LoginDialog();
 
+    //需求：更新记忆的登录名（在登录窗口输入登录名后，会自动回显其他登录信息）
+    void updateLoginInfo();
+
 protected:
     void mousePressEvent(QMouseEvent *e);
     void mouseMoveEvent(QMouseEvent *e);

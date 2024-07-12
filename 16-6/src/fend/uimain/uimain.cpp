@@ -38,6 +38,8 @@ void UiMain::showLoginDialog()
     {
         //new时没有指定其父窗口，那么它就是一个顶层窗口
         m_loginDialog = new LoginDialog;
+        //创建登录窗口后：更新记忆的登录名（在登录窗口输入登录名后，会自动回显其他登录信息）
+        m_loginDialog->updateLoginInfo();
 
         connect(m_loginDialog, &LoginDialog::accepted, this, &UiMain::show);
 //        connect(ui->widgetToolbar, &ToolbarWidget::quitLogin, this, &UiMain::showLoginDialog);

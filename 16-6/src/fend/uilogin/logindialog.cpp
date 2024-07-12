@@ -4,6 +4,7 @@
 #include <QMessageBox>
 #include <QMouseEvent>
 #include <QDebug>
+#include <QCompleter>
 #include <src/bend/manager/managerdb.h>
 
 LoginDialog::LoginDialog(QWidget *parent)
@@ -83,6 +84,22 @@ bool LoginDialog::eventFilter(QObject *watched, QEvent *event)
     return QDialog::eventFilter(watched, event);
 }
 
+void LoginDialog::updateLoginInfo()
+{
+    QStringList historyList = MDB->loginNameList();
+    QCompleter* completer = new QCompleter(historyList);
+    ui->lineLoginName->setCompleter(completer);
+
+    connect(completer, static_cast<void (QCompleter::*)(const QString &)>(&QCompleter::activated),
+            [&](const QString& name){
+            LoginInfo info = MDB->loginInfoByName(name);
+            ui->lineSecretId->setText(info.secretId);
+            ui->lineSecretKey->setText(info.secretKey);
+            ui->lineRemark->setText(info.remark);
+            ui->checkSaveSession->setChecked(true);
+    });
+}
+
 
 void LoginDialog::on_btnClose_clicked()
 {
@@ -116,6 +133,9 @@ void LoginDialog::on_btnLogin_clicked()
             //删除登录信息
             MDB->removeLoginInfo(ui->lineSecretId->text());
         }
+
+        //登录成功后：更新记忆的登录名（在登录窗口输入登录名后，会自动回显其他登录信息）
+        updateLoginInfo();
     }
     else
     {

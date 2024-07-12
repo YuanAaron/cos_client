@@ -20,6 +20,9 @@ public:
     void saveLoginInfo(const QString& name, const QString& id, const QString& key, const QString remark);
     void removeLoginInfo(const QString& id);
     int indexOfLoginInfo(const QString& secretId);
+
+    QStringList loginNameList();
+    LoginInfo loginInfoByName(const QString& name);
 signals:
 
 private:
