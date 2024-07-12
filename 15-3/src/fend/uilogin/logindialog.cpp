@@ -4,6 +4,7 @@
 #include <QMessageBox>
 #include <QMouseEvent>
 #include <QDebug>
+#include <src/bend/manager/managerdb.h>
 
 LoginDialog::LoginDialog(QWidget *parent)
     : QDialog(parent)
@@ -23,6 +24,7 @@ LoginDialog::LoginDialog(QWidget *parent)
 
     //设置"登录窗口"的样式
     ui->labelTitle->setProperty("style","h3");
+    ui->labelLgoinName->setProperty("style","h4");
     ui->labelSecretId->setProperty("style","h4");
     ui->labelSecretKey->setProperty("style","h4");
     ui->labelRemark->setProperty("style","h4");
@@ -100,6 +102,20 @@ void LoginDialog::on_btnLogin_clicked()
     {
         //Hides the modal dialog and sets the result code to Accepted.
         accept();
+        //是否选择了记住会话
+        if(ui->checkSaveSession->isChecked())
+        {
+            //保存登录信息
+            MDB->saveLoginInfo(ui->lineLoginName->text(),
+                               ui->lineSecretId->text(),
+                               ui->lineSecretKey->text(),
+                               ui->lineRemark->text());
+        }
+        else
+        {
+            //删除登录信息
+            MDB->removeLoginInfo(ui->lineSecretId->text());
+        }
     }
     else
     {

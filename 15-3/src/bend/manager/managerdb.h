@@ -16,6 +16,9 @@ public:
     static ManagerDB* instance();
 
     void init();
+
+    void saveLoginInfo(const QString& name, const QString& id, const QString& key, const QString remark);
+    void removeLoginInfo(const QString& id);
 signals:
 
 private:
