@@ -16,7 +16,7 @@ public:
     ~ToolbarWidget();
 
 signals:
-    void quitLogin();
+//    void quitLogin();
 
     //不使用QSignalMapper的情况下，工具栏按钮与uimain中组件的交互
 //    void refreshSig();

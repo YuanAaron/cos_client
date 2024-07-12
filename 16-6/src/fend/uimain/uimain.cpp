@@ -40,7 +40,7 @@ void UiMain::showLoginDialog()
         m_loginDialog = new LoginDialog;
 
         connect(m_loginDialog, &LoginDialog::accepted, this, &UiMain::show);
-        connect(ui->widgetToolbar, &ToolbarWidget::quitLogin, this, &UiMain::showLoginDialog);
+//        connect(ui->widgetToolbar, &ToolbarWidget::quitLogin, this, &UiMain::showLoginDialog);
     }
     hide();
     m_loginDialog->show();
@@ -63,7 +63,16 @@ void UiMain::onBtnClicked(const QString &text)
         //处理 传输列表
         qDebug() << "UiMain::onBtnClicked:" << text;
     }
+    else if(text == QString::fromLocal8Bit("退出登录"))
+    {
+        onUnLogin();
+    }
 
+}
+
+void UiMain::onUnLogin()
+{
+    showLoginDialog();
 }
 
 //void UiMain::onRefresh()

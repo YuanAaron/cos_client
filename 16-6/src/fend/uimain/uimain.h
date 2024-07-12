@@ -23,6 +23,7 @@ protected slots:
 //    void onRefresh();
 
     void onBtnClicked(const QString& text);
+    void onUnLogin();
 
 private:
     Ui::UiMain *ui;
