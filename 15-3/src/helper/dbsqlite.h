@@ -6,6 +6,9 @@
 #include <QSqlQuery>
 
 #include <src/bend/models/logininfo.h>
+#include <QMap>
+
+typedef QMap<QString, QVariant> RECORD;
 
 class DBSqlite
 {
@@ -17,6 +20,8 @@ public:
     QSqlQuery exec(const QString& sql);
 
     bool exists(const QString& secretId);
+
+    QList<RECORD> select(const QString& sql);
 
 private:
     QSqlDatabase m_db;

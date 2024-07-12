@@ -60,3 +60,22 @@ void DaoLoginInfo::update(const LoginInfo& info)
                       .arg(info.secretId);
     m_db.exec(sql);
 }
+
+QList<LoginInfo> DaoLoginInfo::select()
+{
+    QList<LoginInfo> retList;
+    QString sql = QString("select name, secret_id, secret_key, remark from %1 "
+                        "order by timestamp desc;")
+                        .arg(CONFIG::TABLES::LOGIN_INFO);
+    QList<RECORD> recordList = m_db.select(sql);
+    for(const RECORD& record: recordList)
+    {
+        LoginInfo info;
+        info.name = record["name"].toString();
+        info.secretId = record["secret_id"].toString();
+        info.secretKey = record["secret_key"].toString();
+        info.remark = record["remark"].toString();
+        retList.append(info);
+    }
+    return retList;
+}

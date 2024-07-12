@@ -18,6 +18,8 @@ public:
     void remove(const QString& secretId);
     void update(const LoginInfo& info);
 
+    QList<LoginInfo> select();
+
 private:
     DBSqlite m_db;
 };
