@@ -98,6 +98,18 @@ void LoginDialog::updateLoginInfo()
             ui->lineRemark->setText(info.remark);
             ui->checkSaveSession->setChecked(true);
     });
+
+    connect(ui->lineLoginName, &QLineEdit::editingFinished,
+            [this](){
+            LoginInfo info = MDB->loginInfoByName(ui->lineLoginName->text().trimmed());
+            if(info.name=="")
+            {
+                ui->lineSecretId->setText(info.secretId);
+                ui->lineSecretKey->setText(info.secretKey);
+                ui->lineRemark->setText(info.remark);
+                ui->checkSaveSession->setChecked(false);
+            }
+    });
 }
 
 

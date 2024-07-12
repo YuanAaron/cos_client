@@ -85,5 +85,11 @@ LoginInfo ManagerDB::loginInfoByName(const QString& name)
             return loginInfo;
         }
     }
-    throw QString::fromLocal8Bit("通过登录名查找登录信息失败：%1").arg(name);
+    //throw QString::fromLocal8Bit("通过登录名查找登录信息失败：%1").arg(name);
+    LoginInfo info;
+    info.name = "";
+    info.secretId="";
+    info.secretKey = "";
+    info.remark = "";
+    return info;
 }
