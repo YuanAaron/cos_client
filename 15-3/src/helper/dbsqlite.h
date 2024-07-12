@@ -3,6 +3,9 @@
 
 #include <QString>
 #include <QSqlDatabase>
+#include <QSqlQuery>
+
+#include <src/bend/models/logininfo.h>
 
 class DBSqlite
 {
@@ -11,7 +14,9 @@ public:
     ~DBSqlite();
 
     void connect(const QString& DBPath);
-    void exec(const QString& sql);
+    QSqlQuery exec(const QString& sql);
+
+    bool exists(const QString& secretId);
 
 private:
     QSqlDatabase m_db;

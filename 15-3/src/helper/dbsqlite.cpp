@@ -1,7 +1,6 @@
 ﻿#include "dbsqlite.h"
 
 #include <QSqlError>
-#include <QSqlQuery>
 
 DBSqlite::DBSqlite()
 {
@@ -29,11 +28,18 @@ void DBSqlite::connect(const QString &DBPath)
     }
 }
 
-void DBSqlite::exec(const QString &sql)
+QSqlQuery DBSqlite::exec(const QString &sql)
 {
     QSqlQuery query;
     if(!query.exec(sql))
     {
         throw QString::fromLocal8Bit("执行sql失败：%1 %2").arg(sql, m_db.lastError().text());
     }
+    return query;
+}
+
+bool DBSqlite::exists(const QString &secretId)
+{
+    QSqlQuery query = exec(secretId);
+    return query.next(); //是否有数据
 }

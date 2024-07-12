@@ -3,7 +3,7 @@
 
 #include <QObject>
 
-#include <src/helper/dbsqlite.h>
+#include <src/bend/dao/daologininfo.h>
 
 #define MDB ManagerDB::instance()
 
@@ -19,10 +19,7 @@ public:
 signals:
 
 private:
-    void connect();
-    void createLoginInfoTable();
-    DBSqlite m_db;
-
+    DaoLoginInfo m_daoLoginInfo;
 };
 
 #endif // MANAGERDB_H

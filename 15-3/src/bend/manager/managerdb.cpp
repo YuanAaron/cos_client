@@ -1,5 +1,4 @@
 ﻿#include "managerdb.h"
-#include "src/config/config.h"
 
 Q_GLOBAL_STATIC(ManagerDB, ins)
 
@@ -15,17 +14,6 @@ ManagerDB *ManagerDB::instance()
 
 void ManagerDB::init()
 {
-    connect();
-    createLoginInfoTable();
-}
-
-void ManagerDB::connect()
-{
-    m_db.connect(CONFIG::SQLITE::NAME);
-}
-
-void ManagerDB::createLoginInfoTable()
-{
-    QString sql = FileHelper::readAllTxt(CONFIG::SQL::LOGIN_INFO_TABLE);
-    m_db.exec(sql);
+    m_daoLoginInfo.connect();
+    m_daoLoginInfo.createLoginInfoTable();
 }
