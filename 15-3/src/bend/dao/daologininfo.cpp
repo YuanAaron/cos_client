@@ -30,7 +30,7 @@ void DaoLoginInfo::insert(const LoginInfo& info)
 {
     QString sql = QString(
                       "insert into %1 (name, secret_id, secret_key, remark, timestamp) "
-                      "values ('%2',' %3', '%4', '%5', %6)")
+                      "values ('%2','%3', '%4', '%5', %6)")
                       .arg(CONFIG::TABLES::LOGIN_INFO,info.name,info.secretId,info.secretKey,info.remark)
                       .arg(info.timestamp);
     m_db.exec(sql);
