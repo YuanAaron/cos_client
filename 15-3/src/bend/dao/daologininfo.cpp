@@ -30,9 +30,9 @@ void DaoLoginInfo::insert(const LoginInfo& info)
 {
     QString sql = QString(
                       "insert into %1 (name, secret_id, secret_key, remark, timestamp) "
-                      "values (%2, %3, %4, %5, %6)")
+                      "values ('%2',' %3', '%4', '%5', %6)")
                       .arg(CONFIG::TABLES::LOGIN_INFO,info.name,info.secretId,info.secretKey,info.remark)
-                      .arg(info.timestamp); //arg最多5个参数
+                      .arg(info.timestamp);
     m_db.exec(sql);
 
 }
@@ -41,7 +41,7 @@ void DaoLoginInfo::remove(const QString& secretId)
 {
     QString sql = QString(
                       "delete from %1 where  "
-                      "secret_id = %2;")
+                      "secret_id = '%2';")
                       .arg(CONFIG::TABLES::LOGIN_INFO,secretId);
     m_db.exec(sql);
 }
@@ -50,12 +50,13 @@ void DaoLoginInfo::update(const LoginInfo& info)
 {
     QString sql = QString(
                       "update %1 "
-                      "set name=%2, "
-                      "secret_key=%3, "
-                      "remark=%4, "
+                      "set name='%2', "
+                      "secret_key='%3', "
+                      "remark='%4', "
                       "timestamp=%5 "
-                      "where secret_id %6 ?")
-                      .arg(CONFIG::TABLES::LOGIN_INFO, info.name,info.secretKey,info.remark)
+                      "where secret_id='%6'")
+                      .arg(CONFIG::TABLES::LOGIN_INFO,info.name,info.secretKey,info.remark)
+                      .arg(info.timestamp)
                       .arg(info.secretId);
     m_db.exec(sql);
 }
