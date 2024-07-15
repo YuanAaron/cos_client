@@ -17,49 +17,107 @@ void DaoLoginInfo::createLoginInfoTable()
     m_db.exec(sql);
 }
 
+//bool DaoLoginInfo::exists(const QString &secretId)
+//{
+//    QString sql = QString(
+//                      "select id from %1 where  "
+//                      "secret_id = '%2';")
+//                      .arg(CONFIG::TABLES::LOGIN_INFO, secretId);
+//    return m_db.exists(sql);
+//}
+
 bool DaoLoginInfo::exists(const QString &secretId)
 {
     QString sql = QString(
                       "select id from %1 where  "
-                      "secret_id = '%2';")
-                      .arg(CONFIG::TABLES::LOGIN_INFO, secretId);
-    return m_db.exists(sql);
+                      "secret_id = ?")
+                      .arg(CONFIG::TABLES::LOGIN_INFO);
+
+    QVariantList varList;
+    varList << secretId;
+
+    QSqlQuery query = m_db.exec(sql,varList);
+    return query.next(); //是否有数据
 }
 
 void DaoLoginInfo::insert(const LoginInfo& info)
 {
     QString sql = QString(
                       "insert into %1 (name, secret_id, secret_key, remark, timestamp) "
-                      "values ('%2','%3', '%4', '%5', %6)")
-                      .arg(CONFIG::TABLES::LOGIN_INFO,info.name,info.secretId,info.secretKey,info.remark)
-                      .arg(info.timestamp);
-    m_db.exec(sql);
-
+                      "values (?, ?, ?, ?, ?)").arg(CONFIG::TABLES::LOGIN_INFO);
+    QVariantList varList;
+    varList << info.name
+            << info.secretId
+            << info.secretKey
+            << info.remark
+            << info.timestamp;
+    m_db.exec(sql, varList);
 }
 
 void DaoLoginInfo::remove(const QString& secretId)
 {
     QString sql = QString(
                       "delete from %1 where  "
-                      "secret_id = '%2';")
-                      .arg(CONFIG::TABLES::LOGIN_INFO,secretId);
-    m_db.exec(sql);
+                      "secret_id = ?")
+                      .arg(CONFIG::TABLES::LOGIN_INFO);
+    QVariantList varList;
+    varList << secretId;
+    m_db.exec(sql, varList);
 }
 
 void DaoLoginInfo::update(const LoginInfo& info)
 {
     QString sql = QString(
                       "update %1 "
-                      "set name='%2', "
-                      "secret_key='%3', "
-                      "remark='%4', "
-                      "timestamp=%5 "
-                      "where secret_id='%6'")
-                      .arg(CONFIG::TABLES::LOGIN_INFO,info.name,info.secretKey,info.remark)
-                      .arg(info.timestamp)
-                      .arg(info.secretId);
-    m_db.exec(sql);
+                      "set name=?, "
+                      "secret_key=?, "
+                      "remark=?, "
+                      "timestamp=? "
+                      "where secret_id = ?")
+                      .arg(CONFIG::TABLES::LOGIN_INFO);
+    QVariantList varList;
+    varList << info.name
+            << info.secretKey
+            << info.remark
+            << info.timestamp
+            << info.secretId;
+    m_db.exec(sql, varList);
 }
+
+//void DaoLoginInfo::insert(const LoginInfo& info)
+//{
+//    QString sql = QString(
+//                      "insert into %1 (name, secret_id, secret_key, remark, timestamp) "
+//                      "values ('%2','%3', '%4', '%5', %6)")
+//                      .arg(CONFIG::TABLES::LOGIN_INFO,info.name,info.secretId,info.secretKey,info.remark)
+//                      .arg(info.timestamp);
+//    m_db.exec(sql);
+
+//}
+
+//void DaoLoginInfo::remove(const QString& secretId)
+//{
+//    QString sql = QString(
+//                      "delete from %1 where  "
+//                      "secret_id = '%2';")
+//                      .arg(CONFIG::TABLES::LOGIN_INFO,secretId);
+//    m_db.exec(sql);
+//}
+
+//void DaoLoginInfo::update(const LoginInfo& info)
+//{
+//    QString sql = QString(
+//                      "update %1 "
+//                      "set name='%2', "
+//                      "secret_key='%3', "
+//                      "remark='%4', "
+//                      "timestamp=%5 "
+//                      "where secret_id='%6'")
+//                      .arg(CONFIG::TABLES::LOGIN_INFO,info.name,info.secretKey,info.remark)
+//                      .arg(info.timestamp)
+//                      .arg(info.secretId);
+//    m_db.exec(sql);
+//}
 
 QList<LoginInfo> DaoLoginInfo::select()
 {

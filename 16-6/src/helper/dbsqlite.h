@@ -4,6 +4,7 @@
 #include <QString>
 #include <QSqlDatabase>
 #include <QSqlQuery>
+#include <QVariantList>
 
 #include <src/bend/models/logininfo.h>
 #include <QMap>
@@ -18,6 +19,7 @@ public:
 
     void connect(const QString& DBPath);
     QSqlQuery exec(const QString& sql);
+    QSqlQuery exec(const QString& sql, const QVariantList& variantList);
 
     bool exists(const QString& secretId);
 

@@ -4,6 +4,7 @@
 #include <QSqlRecord>
 #include <QVariant>
 #include <QDebug>
+#include <QSqlQuery>
 
 DBSqlite::DBSqlite()
 {
@@ -41,11 +42,32 @@ QSqlQuery DBSqlite::exec(const QString &sql)
     return query;
 }
 
-bool DBSqlite::exists(const QString &secretId)
+QSqlQuery DBSqlite::exec(const QString &sql, const QVariantList& variantList)
 {
-    QSqlQuery query = exec(secretId);
-    return query.next(); //是否有数据
+    QSqlQuery query;
+    if(!query.prepare(sql))
+    {
+        throw QString::fromLocal8Bit("预编译sql失败：%1 %2").arg(sql, m_db.lastError().text());
+    }
+
+    //使用addBindValue方法替换占位符
+    for(const auto& var: variantList)
+    {
+        query.addBindValue(var);
+    }
+
+    if(!query.exec())
+    {
+        throw QString::fromLocal8Bit("执行sql bindValue失败：%1 %2").arg(sql, m_db.lastError().text());
+    }
+    return query;
 }
+
+//bool DBSqlite::exists(const QString &secretId)
+//{
+//    QSqlQuery query = exec(secretId);
+//    return query.next(); //是否有数据
+//}
 
 QList<RECORD> DBSqlite::select(const QString& sql)
 {
