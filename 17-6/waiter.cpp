@@ -27,7 +27,7 @@ void Waiter::order(const QString &name)
 {
     Dishes* d = m_menu.value(name);
     d = static_cast<Dishes*>(d->metaObject()->newInstance());
-    connect(d, &Dishes::finished, this, [](const QString& name) {
+    connect(d, &Dishes::finishedDishes, this, [](const QString& name) {
        qDebug() << QString::fromLocal8Bit("服务员收到菜品已制作完成：") + name;
     });
     m_cook.work(d);

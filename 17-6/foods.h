@@ -1,10 +1,11 @@
 ﻿#ifndef FOODS_H
 #define FOODS_H
 
+#include <QFutureWatcher>
 #include <QObject>
 #include <QRunnable>
 
-class Dishes : public QObject, public QRunnable
+class Dishes : public QFutureWatcher<void>
 {
     Q_OBJECT
 public:
@@ -16,10 +17,10 @@ public:
     virtual int cost() = 0;
 
 signals:
-    void finished(const QString& name);
+    void finishedDishes(const QString& name);
 
-protected:
-    void run() override;
+public:
+    void run();
 };
 
 class MaPoDouFu: public Dishes

@@ -13,5 +13,5 @@ void Dishes::run()
     qDebug() << QString::fromLocal8Bit("开始制作 %1").arg(name()) << QThread::currentThreadId();
     QThread::sleep(cost());
     qDebug() << QString::fromLocal8Bit("结束制作 %1").arg(name());
-    emit finished(name());
+    emit finishedDishes(name());
 }
