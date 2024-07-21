@@ -5,6 +5,8 @@
 
 #include <src/bend/dao/clouds/DaoClouds.h>
 
+#include <src/bend/dao/config/version.h>
+
 #define MP ManagerPlugin::instance()
 
 class ManagerPlugin : public QObject
@@ -12,6 +14,7 @@ class ManagerPlugin : public QObject
     Q_OBJECT
 public:
     explicit ManagerPlugin(QObject *parent = nullptr);
+    ~ManagerPlugin();
 
     static ManagerPlugin *instance();
 
@@ -19,11 +22,12 @@ public:
 
 signals:
 
-private:
+public:
     void installPlugins();
 
 private:
     DaoClouds* m_clouds;
+    Version* m_version;
 
 };
 

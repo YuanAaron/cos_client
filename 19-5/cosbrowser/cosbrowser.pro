@@ -18,6 +18,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     main.cpp \
     src/bend/dao/clouds/daocloudsmock.cpp \
+    src/bend/dao/config/version.cpp \
+    src/bend/dao/config/versionjson.cpp \
     src/bend/dao/dbs/daologininfosqlite.cpp \
     src/bend/manager/managercloud.cpp \
     src/bend/manager/managerdb.cpp \
@@ -37,11 +39,13 @@ SOURCES += \
 HEADERS += \
     src/bend/dao/clouds/DaoClouds.h \
     src/bend/dao/clouds/daocloudsmock.h \
+    src/bend/dao/config/version.h \
+    src/bend/dao/config/versionjson.h \
     src/bend/dao/dbs/daologininfo.h \
     src/bend/dao/dbs/daologininfosqlite.h \
     src/bend/manager/managercloud.h \
     src/bend/manager/managerdb.h \
-    src/config/config.h \
+    src/config/global.h \
     src/fend/uicommon/breadwidget.h \
     src/fend/uicommon/mylineedit.h \
     src/fend/uicommon/pagewidget.h \

@@ -3,6 +3,8 @@
 
 #include <src/bend/manager/managercloud.h>
 #include <src/bend/manager/managerdb.h>
+#include "src/config/global.h"
+#include "src/plugins/managerplugin.h"
 
 #include <QApplication>
 #include <QDebug>
@@ -10,6 +12,10 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
+
+    GLOBAL::init();
+    MP->installPlugins();
+
     //Mock测试
 //    DaoBucket buckets;
 //    buckets.bucketsFromMock(":/static/test/buckets2.json");

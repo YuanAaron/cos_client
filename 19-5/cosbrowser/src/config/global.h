@@ -5,7 +5,7 @@
 #include <QString>
 #include <QDir>
 
-namespace CONFIG {
+namespace GLOBAL {
     namespace PATH {
         static const QString WORK = QDir::currentPath();
         static const QString TMP = FileHelper::joinPath(WORK,"tmp");
@@ -23,11 +23,25 @@ namespace CONFIG {
         static const QString LOGIN_INFO = "login_info";
     }
 
+    namespace VERSION {
+        static const QString MAJOR_CUSTOM = "custom";
+        static const QString MAJOR_BUSINESS = "business";
+        static const QString JSON_PATH = ":/static/versions/config_default.json";
+    }
+
+    namespace ENV {
+        static const QString ENV_DEV = "dev";
+        static const QString ENV_ALPHA = "alpha";
+        static const QString ENV_BETA = "beta";
+        static const QString ENV_PRE = "pre";
+        static const QString ENV_PROD = "prod";
+    }
+
     static bool init()
     {
         return FileHelper::mkPath(PATH::TMP);
     }
-    static bool OK = init(); //在main函数前执行
+//    static bool OK = init(); //在main函数前执行
 }
 
 #endif // CONFIG_H
