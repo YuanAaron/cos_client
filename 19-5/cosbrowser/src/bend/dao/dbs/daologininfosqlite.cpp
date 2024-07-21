@@ -1,23 +1,23 @@
-﻿#include "daologininfo.h"
+﻿#include "daologininfosqlite.h"
 #include "src/config/config.h"
 
-DaoLoginInfo::DaoLoginInfo()
+DaoLoginInfoSqlite::DaoLoginInfoSqlite()
 {
 
 }
 
-void DaoLoginInfo::connect()
+void DaoLoginInfoSqlite::connect()
 {
     m_db.connect(CONFIG::SQLITE::NAME);
 }
 
-void DaoLoginInfo::createLoginInfoTable()
+void DaoLoginInfoSqlite::createLoginInfoTable()
 {
     QString sql = FileHelper::readAllTxt(CONFIG::SQL::LOGIN_INFO_TABLE);
     m_db.exec(sql);
 }
 
-//bool DaoLoginInfo::exists(const QString &secretId)
+//bool DaoLoginInfoSqlite::exists(const QString &secretId)
 //{
 //    QString sql = QString(
 //                      "select id from %1 where  "
@@ -26,7 +26,7 @@ void DaoLoginInfo::createLoginInfoTable()
 //    return m_db.exists(sql);
 //}
 
-bool DaoLoginInfo::exists(const QString &secretId)
+bool DaoLoginInfoSqlite::exists(const QString &secretId)
 {
     QString sql = QString(
                       "select id from %1 where  "
@@ -40,7 +40,7 @@ bool DaoLoginInfo::exists(const QString &secretId)
     return query.next(); //是否有数据
 }
 
-void DaoLoginInfo::insert(const LoginInfo& info)
+void DaoLoginInfoSqlite::insert(const LoginInfo& info)
 {
     QString sql = QString(
                       "insert into %1 (name, secret_id, secret_key, remark, timestamp) "
@@ -54,7 +54,7 @@ void DaoLoginInfo::insert(const LoginInfo& info)
     m_db.exec(sql, varList);
 }
 
-void DaoLoginInfo::remove(const QString& secretId)
+void DaoLoginInfoSqlite::remove(const QString& secretId)
 {
     QString sql = QString(
                       "delete from %1 where  "
@@ -65,7 +65,7 @@ void DaoLoginInfo::remove(const QString& secretId)
     m_db.exec(sql, varList);
 }
 
-void DaoLoginInfo::update(const LoginInfo& info)
+void DaoLoginInfoSqlite::update(const LoginInfo& info)
 {
     QString sql = QString(
                       "update %1 "
@@ -84,7 +84,7 @@ void DaoLoginInfo::update(const LoginInfo& info)
     m_db.exec(sql, varList);
 }
 
-//void DaoLoginInfo::insert(const LoginInfo& info)
+//void DaoLoginInfoSqlite::insert(const LoginInfo& info)
 //{
 //    QString sql = QString(
 //                      "insert into %1 (name, secret_id, secret_key, remark, timestamp) "
@@ -95,7 +95,7 @@ void DaoLoginInfo::update(const LoginInfo& info)
 
 //}
 
-//void DaoLoginInfo::remove(const QString& secretId)
+//void DaoLoginInfoSqlite::remove(const QString& secretId)
 //{
 //    QString sql = QString(
 //                      "delete from %1 where  "
@@ -104,7 +104,7 @@ void DaoLoginInfo::update(const LoginInfo& info)
 //    m_db.exec(sql);
 //}
 
-//void DaoLoginInfo::update(const LoginInfo& info)
+//void DaoLoginInfoSqlite::update(const LoginInfo& info)
 //{
 //    QString sql = QString(
 //                      "update %1 "
@@ -119,7 +119,7 @@ void DaoLoginInfo::update(const LoginInfo& info)
 //    m_db.exec(sql);
 //}
 
-QList<LoginInfo> DaoLoginInfo::select()
+QList<LoginInfo> DaoLoginInfoSqlite::select()
 {
     QList<LoginInfo> retList;
     QString sql = QString("select name, secret_id, secret_key, remark from %1 "

@@ -3,7 +3,9 @@
 
 #include <QObject>
 
-#include <src/bend/dao/daologininfo.h>
+#include <src/middle/models/logininfo.h>
+
+#include <src/bend/dao/dbs/daologininfosqlite.h>
 
 #define MDB ManagerDB::instance()
 
@@ -26,7 +28,7 @@ public:
 signals:
 
 private:
-    DaoLoginInfo m_daoLoginInfo;
+    DaoLoginInfoSqlite m_daoLoginInfo;
     QList<LoginInfo> m_loginInfoList; //缓存
 };
 

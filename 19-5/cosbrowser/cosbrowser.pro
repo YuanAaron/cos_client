@@ -17,11 +17,10 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     main.cpp \
-    src/bend/dao/daobucket.cpp \
-    src/bend/dao/daologininfo.cpp \
-    src/bend/manager/managerbucket.cpp \
+    src/bend/dao/clouds/daocloudsmock.cpp \
+    src/bend/dao/dbs/daologininfosqlite.cpp \
+    src/bend/manager/managercloud.cpp \
     src/bend/manager/managerdb.cpp \
-    src/bend/models/mybucket.cpp \
     src/fend/uicommon/breadwidget.cpp \
     src/fend/uicommon/mylineedit.cpp \
     src/fend/uicommon/pagewidget.cpp \
@@ -35,12 +34,12 @@ SOURCES += \
     src/helper/filehelper.cpp
 
 HEADERS += \
-    src/bend/dao/daobucket.h \
-    src/bend/dao/daologininfo.h \
-    src/bend/manager/managerbucket.h \
+    src/bend/dao/clouds/DaoClouds.h \
+    src/bend/dao/clouds/daocloudsmock.h \
+    src/bend/dao/dbs/daologininfo.h \
+    src/bend/dao/dbs/daologininfosqlite.h \
+    src/bend/manager/managercloud.h \
     src/bend/manager/managerdb.h \
-    src/bend/models/logininfo.h \
-    src/bend/models/mybucket.h \
     src/config/config.h \
     src/fend/uicommon/breadwidget.h \
     src/fend/uicommon/mylineedit.h \
@@ -52,7 +51,9 @@ HEADERS += \
     src/fend/uimain/toolbarwidget.h \
     src/fend/uimain/uimain.h \
     src/helper/dbsqlite.h \
-    src/helper/filehelper.h
+    src/helper/filehelper.h \
+    src/middle/models/logininfo.h \
+    src/middle/models/mybucket.h
 
 FORMS += \
     src/fend/uicommon/breadwidget.ui \

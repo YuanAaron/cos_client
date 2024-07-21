@@ -5,7 +5,6 @@
 
 struct MyBucket
 {
-    MyBucket();
     QString name;
     QString location;
     QString createDate;

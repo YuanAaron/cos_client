@@ -1,8 +1,7 @@
 ﻿#include "src\fend\uimain\uimain.h"
 #include "src\helper\filehelper.h"
 
-#include "src/bend/dao/daobucket.h"
-#include <src/bend/manager/managerbucket.h>
+#include <src/bend/manager/managercloud.h>
 #include <src/bend/manager/managerdb.h>
 
 #include <QApplication>
@@ -34,10 +33,10 @@ int main(int argc, char *argv[])
 //    w.show();
     w.showLoginDialog();
 
-    MB->print();
-    MB->print();
+    MC->print();
+    MC->print();
 
-    MB->setBucket();
+    MC->setBucket();
 
     qDebug() << QString::fromLocal8Bit("无意中发现了bug: uimain.h中的m_loginDialog必须设为nullptr");
     return a.exec();

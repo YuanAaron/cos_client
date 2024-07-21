@@ -1,30 +1,32 @@
-﻿#include "managerbucket.h"
+﻿#include "managercloud.h"
 
-#include "src/bend/dao/daobucket.h"
 #include <QDebug>
 
-Q_GLOBAL_STATIC(ManagerBucket, ins)
+#include <src/middle/models/mybucket.h>
+#include <src/bend/dao/clouds/daocloudsmock.h>
 
-ManagerBucket::ManagerBucket(QObject *parent) : QObject(parent)
+Q_GLOBAL_STATIC(ManagerCloud, ins)
+
+ManagerCloud::ManagerCloud(QObject *parent) : QObject(parent)
 {
     qDebug() << QString::fromLocal8Bit("只进来了一次，我是单例的!");
     m_model = new QStandardItemModel(this);
 }
 
-ManagerBucket *ManagerBucket::instance()
+ManagerCloud *ManagerCloud::instance()
 {
     return ins();
 }
 
-void ManagerBucket::print()
+void ManagerCloud::print()
 {
     qDebug() << QString::fromLocal8Bit("MB是单例的吗？");
 }
 
-void ManagerBucket::setBucket()
+void ManagerCloud::setBucket()
 {
-    DaoBucket dao;
-    QList<MyBucket> buckets = dao.bucketsFromMock(":/static/test/buckets2.json");
+    DaoCloudsMock dao(":/static/test/buckets2.json");
+    QList<MyBucket> buckets = dao.buckets();
 
     m_model->setRowCount(buckets.size());
 //    m_model->setColumnCount(3); //objectswidget.cpp已经设置过了
@@ -46,7 +48,7 @@ void ManagerBucket::setBucket()
     m_model->sort(2,Qt::DescendingOrder);
 }
 
-QStandardItemModel *ManagerBucket::model() const
+QStandardItemModel *ManagerCloud::model() const
 {
     return m_model;
 }

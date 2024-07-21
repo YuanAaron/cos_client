@@ -6,7 +6,6 @@
 #include <QSqlQuery>
 #include <QVariantList>
 
-#include <src/bend/models/logininfo.h>
 #include <QMap>
 
 typedef QMap<QString, QVariant> RECORD;

@@ -1,7 +1,7 @@
 ﻿#include "bucketswidget.h"
 #include "ui_bucketswidget.h"
 
-#include "src/bend/manager/managerbucket.h"
+#include "src/bend/manager/managercloud.h"
 #include <QDebug>
 
 BucketsWidget::BucketsWidget(QWidget *parent) :
@@ -9,7 +9,7 @@ BucketsWidget::BucketsWidget(QWidget *parent) :
     ui(new Ui::BucketsWidget)
 {
     ui->setupUi(this);
-    ui->listView->setModel(MB->model());
+    ui->listView->setModel(MC->model());
 }
 
 BucketsWidget::~BucketsWidget()
