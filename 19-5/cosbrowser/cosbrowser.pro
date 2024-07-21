@@ -31,7 +31,8 @@ SOURCES += \
     src/fend/uimain/toolbarwidget.cpp \
     src/fend/uimain/uimain.cpp \
     src/helper/dbsqlite.cpp \
-    src/helper/filehelper.cpp
+    src/helper/filehelper.cpp \
+    src/plugins/managerplugin.cpp
 
 HEADERS += \
     src/bend/dao/clouds/DaoClouds.h \
@@ -53,7 +54,8 @@ HEADERS += \
     src/helper/dbsqlite.h \
     src/helper/filehelper.h \
     src/middle/models/logininfo.h \
-    src/middle/models/mybucket.h
+    src/middle/models/mybucket.h \
+    src/plugins/managerplugin.h
 
 FORMS += \
     src/fend/uicommon/breadwidget.ui \

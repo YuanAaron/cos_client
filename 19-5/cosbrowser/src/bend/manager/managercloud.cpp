@@ -4,6 +4,7 @@
 
 #include <src/middle/models/mybucket.h>
 #include <src/bend/dao/clouds/daocloudsmock.h>
+#include <src/plugins/managerplugin.h>
 
 Q_GLOBAL_STATIC(ManagerCloud, ins)
 
@@ -25,8 +26,8 @@ void ManagerCloud::print()
 
 void ManagerCloud::setBucket()
 {
-    DaoCloudsMock dao(":/static/test/buckets2.json");
-    QList<MyBucket> buckets = dao.buckets();
+    DaoClouds* dao = MP->clouds();
+    QList<MyBucket> buckets = dao->buckets();
 
     m_model->setRowCount(buckets.size());
 //    m_model->setColumnCount(3); //objectswidget.cpp已经设置过了
