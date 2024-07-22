@@ -23,7 +23,7 @@ public:
 signals:
 
 public:
-    void installPlugins();
+    void installPlugins(int argc, char* argv[]);
 
 private:
     DaoClouds* m_clouds;

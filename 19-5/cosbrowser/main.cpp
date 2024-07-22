@@ -14,7 +14,7 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
 
     GLOBAL::init();
-    MP->installPlugins();
+    MP->installPlugins(argc, argv);
 
     //Mock测试
 //    DaoBucket buckets;

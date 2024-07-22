@@ -19,6 +19,7 @@ SOURCES += \
     main.cpp \
     src/bend/dao/clouds/daocloudsmock.cpp \
     src/bend/dao/config/version.cpp \
+    src/bend/dao/config/versioncmd.cpp \
     src/bend/dao/config/versionjson.cpp \
     src/bend/dao/dbs/daologininfosqlite.cpp \
     src/bend/manager/managercloud.cpp \
@@ -40,6 +41,7 @@ HEADERS += \
     src/bend/dao/clouds/DaoClouds.h \
     src/bend/dao/clouds/daocloudsmock.h \
     src/bend/dao/config/version.h \
+    src/bend/dao/config/versioncmd.h \
     src/bend/dao/config/versionjson.h \
     src/bend/dao/dbs/daologininfo.h \
     src/bend/dao/dbs/daologininfosqlite.h \
