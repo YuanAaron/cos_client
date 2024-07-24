@@ -3,7 +3,9 @@
 #include <src/bend/dao/clouds/daocloudsmock.h>
 #include <src/bend/dao/config/versioncmd.h>
 #include <src/bend/dao/config/versionjson.h>
+#include <src/bend/dao/logs/loggerqdebug.h>
 #include "src/config/global.h"
+#include "src/config/loggerproxy.h"
 using namespace GLOBAL;
 
 Q_GLOBAL_STATIC(ManagerPlugin, ins)
@@ -38,6 +40,8 @@ void ManagerPlugin::installPlugins(int argc, char* argv[])
     }
 
     m_version->setVersion();
+
+    //安装云存储插件
     if(m_version->major() == VERSION::MAJOR_BUSINESS)
     {
         m_clouds = new DaoCloudsMock(":/static/test/business.json");
@@ -46,6 +50,10 @@ void ManagerPlugin::installPlugins(int argc, char* argv[])
     {
         m_clouds = new DaoCloudsMock(":/static/test/custom.json");
     }
+
+    //安装日志插件
+    LOG->setLogger(new LoggerQDebug());
+//    LOG->setLevel(LOG_LEVEL::INFO);
 }
 
 DaoClouds *ManagerPlugin::clouds() const

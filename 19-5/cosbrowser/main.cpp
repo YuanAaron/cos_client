@@ -5,6 +5,7 @@
 #include <src/bend/manager/managerdb.h>
 #include "src/config/global.h"
 #include "src/plugins/managerplugin.h"
+#include "src/config/loggerproxy.h"
 
 #include <QApplication>
 #include <QDebug>
@@ -15,6 +16,7 @@ int main(int argc, char *argv[])
 
     GLOBAL::init();
     MP->installPlugins(argc, argv);
+//    mInfo(QString::fromLocal8Bit("这是主函数！！！"));
 
     //Mock测试
 //    DaoBucket buckets;

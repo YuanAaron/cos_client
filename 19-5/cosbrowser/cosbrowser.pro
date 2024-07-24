@@ -22,8 +22,11 @@ SOURCES += \
     src/bend/dao/config/versioncmd.cpp \
     src/bend/dao/config/versionjson.cpp \
     src/bend/dao/dbs/daologininfosqlite.cpp \
+    src/bend/dao/logs/basiclogger.cpp \
+    src/bend/dao/logs/loggerqdebug.cpp \
     src/bend/manager/managercloud.cpp \
     src/bend/manager/managerdb.cpp \
+    src/config/loggerproxy.cpp \
     src/fend/uicommon/breadwidget.cpp \
     src/fend/uicommon/mylineedit.cpp \
     src/fend/uicommon/pagewidget.cpp \
@@ -45,9 +48,12 @@ HEADERS += \
     src/bend/dao/config/versionjson.h \
     src/bend/dao/dbs/daologininfo.h \
     src/bend/dao/dbs/daologininfosqlite.h \
+    src/bend/dao/logs/basiclogger.h \
+    src/bend/dao/logs/loggerqdebug.h \
     src/bend/manager/managercloud.h \
     src/bend/manager/managerdb.h \
     src/config/global.h \
+    src/config/loggerproxy.h \
     src/fend/uicommon/breadwidget.h \
     src/fend/uicommon/mylineedit.h \
     src/fend/uicommon/pagewidget.h \
