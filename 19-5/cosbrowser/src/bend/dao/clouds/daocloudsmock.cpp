@@ -1,8 +1,10 @@
 ﻿#include "daocloudsmock.h"
 
 #include <src/helper/filehelper.h>
+#include <src/config/loggerproxy.h>
 
 #include <QJsonArray>
+#include <QThread>
 
 DaoCloudsMock::DaoCloudsMock(const QString& path)
 {
@@ -22,8 +24,24 @@ QList<MyBucket> DaoCloudsMock::buckets()
         bucket.location=v["location"].toString();
         bucket.createDate=v["create_date"].toString();
 //        qDebug() << bucket.name << bucket.location << bucket.createDate;
+        mInfo(QString::fromLocal8Bit("name[%1], location[%2], date[%3]").arg(bucket.name,bucket.location, bucket.createDate));
 
         buckets.append(bucket);
     }
     return buckets;
+}
+
+QList<MyBucket> DaoCloudsMock::login(const QString &secretId, const QString &secretKey)
+{
+    QThread::sleep(3);
+    QJsonArray arr = m_mock["users"].toArray();
+    for(int i=0; i<arr.count(); i++)
+    {
+        QJsonValue v = arr[i];
+        if(secretId == v["secretId"].toString() && secretKey == v["secretKey"].toString())
+        {
+            return buckets();
+        }
+    }
+    throw QString::fromLocal8Bit("用户名密码错误");
 }

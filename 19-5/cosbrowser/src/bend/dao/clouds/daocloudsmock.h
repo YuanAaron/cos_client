@@ -11,6 +11,8 @@ public:
 
     virtual QList<MyBucket> buckets() override;
 
+    virtual QList<MyBucket> login(const QString &secretId, const QString &secretKey) override;
+
 private:
     QJsonValue m_mock;
 };

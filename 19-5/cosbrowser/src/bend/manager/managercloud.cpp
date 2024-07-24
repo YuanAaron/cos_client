@@ -53,3 +53,8 @@ QStandardItemModel *ManagerCloud::model() const
 {
     return m_model;
 }
+
+void ManagerCloud::login(QString secretId, QString secretKey)
+{
+    QList<MyBucket> buckets = MP->clouds()->login(secretId, secretKey);
+}

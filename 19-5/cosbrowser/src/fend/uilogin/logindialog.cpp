@@ -5,7 +5,10 @@
 #include <QMouseEvent>
 #include <QDebug>
 #include <QCompleter>
+#include <QJsonObject>
 #include <src/bend/manager/managerdb.h>
+#include "src/bend/gateway.h"
+#include "src/config/api.h"
 
 LoginDialog::LoginDialog(QWidget *parent)
     : QDialog(parent)
@@ -123,35 +126,77 @@ void LoginDialog::on_btnClose_clicked()
     reject();
 }
 
+//测试网关
 void LoginDialog::on_btnLogin_clicked()
 {
-    //登录信息验证
-    if(ui->lineSecretId->text().trimmed()=="zhangsan"
-            && ui->lineSecretKey->text().trimmed()=="123")
-    {
-        //Hides the modal dialog and sets the result code to Accepted.
-        accept();
-        //是否选择了记住会话
-        if(ui->checkSaveSession->isChecked())
-        {
-            //保存登录信息
-            MDB->saveLoginInfo(ui->lineLoginName->text(),
-                               ui->lineSecretId->text(),
-                               ui->lineSecretKey->text(),
-                               ui->lineRemark->text());
-        }
-        else
-        {
-            //删除登录信息
-            MDB->removeLoginInfo(ui->lineSecretId->text());
-        }
-
-        //登录成功后：更新记忆的登录名（在登录窗口输入登录名后，会自动回显其他登录信息）
-        updateLoginInfo();
-    }
-    else
-    {
-        QMessageBox::warning(this,QString::fromLocal8Bit("登录失败"),
-                             QString::fromLocal8Bit("请检查SecretId或SecretKey是否正确"));
-    }
+    QJsonObject params;
+    params["secretId"] = ui->lineSecretId->text().trimmed();
+    params["secretKey"] = ui->lineSecretKey->text().trimmed();
+    GW->send(API::LOGIN::NORMAL, params);
 }
+
+//void LoginDialog::on_btnLogin_clicked()
+//{
+//    //登录信息验证
+//    if(ui->lineSecretId->text().trimmed()=="zhangsan"
+//            && ui->lineSecretKey->text().trimmed()=="123")
+//    {
+//        //Hides the modal dialog and sets the result code to Accepted.
+//        accept();
+//        //是否选择了记住会话
+//        if(ui->checkSaveSession->isChecked())
+//        {
+//            //保存登录信息
+//            MDB->saveLoginInfo(ui->lineLoginName->text(),
+//                               ui->lineSecretId->text(),
+//                               ui->lineSecretKey->text(),
+//                               ui->lineRemark->text());
+//        }
+//        else
+//        {
+//            //删除登录信息
+//            MDB->removeLoginInfo(ui->lineSecretId->text());
+//        }
+
+//        //登录成功后：更新记忆的登录名（在登录窗口输入登录名后，会自动回显其他登录信息）
+//        updateLoginInfo();
+//    }
+//    else
+//    {
+//        QMessageBox::warning(this,QString::fromLocal8Bit("登录失败"),
+//                             QString::fromLocal8Bit("请检查SecretId或SecretKey是否正确"));
+//    }
+//}
+
+//void LoginDialog::on_btnLogin_clicked()
+//{
+//    //登录信息验证
+//    if(ui->lineSecretId->text().trimmed()=="zhangsan"
+//            && ui->lineSecretKey->text().trimmed()=="123")
+//    {
+//        //Hides the modal dialog and sets the result code to Accepted.
+//        accept();
+//        //是否选择了记住会话
+//        if(ui->checkSaveSession->isChecked())
+//        {
+//            //保存登录信息
+//            MDB->saveLoginInfo(ui->lineLoginName->text(),
+//                               ui->lineSecretId->text(),
+//                               ui->lineSecretKey->text(),
+//                               ui->lineRemark->text());
+//        }
+//        else
+//        {
+//            //删除登录信息
+//            MDB->removeLoginInfo(ui->lineSecretId->text());
+//        }
+
+//        //登录成功后：更新记忆的登录名（在登录窗口输入登录名后，会自动回显其他登录信息）
+//        updateLoginInfo();
+//    }
+//    else
+//    {
+//        QMessageBox::warning(this,QString::fromLocal8Bit("登录失败"),
+//                             QString::fromLocal8Bit("请检查SecretId或SecretKey是否正确"));
+//    }
+//}

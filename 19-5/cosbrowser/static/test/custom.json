@@ -1,4 +1,4 @@
-{
+﻿{
 	"buckets":[
 		{
 			"create_date": "2019-10-12T06:14:21Z",
@@ -10,5 +10,23 @@
 			"location": "ap-shanghai",
 			"name": "custom2-1300416380"
 		}
-	]
+	],
+	"users":[
+		{
+			"secretId":"xiaowang",
+			"secretKey":"123"
+		},
+		{
+			"secretId":"xiaochen",
+			"secretKey":"123"
+		},
+		{
+			"secretId":"xiaodong",
+			"secretKey":"123"
+		},
+		{
+			"secretId":"xiaozhao",
+			"secretKey":"123"
+        }
+    ]
 }

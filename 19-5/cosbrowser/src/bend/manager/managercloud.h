@@ -20,6 +20,7 @@ public:
 
     QStandardItemModel *model() const;
 
+    void login(QString secretId, QString secretKey);
 signals:
 
 private:

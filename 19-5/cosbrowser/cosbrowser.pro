@@ -1,4 +1,4 @@
-QT       += core gui sql
+QT       += core gui sql concurrent
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -24,6 +24,7 @@ SOURCES += \
     src/bend/dao/dbs/daologininfosqlite.cpp \
     src/bend/dao/logs/basiclogger.cpp \
     src/bend/dao/logs/loggerqdebug.cpp \
+    src/bend/gateway.cpp \
     src/bend/manager/managercloud.cpp \
     src/bend/manager/managerdb.cpp \
     src/config/loggerproxy.cpp \
@@ -50,8 +51,10 @@ HEADERS += \
     src/bend/dao/dbs/daologininfosqlite.h \
     src/bend/dao/logs/basiclogger.h \
     src/bend/dao/logs/loggerqdebug.h \
+    src/bend/gateway.h \
     src/bend/manager/managercloud.h \
     src/bend/manager/managerdb.h \
+    src/config/api.h \
     src/config/global.h \
     src/config/loggerproxy.h \
     src/fend/uicommon/breadwidget.h \

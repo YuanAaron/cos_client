@@ -22,7 +22,7 @@ void LoggerQDebug::print(const QString &file, int line, const QString &func, voi
     QString front = QString::fromLocal8Bit("%1[%2]%3:%4 -")
             .arg(dtStr,GLOBAL::LOG_NAMES[level], file)
             .arg(line);
-    qDebug() << front.toLocal8Bit().data() << var;
+//    qDebug() << front.toLocal8Bit().data() << var;
     front = front.replace("..\\","");
     qDebug() << front.toLocal8Bit().data() << var; //使用qDebug而不是直接存文件，是为了打印QVariant类型
 }
