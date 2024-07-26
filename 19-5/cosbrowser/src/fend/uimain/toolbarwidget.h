@@ -21,12 +21,14 @@ signals:
     //不使用QSignalMapper的情况下，工具栏按钮与uimain中组件的交互
 //    void refreshSig();
 
-    void btnClicked(const QString& text);
+//    void btnClicked(const QString& text);
 
 private slots:
     void on_btnUpload_clicked();
 
     void on_btnDownload_clicked();
+
+    void on_btnQuit_clicked();
 
 private:
     Ui::ToolbarWidget *ui;

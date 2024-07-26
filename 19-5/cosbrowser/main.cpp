@@ -10,6 +10,8 @@
 #include <QApplication>
 #include <QDebug>
 
+#include <src/fend/uilogin/logindialog.h>
+
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
@@ -39,12 +41,15 @@ int main(int argc, char *argv[])
     //退出登录 显示登录界面
     UiMain w;
 //    w.show();
-    w.showLoginDialog();
+//    w.showLoginDialog();
+    LoginDialog login;
+    login.updateLoginInfo();
+    login.show();
 
     MC->print();
     MC->print();
 
-    MC->setBucket();
+//    MC->setBucket();
 
     qDebug() << QString::fromLocal8Bit("无意中发现了bug: uimain.h中的m_loginDialog必须设为nullptr");
     return a.exec();

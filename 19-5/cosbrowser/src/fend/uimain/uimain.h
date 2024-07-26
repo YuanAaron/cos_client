@@ -7,7 +7,7 @@ namespace Ui {
 class UiMain;
 }
 
-class LoginDialog;
+//class LoginDialog;
 
 class UiMain : public QWidget
 {
@@ -17,17 +17,17 @@ public:
     explicit UiMain(QWidget *parent = nullptr);
     ~UiMain();
 
-    void showLoginDialog();
+//    void showLoginDialog();
 
 protected slots:
 //    void onRefresh();
 
-    void onBtnClicked(const QString& text);
+//    void onBtnClicked(const QString& text);
     void onUnLogin();
 
 private:
     Ui::UiMain *ui;
-    LoginDialog* m_loginDialog = nullptr;
+//    LoginDialog* m_loginDialog = nullptr;
 };
 
 #endif // UIMAIN_H

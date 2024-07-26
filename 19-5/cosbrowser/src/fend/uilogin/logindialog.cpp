@@ -9,6 +9,7 @@
 #include <src/bend/manager/managerdb.h>
 #include "src/bend/gateway.h"
 #include "src/config/api.h"
+#include "src/middle/signals/managersignals.h"
 
 LoginDialog::LoginDialog(QWidget *parent)
     : QDialog(parent)
@@ -34,6 +35,14 @@ LoginDialog::LoginDialog(QWidget *parent)
     ui->labelRemark->setProperty("style","h4");
     ui->btnClose->setProperty("style","h3");
     ui->btnLogin->setProperty("style","h4");
+
+    //关心 登录成功 的信号
+    connect(MS,&ManagerSignals::loginSuccess, this, &LoginDialog::onLoginSucceed);
+    //关系 错误(这里指登录失败） 的信号
+    connect(MS,&ManagerSignals::error, this, &LoginDialog::onLoginError);
+
+    //关心 退出登录 的信号
+    connect(MS,&ManagerSignals::unLogin, this, &LoginDialog::show);
 }
 
 LoginDialog::~LoginDialog()
@@ -133,6 +142,38 @@ void LoginDialog::on_btnLogin_clicked()
     params["secretId"] = ui->lineSecretId->text().trimmed();
     params["secretKey"] = ui->lineSecretKey->text().trimmed();
     GW->send(API::LOGIN::NORMAL, params);
+}
+
+void LoginDialog::onLoginSucceed()
+{
+    //Hides the modal dialog and sets the result code to Accepted.
+    accept();
+    //是否选择了记住会话
+    if(ui->checkSaveSession->isChecked())
+    {
+        //保存登录信息
+        MDB->saveLoginInfo(ui->lineLoginName->text(),
+                           ui->lineSecretId->text(),
+                           ui->lineSecretKey->text(),
+                           ui->lineRemark->text());
+
+        //登录成功后：更新记忆的登录名（在登录窗口输入登录名后，会自动回显其他登录信息）
+        updateLoginInfo();
+    }
+    else
+    {
+        //删除登录信息
+        MDB->removeLoginInfo(ui->lineSecretId->text());
+    }
+}
+
+void LoginDialog::onLoginError(int api, const QString &msg)
+{
+    if(api != API::LOGIN::NORMAL)
+        return;
+
+    QMessageBox::warning(this,QString::fromLocal8Bit("登录失败"),
+                                 QString::fromLocal8Bit("登录失败：%1").arg(msg));
 }
 
 //void LoginDialog::on_btnLogin_clicked()
