@@ -44,6 +44,7 @@ LoginDialog::LoginDialog(QWidget *parent)
 
     //关心 退出登录 的信号
     connect(MG->m_signal,&ManagerSignals::unLogin, this, &LoginDialog::show);
+    updateLoginInfo();
 }
 
 LoginDialog::~LoginDialog()

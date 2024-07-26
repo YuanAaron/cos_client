@@ -20,7 +20,6 @@ int main(int argc, char *argv[])
     //退出登录 显示登录界面
     UiMain w;
     LoginDialog login;
-    login.updateLoginInfo();
     login.show();
 
     return a.exec();
