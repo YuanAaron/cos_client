@@ -3,14 +3,12 @@
 
 #include <QObject>
 
-#define MS ManagerSignals::instance()
-
 class ManagerSignals : public QObject
 {
     Q_OBJECT
 public:
     explicit ManagerSignals(QObject *parent = nullptr);
-    static ManagerSignals* instance();
+    ~ManagerSignals();
 
 signals:
     void loginSuccess();

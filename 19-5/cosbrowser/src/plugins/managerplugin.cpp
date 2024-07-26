@@ -6,9 +6,8 @@
 #include <src/bend/dao/logs/loggerqdebug.h>
 #include "src/config/global.h"
 #include "src/config/loggerproxy.h"
+#include "src/middle/managerglobal.h"
 using namespace GLOBAL;
-
-Q_GLOBAL_STATIC(ManagerPlugin, ins)
 
 ManagerPlugin::ManagerPlugin(QObject *parent) : QObject(parent)
 {
@@ -17,13 +16,9 @@ ManagerPlugin::ManagerPlugin(QObject *parent) : QObject(parent)
 
 ManagerPlugin::~ManagerPlugin()
 {
+    qDebug("delete ManagerPlugin");
     delete m_clouds;
     delete m_version;
-}
-
-ManagerPlugin *ManagerPlugin::instance()
-{
-    return ins();
 }
 
 void ManagerPlugin::installPlugins(int argc, char* argv[])
@@ -52,8 +47,8 @@ void ManagerPlugin::installPlugins(int argc, char* argv[])
     }
 
     //安装日志插件
-    LOG->setLogger(new LoggerQDebug());
-//    LOG->setLevel(LOG_LEVEL::INFO);
+    MG->m_log->setLogger(new LoggerQDebug());
+//    MG->m_log->setLevel(LOG_LEVEL::INFO);
 }
 
 DaoClouds *ManagerPlugin::clouds() const

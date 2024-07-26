@@ -1,7 +1,7 @@
 ﻿#include "daocloudsmock.h"
 
 #include <src/helper/filehelper.h>
-#include <src/config/loggerproxy.h>
+#include <src/middle/managerglobal.h>
 
 #include <QJsonArray>
 #include <QThread>

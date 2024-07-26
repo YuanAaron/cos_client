@@ -39,6 +39,7 @@ SOURCES += \
     src/fend/uimain/uimain.cpp \
     src/helper/dbsqlite.cpp \
     src/helper/filehelper.cpp \
+    src/middle/managerglobal.cpp \
     src/middle/signals/managersignals.cpp \
     src/plugins/managerplugin.cpp
 
@@ -69,6 +70,7 @@ HEADERS += \
     src/fend/uimain/uimain.h \
     src/helper/dbsqlite.h \
     src/helper/filehelper.h \
+    src/middle/managerglobal.h \
     src/middle/models/logininfo.h \
     src/middle/models/mybucket.h \
     src/middle/signals/managersignals.h \

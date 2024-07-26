@@ -7,15 +7,12 @@
 
 #include <src/bend/dao/dbs/daologininfosqlite.h>
 
-#define MDB ManagerDB::instance()
-
 class ManagerDB : public QObject
 {
     Q_OBJECT
 public:
     explicit ManagerDB(QObject *parent = nullptr);
-
-    static ManagerDB* instance();
+    ~ManagerDB();
 
     void init();
 

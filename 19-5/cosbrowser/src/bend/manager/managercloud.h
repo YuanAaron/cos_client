@@ -4,16 +4,13 @@
 #include <QObject>
 #include <QStandardItemModel>
 
-#define MC ManagerCloud::instance()
-
 class ManagerCloud : public QObject
 {
     Q_OBJECT
 public:
     //不要直接构造函数创建对象，直接使用instance来使用对象即可
     explicit ManagerCloud(QObject *parent = nullptr);
-
-    static ManagerCloud* instance();
+    ~ManagerCloud();
 
     void print();
     void setBucket();

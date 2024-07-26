@@ -3,19 +3,18 @@
 #include "src/config/loggerproxy.h"
 #include "src/config/api.h"
 #include "src/bend/manager/managercloud.h"
+#include "src/middle/managerglobal.h"
 #include "src/middle/signals/managersignals.h"
 #include <QtConcurrent>
-
-Q_GLOBAL_STATIC(GateWay, ins)
 
 GateWay::GateWay(QObject *parent) : QObject(parent)
 {
 
 }
 
-GateWay *GateWay::instance()
+GateWay::~GateWay()
 {
-    return ins();
+    qDebug("delete GateWay");
 }
 
 void GateWay::send(int api, const QJsonValue &value)
@@ -25,7 +24,7 @@ void GateWay::send(int api, const QJsonValue &value)
             this->dispatch(api,value);
         } catch (QString e) {
             mError(e);
-            emit MS->error(api,e);
+            emit MG->m_signal->error(api,e);
         }
     });
 }
@@ -47,6 +46,6 @@ void GateWay::apiLogin(const QJsonValue &value)
 {
     QString secretId = value["secretId"].toString();
     QString secretKey = value["secretKey"].toString();
-    MC->login(secretId, secretKey);
-    emit MS->loginSuccess();
+    MG->m_cloud->login(secretId, secretKey);
+    emit MG->m_signal->loginSuccess();
 }

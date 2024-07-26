@@ -1,6 +1,7 @@
 ﻿#include "toolbarwidget.h"
 #include "ui_toolbarwidget.h"
 #include "src/middle/signals/managersignals.h"
+#include "src/middle/managerglobal.h"
 
 #include <QFileDialog>
 #include <QDebug>
@@ -76,5 +77,5 @@ void ToolbarWidget::on_btnDownload_clicked()
 
 void ToolbarWidget::on_btnQuit_clicked()
 {
-    emit MS->unLogin();
+    emit MG->m_signal->unLogin();
 }

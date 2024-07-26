@@ -3,6 +3,7 @@
 
 //#include <src/fend/uilogin/logindialog.h>
 #include "src/middle/signals/managersignals.h"
+#include "src/middle/managerglobal.h"
 
 #include <QDebug>
 
@@ -21,10 +22,10 @@ UiMain::UiMain(QWidget *parent) :
 //    connect(ui->widgetToolbar, &ToolbarWidget::btnClicked, this, &UiMain::onBtnClicked);
 
     //关心 登录成功 的信号
-    connect(MS, &ManagerSignals::loginSuccess, this, &UiMain::show);
+    connect(MG->m_signal, &ManagerSignals::loginSuccess, this, &UiMain::show);
 
     //关心 退出登录 的信号
-    connect(MS, &ManagerSignals::unLogin, this, &UiMain::onUnLogin);
+    connect(MG->m_signal, &ManagerSignals::unLogin, this, &UiMain::onUnLogin);
 }
 
 UiMain::~UiMain()

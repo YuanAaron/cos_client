@@ -2,16 +2,14 @@
 
 #include <QDateTime>
 
-Q_GLOBAL_STATIC(ManagerDB, ins)
-
 ManagerDB::ManagerDB(QObject *parent) : QObject(parent)
 {
 
 }
 
-ManagerDB *ManagerDB::instance()
+ManagerDB::~ManagerDB()
 {
-    return ins();
+    qDebug("delete ManagerDB");
 }
 
 void ManagerDB::init()

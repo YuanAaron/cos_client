@@ -50,11 +50,11 @@ namespace GLOBAL {
 
     static const QStringList LOG_NAMES = QStringList() << "TOTAL" <<"DEBUG" << "INFO" << "WARNING" << "ERROR" <<"FATAL";
 
-    static bool init()
-    {
-        FileHelper::mkPath(PATH::LOG_DIR);
-        return FileHelper::mkPath(PATH::TMP);
-    }
+//    static bool init()
+//    {
+//        FileHelper::mkPath(PATH::LOG_DIR);
+//        return FileHelper::mkPath(PATH::TMP);
+//    }
 //    static bool OK = init(); //在main函数前执行
 }
 

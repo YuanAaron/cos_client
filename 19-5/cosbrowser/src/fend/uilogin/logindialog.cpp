@@ -10,6 +10,7 @@
 #include "src/bend/gateway.h"
 #include "src/config/api.h"
 #include "src/middle/signals/managersignals.h"
+#include "src/middle/managerglobal.h"
 
 LoginDialog::LoginDialog(QWidget *parent)
     : QDialog(parent)
@@ -37,12 +38,12 @@ LoginDialog::LoginDialog(QWidget *parent)
     ui->btnLogin->setProperty("style","h4");
 
     //关心 登录成功 的信号
-    connect(MS,&ManagerSignals::loginSuccess, this, &LoginDialog::onLoginSucceed);
+    connect(MG->m_signal,&ManagerSignals::loginSuccess, this, &LoginDialog::onLoginSucceed);
     //关系 错误(这里指登录失败） 的信号
-    connect(MS,&ManagerSignals::error, this, &LoginDialog::onLoginError);
+    connect(MG->m_signal,&ManagerSignals::error, this, &LoginDialog::onLoginError);
 
     //关心 退出登录 的信号
-    connect(MS,&ManagerSignals::unLogin, this, &LoginDialog::show);
+    connect(MG->m_signal,&ManagerSignals::unLogin, this, &LoginDialog::show);
 }
 
 LoginDialog::~LoginDialog()
@@ -98,13 +99,13 @@ bool LoginDialog::eventFilter(QObject *watched, QEvent *event)
 
 void LoginDialog::updateLoginInfo()
 {
-    QStringList historyList = MDB->loginNameList();
+    QStringList historyList = MG->m_db->loginNameList();
     QCompleter* completer = new QCompleter(historyList);
     ui->lineLoginName->setCompleter(completer);
 
     connect(completer, static_cast<void (QCompleter::*)(const QString &)>(&QCompleter::activated),
             [&](const QString& name){
-            LoginInfo info = MDB->loginInfoByName(name);
+            LoginInfo info = MG->m_db->loginInfoByName(name);
             ui->lineSecretId->setText(info.secretId);
             ui->lineSecretKey->setText(info.secretKey);
             ui->lineRemark->setText(info.remark);
@@ -113,7 +114,7 @@ void LoginDialog::updateLoginInfo()
 
     connect(ui->lineLoginName, &QLineEdit::editingFinished,
             [this](){
-            LoginInfo info = MDB->loginInfoByName(ui->lineLoginName->text().trimmed());
+            LoginInfo info = MG->m_db->loginInfoByName(ui->lineLoginName->text().trimmed());
             if(info.name=="")
             {
                 ui->lineSecretId->setText(info.secretId);
@@ -141,7 +142,7 @@ void LoginDialog::on_btnLogin_clicked()
     QJsonObject params;
     params["secretId"] = ui->lineSecretId->text().trimmed();
     params["secretKey"] = ui->lineSecretKey->text().trimmed();
-    GW->send(API::LOGIN::NORMAL, params);
+    MG->m_gate->send(API::LOGIN::NORMAL, params);
 }
 
 void LoginDialog::onLoginSucceed()
@@ -152,7 +153,7 @@ void LoginDialog::onLoginSucceed()
     if(ui->checkSaveSession->isChecked())
     {
         //保存登录信息
-        MDB->saveLoginInfo(ui->lineLoginName->text(),
+        MG->m_db->saveLoginInfo(ui->lineLoginName->text(),
                            ui->lineSecretId->text(),
                            ui->lineSecretKey->text(),
                            ui->lineRemark->text());
@@ -163,7 +164,7 @@ void LoginDialog::onLoginSucceed()
     else
     {
         //删除登录信息
-        MDB->removeLoginInfo(ui->lineSecretId->text());
+        MG->m_db->removeLoginInfo(ui->lineSecretId->text());
     }
 }
 

@@ -7,25 +7,12 @@
 #include "src/config/global.h"
 using namespace GLOBAL;
 
-#define mTotal LOG->reset(QT_MESSAGELOG_FILE, QT_MESSAGELOG_LINE, QT_MESSAGELOG_FUNC).total
-#define mDebug LOG->reset(QT_MESSAGELOG_FILE, QT_MESSAGELOG_LINE, QT_MESSAGELOG_FUNC).debug
-#define mInfo LOG->reset(QT_MESSAGELOG_FILE, QT_MESSAGELOG_LINE, QT_MESSAGELOG_FUNC).info
-#define mWarning LOG->reset(QT_MESSAGELOG_FILE, QT_MESSAGELOG_LINE, QT_MESSAGELOG_FUNC).warning
-#define mError LOG->reset(QT_MESSAGELOG_FILE, QT_MESSAGELOG_LINE, QT_MESSAGELOG_FUNC).error
-#define mFatal LOG->reset(QT_MESSAGELOG_FILE, QT_MESSAGELOG_LINE, QT_MESSAGELOG_FUNC).fatal
-
-#define LOG LoggerProxy::instance()
-/**
- * @brief 日志代理单例类
- */
 class LoggerProxy : public QObject
 {
     Q_OBJECT
 public:
     explicit LoggerProxy(QObject *parent = nullptr);
     ~LoggerProxy();
-
-    static LoggerProxy* instance();
 
     const LoggerProxy& reset(const QString& file, int line, const QString& func);
 

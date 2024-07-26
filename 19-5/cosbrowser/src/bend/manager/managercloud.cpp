@@ -5,8 +5,7 @@
 #include <src/middle/models/mybucket.h>
 #include <src/bend/dao/clouds/daocloudsmock.h>
 #include <src/plugins/managerplugin.h>
-
-Q_GLOBAL_STATIC(ManagerCloud, ins)
+#include "src/middle/managerglobal.h"
 
 ManagerCloud::ManagerCloud(QObject *parent) : QObject(parent)
 {
@@ -14,9 +13,9 @@ ManagerCloud::ManagerCloud(QObject *parent) : QObject(parent)
     m_model = new QStandardItemModel(this);
 }
 
-ManagerCloud *ManagerCloud::instance()
+ManagerCloud::~ManagerCloud()
 {
-    return ins();
+    qDebug() << "delete ManagerCloud ";
 }
 
 void ManagerCloud::print()
@@ -26,7 +25,7 @@ void ManagerCloud::print()
 
 void ManagerCloud::setBucket()
 {
-    DaoClouds* dao = MP->clouds();
+    DaoClouds* dao = MG->m_plugin->clouds();
     QList<MyBucket> buckets = dao->buckets();
 
     m_model->setRowCount(buckets.size());
@@ -56,5 +55,5 @@ QStandardItemModel *ManagerCloud::model() const
 
 void ManagerCloud::login(QString secretId, QString secretKey)
 {
-    QList<MyBucket> buckets = MP->clouds()->login(secretId, secretKey);
+    QList<MyBucket> buckets = MG->m_plugin->clouds()->login(secretId, secretKey);
 }
