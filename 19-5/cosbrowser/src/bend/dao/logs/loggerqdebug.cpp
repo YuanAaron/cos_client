@@ -32,8 +32,12 @@ void LoggerQDebug::handle(QtMsgType type, const QMessageLogContext &context, con
     QFile file(filePath());
 
     QString key("QVariant(");
+    int index = msg.indexOf(key);
     QString message = msg;
-    message.replace(msg.indexOf(key), key.size(), "").chop(1);
+    if(index != -1)
+    {
+        message.replace(index, key.size(), "").chop(1);
+    }
 
     if(file.open(QIODevice::WriteOnly|QIODevice::Append))
     {
