@@ -20,7 +20,7 @@ ManagerGlobal::ManagerGlobal(QObject *parent) : QObject(parent)
     m_log = new LoggerProxy(this);
     m_gate = new GateWay(this);
     m_signal = new ManagerSignals(this);
-//    m_model = new ManagerModel(this); //TODO 为啥放在这里程序启动不起来，放在init方法中OK
+//    m_model = new ManagerModel(this); //为啥放在这里程序启动不起来，放在init方法中OK
 }
 
 ManagerGlobal::~ManagerGlobal()
@@ -35,7 +35,7 @@ ManagerGlobal *ManagerGlobal::instance()
 
 void ManagerGlobal::init(int argc, char* argv[])
 {
-    m_model = new ManagerModel(this);
+    m_model = new ManagerModel(this); //ManagerModel的构造方法中用到了MG，因此只能先创建MG后再使用
 
     FileHelper::mkPath(GLOBAL::PATH::LOG_DIR);
     FileHelper::mkPath(GLOBAL::PATH::TMP);
