@@ -1,7 +1,9 @@
 ﻿#include "daocloudsmock.h"
 
+#include <src/config/exceptions.h>
 #include <src/helper/filehelper.h>
 #include <src/middle/managerglobal.h>
+#include "src/config/errorcode.h"
 
 #include <QJsonArray>
 #include <QThread>
@@ -43,5 +45,5 @@ QList<MyBucket> DaoCloudsMock::login(const QString &secretId, const QString &sec
             return buckets();
         }
     }
-    throw QString::fromLocal8Bit("用户名密码错误");
+    throw BaseException(EC_211000,QString::fromLocal8Bit("请检查您的SecretId或SecretKey是否正确"));
 }

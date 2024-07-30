@@ -6,5 +6,6 @@
         <file>static/versions/config_default.json</file>
         <file>static/test/business.json</file>
         <file>static/test/custom.json</file>
+        <file>static/docs/errorcode.csv</file>
     </qresource>
 </RCC>

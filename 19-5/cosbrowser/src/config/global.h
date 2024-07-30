@@ -10,6 +10,8 @@ namespace GLOBAL {
         static const QString WORK = QDir::currentPath();
         static const QString TMP = FileHelper::joinPath(WORK,"tmp");
         static const QString LOG_DIR = FileHelper::joinPath(QDir::tempPath(),"cos/logs");
+
+        static const QString ERROR_CODE_PATH = ":/static/docs/errorcode.csv";
     }
 
     namespace SQLITE {
