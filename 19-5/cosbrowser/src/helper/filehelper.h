@@ -14,6 +14,9 @@ public:
 
     static QString joinPath(const QString& path1, const QString& path2);
     static bool mkPath(const QString& path);
+
+    static QList<QStringList> readAllCsv(const QString& filePath);
+    static void writeFile(const QStringList lines, const QString& filePath);
 };
 
 #endif // FILEHELPER_H

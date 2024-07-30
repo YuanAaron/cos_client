@@ -27,6 +27,7 @@ SOURCES += \
     src/bend/gateway.cpp \
     src/bend/manager/managercloud.cpp \
     src/bend/manager/managerdb.cpp \
+    src/config/exceptions.cpp \
     src/config/loggerproxy.cpp \
     src/fend/uicommon/breadwidget.cpp \
     src/fend/uicommon/mylineedit.cpp \
@@ -58,6 +59,8 @@ HEADERS += \
     src/bend/manager/managercloud.h \
     src/bend/manager/managerdb.h \
     src/config/api.h \
+    src/config/errorcode.h \
+    src/config/exceptions.h \
     src/config/global.h \
     src/config/loggerproxy.h \
     src/fend/uicommon/breadwidget.h \

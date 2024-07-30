@@ -3,6 +3,7 @@
 #include <QFile>
 #include <QJsonDocument>
 #include <QDir>
+#include <QTextStream>
 
 FileHelper::FileHelper()
 {
@@ -41,5 +42,37 @@ bool FileHelper::mkPath(const QString &path)
 {
     QDir dir;
     return dir.mkpath(path);
+}
+
+QList<QStringList> FileHelper::readAllCsv(const QString &filePath)
+{
+    QList<QStringList> records;
+    QFile file(filePath);
+    if(file.exists() && file.open(QIODevice::ReadOnly)){
+        QTextStream stream(&file);
+        while(!stream.atEnd()){
+            QString line = stream.readLine();
+            QStringList row = line.split(',');
+            records.append(row);
+        }
+
+        file.close();
+    }
+    return records;
+}
+
+void FileHelper::writeFile(const QStringList lines, const QString &filePath)
+{
+    QFile file(filePath);
+    if(file.open(QIODevice::WriteOnly)){
+        QTextStream stream(&file);
+        stream.setCodec("UTF-8");
+        for(const auto& line: lines){
+            stream << line << endl;
+        }
+        file.close();
+        return;
+    }
+    throw "写入文件失败";
 }
 
