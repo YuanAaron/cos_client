@@ -1,4 +1,5 @@
 ﻿#include "managerglobal.h"
+#include "managermodel.h"
 
 #include <src/bend/manager/managercloud.h>
 #include <src/bend/manager/managerdb.h>
@@ -19,6 +20,7 @@ ManagerGlobal::ManagerGlobal(QObject *parent) : QObject(parent)
     m_log = new LoggerProxy(this);
     m_gate = new GateWay(this);
     m_signal = new ManagerSignals(this);
+//    m_model = new ManagerModel(this); //TODO 为啥放在这里程序启动不起来，放在init方法中OK
 }
 
 ManagerGlobal::~ManagerGlobal()
@@ -33,6 +35,8 @@ ManagerGlobal *ManagerGlobal::instance()
 
 void ManagerGlobal::init(int argc, char* argv[])
 {
+    m_model = new ManagerModel(this);
+
     FileHelper::mkPath(GLOBAL::PATH::LOG_DIR);
     FileHelper::mkPath(GLOBAL::PATH::TMP);
 

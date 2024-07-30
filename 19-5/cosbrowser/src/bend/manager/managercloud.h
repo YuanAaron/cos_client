@@ -2,7 +2,6 @@
 #define MANAGERBUCKET_H
 
 #include <QObject>
-#include <QStandardItemModel>
 
 class ManagerCloud : public QObject
 {
@@ -12,16 +11,9 @@ public:
     explicit ManagerCloud(QObject *parent = nullptr);
     ~ManagerCloud();
 
-    void print();
-    void setBucket();
-
-    QStandardItemModel *model() const;
-
     void login(QString secretId, QString secretKey);
 signals:
 
-private:
-    QStandardItemModel* m_model = nullptr; //这里好像不加也不会报错
 };
 
 #endif // MANAGERBUCKET_H

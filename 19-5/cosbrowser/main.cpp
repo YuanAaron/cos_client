@@ -9,8 +9,6 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    qDebug() << "zhangsan";
-
     MG->init(argc,argv);
 
     //用户登录窗口和主窗口切换的需求：

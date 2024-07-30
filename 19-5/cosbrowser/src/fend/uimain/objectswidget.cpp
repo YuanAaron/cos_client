@@ -2,7 +2,7 @@
 #include "ui_objectswidget.h"
 
 #include "src/middle/managerglobal.h"
-#include "src/bend/manager/managercloud.h"
+#include "src/middle/managermodel.h"
 #include <QDebug>
 #include <src/fend/uidelegate/bucketdelegate.h>
 
@@ -11,12 +11,12 @@ ObjectsWidget::ObjectsWidget(QWidget *parent) :
     ui(new Ui::ObjectsWidget)
 {
     ui->setupUi(this);
-    ui->tableView->setModel(MG->m_cloud->model());
+    ui->tableView->setModel(MG->m_model->model());
 //    ui->tableView->setItemDelegate(new BucketDelegate());
     ui->tableView->setItemDelegateForColumn(1,new BucketDelegate());
 
     //设置表格标题栏的标题
-    QStandardItemModel* model = MG->m_cloud->model();
+    QStandardItemModel* model = MG->m_model->model();
     QStringList labels;
     labels << QString::fromLocal8Bit("桶名称")
            << QString::fromLocal8Bit("地区")

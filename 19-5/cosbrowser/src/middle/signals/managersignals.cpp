@@ -2,7 +2,7 @@
 
 ManagerSignals::ManagerSignals(QObject *parent) : QObject(parent)
 {
-
+    qRegisterMetaType<QList<MyBucket>>("QList<MyBucket>");
 }
 
 ManagerSignals::~ManagerSignals()

@@ -22,6 +22,7 @@ class ManagerPlugin;
 class LoggerProxy;
 class GateWay;
 class ManagerSignals;
+class ManagerModel;
 
 class ManagerGlobal : public QObject
 {
@@ -40,6 +41,7 @@ public:
     LoggerProxy* m_log = nullptr;
     GateWay* m_gate = nullptr;
     ManagerSignals* m_signal = nullptr;
+    ManagerModel* m_model = nullptr;
 };
 
 #endif // MANGLOBAL_H

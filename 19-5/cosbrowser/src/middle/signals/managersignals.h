@@ -3,6 +3,8 @@
 
 #include <QObject>
 
+#include <src/middle/models/mybucket.h>
+
 class ManagerSignals : public QObject
 {
     Q_OBJECT
@@ -14,6 +16,8 @@ signals:
     void loginSuccess();
     void error(int api, const QString& msg);
     void unLogin();
+
+    void bucketsSuccess(const QList<MyBucket>& buckets);
 
 };
 
