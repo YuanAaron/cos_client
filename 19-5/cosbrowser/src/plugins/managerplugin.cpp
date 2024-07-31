@@ -1,5 +1,6 @@
 ﻿#include "managerplugin.h"
 
+#include <src/bend/dao/clouds/daocloudscos.h>
 #include <src/bend/dao/clouds/daocloudsmock.h>
 #include <src/bend/dao/config/versioncmd.h>
 #include <src/bend/dao/config/versionjson.h>
@@ -39,7 +40,8 @@ void ManagerPlugin::installPlugins(int argc, char* argv[])
     //安装云存储插件
     if(m_version->major() == VERSION::MAJOR_BUSINESS)
     {
-        m_clouds = new DaoCloudsMock(":/static/test/business.json");
+//        m_clouds = new DaoCloudsMock(":/static/test/business.json");
+        m_clouds = new DaoCloudsCos();
     }
     else
     {
