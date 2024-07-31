@@ -1,0 +1,93 @@
+﻿#include "managerdb.h"
+
+#include <QDateTime>
+
+ManagerDB::ManagerDB(QObject *parent) : QObject(parent)
+{
+
+}
+
+ManagerDB::~ManagerDB()
+{
+    qDebug("delete ManagerDB");
+}
+
+void ManagerDB::init()
+{
+    m_daoLoginInfo.connect();
+    m_daoLoginInfo.createLoginInfoTable();
+    m_loginInfoList = m_daoLoginInfo.select();
+}
+
+void ManagerDB::saveLoginInfo(const QString &name, const QString &id, const QString &key, const QString remark)
+{
+    LoginInfo info;
+    info.name = (name == "" ? id.trimmed() : name.trimmed());
+    info.secretId = id.trimmed();
+    info.secretKey = key.trimmed();
+    info.remark = remark.trimmed();
+    info.timestamp = QDateTime::currentDateTimeUtc().toTime_t();
+
+    if (m_daoLoginInfo.exists(info.secretId))
+    {
+        m_daoLoginInfo.update(info);
+        //更新缓存
+        m_loginInfoList[indexOfLoginInfo(info.secretId)] = info;
+    }
+    else
+    {
+        m_daoLoginInfo.insert(info);
+        //更新缓存
+        m_loginInfoList.append(info);
+    }
+}
+
+void ManagerDB::removeLoginInfo(const QString &id)
+{
+    if (m_daoLoginInfo.exists(id))
+    {
+        m_daoLoginInfo.remove(id);
+        //更新缓存
+        m_loginInfoList.removeAt(indexOfLoginInfo(id));
+    }
+}
+
+int ManagerDB::indexOfLoginInfo(const QString &secretId)
+{
+    for(int i=0; i<m_loginInfoList.size(); i++)
+    {
+        if(m_loginInfoList[i].secretId==secretId)
+        {
+            return i;
+        }
+    }
+    throw QString::fromLocal8Bit("从缓存获取登录信息失败：%1").arg(secretId);
+}
+
+QStringList ManagerDB::loginNameList()
+{
+    QStringList strList;
+    for(LoginInfo& loginInfo: m_loginInfoList)
+    {
+        strList.append(loginInfo.name);
+    }
+    return strList;
+}
+
+LoginInfo ManagerDB::loginInfoByName(const QString& name)
+{
+    for(LoginInfo& loginInfo: m_loginInfoList)
+    {
+        if(loginInfo.name==name)
+        {
+            return loginInfo;
+        }
+    }
+    //throw QString::fromLocal8Bit("通过登录名查找登录信息失败：%1").arg(name);
+    LoginInfo info;
+    info.name = "";
+    info.secretId="";
+    info.secretKey = "";
+    info.remark = "";
+    return info;
+}

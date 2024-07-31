@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/">
+        <file>static/imgs/logo.png</file>
+        <file>static/qss/default.qss</file>
+        <file>static/sql/login_info.sql</file>
+        <file>static/versions/config_default.json</file>
+        <file>static/test/business.json</file>
+        <file>static/test/custom.json</file>
+        <file>static/docs/errorcode.csv</file>
+    </qresource>
+</RCC>
