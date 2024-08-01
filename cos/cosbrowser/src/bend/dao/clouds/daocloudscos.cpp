@@ -6,17 +6,22 @@
 #include "cos_api.h"
 using namespace qcloud_cos;
 
-// 指定配置文件路径，初始化CosConfig
-static CosConfig config = CosConfig("./cosconfig.json");
-
 DaoCloudsCos::DaoCloudsCos()
 {
+    // 指定配置文件路径，初始化CosConfig
+    m_config = new CosConfig("./cosconfig.json");
+}
+
+DaoCloudsCos::~DaoCloudsCos()
+{
+    delete m_config;
+    m_config = nullptr;
 }
 
 QList<MyBucket> DaoCloudsCos::buckets()
 {
     QList<MyBucket> res;
-    CosAPI cos = CosAPI(config);
+    CosAPI cos = CosAPI(*m_config);
 
     // 构造查询存储桶列表的请求
     GetServiceReq req;
@@ -47,8 +52,8 @@ QList<MyBucket> DaoCloudsCos::buckets()
 
 QList<MyBucket> DaoCloudsCos::login(const QString &secretId, const QString &secretKey)
 {
-    config.SetAccessKey(secretId.toStdString());
-    config.SetSecretKey(secretKey.toStdString());
-    config.SetRegion("ap-guangzhou"); //没这个会报错
+    m_config->SetAccessKey(secretId.toStdString());
+    m_config->SetSecretKey(secretKey.toStdString());
+    m_config->SetRegion("ap-guangzhou"); //没这个会报错
     return buckets();
 }
