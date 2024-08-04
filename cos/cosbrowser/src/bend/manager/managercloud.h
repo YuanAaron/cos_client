@@ -2,6 +2,7 @@
 #define MANAGERBUCKET_H
 
 #include <QObject>
+#include <src/middle/models/cloudmodels.h>
 
 class ManagerCloud : public QObject
 {
@@ -12,7 +13,25 @@ public:
     ~ManagerCloud();
 
     void login(QString secretId, QString secretKey);
-signals:
+
+    // 桶操作接口
+    void getBuckets();
+    void putBucket(const QString& bucketName, const QString& location);
+    void deleteBucket(const QString& bucketName);
+
+    // 对象操作接口
+    void getObjects(const QString& bucketName, const QString& dir = "");
+    void getObject(const QString& jobId,
+                   const QString& bucketName,
+                   const QString& key,
+                   const QString& localPath);
+    void putObjcet(const QString& jobId,
+                   const QString& bucketName,
+                   const QString& key,
+                   const QString& localPath);
+
+private:
+    void bucketsAlready(const QList<MyBucket>& buckets);
 
 };
 

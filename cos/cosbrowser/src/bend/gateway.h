@@ -15,7 +15,18 @@ public:
 
 private:
     void dispatch(int api, const QJsonValue& value);
-    void apiLogin(const QJsonValue& value);
+    void apiLogin(const QJsonValue& params);
+
+    //桶操作接口
+    void apiGetBuckets(const QJsonValue& params);
+    void apiPutBucket(const QJsonValue& params);
+    void apiDeleteBucket(const QJsonValue& params);
+
+    //对象操作接口
+    void apiGetObjects(const QJsonValue& params);
+    void apiGetObject(const QJsonValue& params);
+    void apiPutObject(const QJsonValue& params);
+
 };
 
 #endif // GATEWAY_H

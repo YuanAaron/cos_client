@@ -35,13 +35,35 @@ void GateWay::send(int api, const QJsonValue &value)
     });
 }
 
-void GateWay::dispatch(int api, const QJsonValue &value)
+void GateWay::dispatch(int api, const QJsonValue &params)
 {
     //查询路由表
     switch(api)
     {
     case API::LOGIN::NORMAL:
-        apiLogin(value);
+        apiLogin(params);
+        break;
+
+    //桶操作接口
+    case API::BUCKETS::LIST:
+        apiGetBuckets(params);
+        break;
+    case API::BUCKETS::PUT:
+        apiPutBucket(params);
+        break;
+    case API::BUCKETS::DEL:
+        apiDeleteBucket(params);
+        break;
+
+    //对象操作接口
+    case API::OBJECTS::LIST:
+        apiGetObjects(params);
+        break;
+    case API::OBJECTS::GET:
+        apiGetObject(params);
+        break;
+    case API::OBJECTS::PUT:
+        apiPutObject(params);
         break;
     default:
         break;
@@ -53,5 +75,47 @@ void GateWay::apiLogin(const QJsonValue &value)
     QString secretId = value["secretId"].toString();
     QString secretKey = value["secretKey"].toString();
     MG->m_cloud->login(secretId, secretKey);
-    emit MG->m_signal->loginSuccess();
+}
+
+void GateWay::apiGetBuckets(const QJsonValue &params)
+{
+    MG->m_cloud->getBuckets();
+}
+
+void GateWay::apiPutBucket(const QJsonValue &params)
+{
+    QString bucketName = params["bucketName"].toString();
+    QString location = params["location"].toString();
+    MG->m_cloud->putBucket(bucketName, location);
+}
+
+void GateWay::apiDeleteBucket(const QJsonValue &params)
+{
+    QString bucketName = params["bucketName"].toString();
+    MG->m_cloud->deleteBucket(bucketName);
+}
+
+void GateWay::apiGetObjects(const QJsonValue &params)
+{
+    QString bucketName = params["bucketName"].toString();
+    QString dir = params["dir"].toString();
+    MG->m_cloud->getObjects(bucketName, dir);
+}
+
+void GateWay::apiGetObject(const QJsonValue &params)
+{
+    QString jobId = params["jobId"].toString(); //用于更新下载进度的任务id
+    QString bucketName = params["bucketName"].toString();
+    QString key = params["key"].toString();
+    QString localPath = params["localPath"].toString();
+    MG->m_cloud->getObject(jobId, bucketName, key, localPath);
+}
+
+void GateWay::apiPutObject(const QJsonValue &params)
+{
+    QString jobId = params["jobId"].toString(); //用于更新上传进度的任务id
+    QString bucketName = params["bucketName"].toString();
+    QString key = params["key"].toString();
+    QString localPath = params["localPath"].toString();
+    MG->m_cloud->putObjcet(jobId, bucketName, key, localPath);
 }
