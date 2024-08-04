@@ -77,8 +77,8 @@ HEADERS += \
     $$PWD/src/helper/filehelper.h \
     $$PWD/src/middle/managerglobal.h \
     $$PWD/src/middle/managermodel.h \
-    $$PWD/src/middle/models/logininfo.h \
-    $$PWD/src/middle/models/mybucket.h \
+    $$PWD/src/middle/models/cloudmodels.h \
+    $$PWD/src/middle/models/dbmodels.h \
     $$PWD/src/middle/signals/managersignals.h \
     $$PWD/src/plugins/managerplugin.h
 

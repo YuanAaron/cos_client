@@ -33,6 +33,31 @@ QList<MyBucket> DaoCloudsMock::buckets()
     return buckets;
 }
 
+bool DaoCloudsMock::isBucketExists(const QString &bucketName)
+{
+    return false;
+}
+
+QString DaoCloudsMock::getBucketLocation(const QString &bucketName)
+{
+    return QString();
+}
+
+void DaoCloudsMock::putBucket(const QString &bucketName, const QString &location)
+{
+
+}
+
+void DaoCloudsMock::deleteBucket(const QString &bucketName)
+{
+
+}
+
+QList<MyObject> DaoCloudsMock::getObjects(const QString &bucketName, const QString &dir)
+{
+    return QList<MyObject>();
+}
+
 QList<MyBucket> DaoCloudsMock::login(const QString &secretId, const QString &secretKey)
 {
     QThread::sleep(3);

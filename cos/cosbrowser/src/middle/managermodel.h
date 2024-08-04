@@ -3,7 +3,7 @@
 
 #include <QObject>
 #include <QStandardItemModel>
-#include <src/middle/models/mybucket.h>
+#include <src/middle/models/cloudmodels.h>
 
 class ManagerModel: public QObject
 {

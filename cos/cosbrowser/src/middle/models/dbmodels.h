@@ -1,5 +1,5 @@
-﻿#ifndef LOGININFO_H
-#define LOGININFO_H
+﻿#ifndef DBMODELS_H
+#define DBMODELS_H
 
 #include <QString>
 
@@ -12,4 +12,4 @@ struct LoginInfo
     uint timestamp;
 };
 
-#endif // LOGININFO_H
+#endif // DBMODELS_H

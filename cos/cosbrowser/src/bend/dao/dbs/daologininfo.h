@@ -1,7 +1,7 @@
 ﻿#ifndef DAOLOGININFO_H
 #define DAOLOGININFO_H
 
-#include <src/middle/models/logininfo.h>
+#include <src/middle/models/dbmodels.h>
 
 class DaoLoginInfo
 {

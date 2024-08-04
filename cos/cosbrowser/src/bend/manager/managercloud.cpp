@@ -2,7 +2,7 @@
 
 #include <QDebug>
 
-#include <src/middle/models/mybucket.h>
+#include <src/middle/models/cloudmodels.h>
 #include <src/plugins/managerplugin.h>
 #include "src/middle/signals/managersignals.h"
 #include "src/middle/managerglobal.h"

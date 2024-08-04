@@ -3,7 +3,7 @@
 
 #include <QObject>
 
-#include <src/middle/models/mybucket.h>
+#include <src/middle/models/cloudmodels.h>
 
 class ManagerSignals : public QObject
 {

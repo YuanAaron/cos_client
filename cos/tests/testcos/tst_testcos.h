@@ -19,9 +19,20 @@ private slots:
     //调用所有测试用例之后，调用一次该函数
     void cleanupTestCase();
     void test_buckets();
+    void test_isBucketExists();
+    void test_getBucketLocation();
+    void test_putBucket();
+    void test_deleteBucket();
+    void test_getObjects();
+
+    void test_getObjects1_data();
+    void test_getObjects1();
+
+    void test_getObjectError();
 
 private:
     DaoCloudsCos m_cos;
+    QString m_bucketName = "file-1303438180";
 
 };
 

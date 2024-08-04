@@ -3,7 +3,7 @@
 
 #include <QObject>
 
-#include <src/middle/models/logininfo.h>
+#include <src/middle/models/dbmodels.h>
 
 #include <src/bend/dao/dbs/daologininfosqlite.h>
 
