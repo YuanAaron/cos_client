@@ -24,6 +24,10 @@ public:
 
     virtual QList<MyObject> getObjects(const QString& bucketName, const QString& dir) override;
 
+    virtual void putObject(const QString& bucketName, const QString& key, const QString& localPath, const TransProgressCallback& callback) override;
+    virtual void getObject(const QString& bucketName, const QString& key, const QString& localPath, const TransProgressCallback& callback) override;
+    bool isObjectExists(const QString& bucketName, const QString& key);
+
     virtual QList<MyBucket> login(const QString &secretId, const QString &secretKey) override;
 
 private:
@@ -32,6 +36,7 @@ private:
     QList<MyObject> getDirList(qcloud_cos::GetBucketResp& resp, const QString& dir);
     QList<MyObject> getFileList(qcloud_cos::GetBucketResp& resp, const QString& dir);
 
+    MyBucket getBucketByName(const QString& bucketName);
 private:
     qcloud_cos::CosConfig* m_config = nullptr;
 };

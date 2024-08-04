@@ -58,6 +58,16 @@ QList<MyObject> DaoCloudsMock::getObjects(const QString &bucketName, const QStri
     return QList<MyObject>();
 }
 
+void DaoCloudsMock::putObject(const QString &bucketName, const QString &key, const QString &localPath, const TransProgressCallback &callback)
+{
+
+}
+
+void DaoCloudsMock::getObject(const QString &bucketName, const QString &key, const QString &localPath, const TransProgressCallback &callback)
+{
+
+}
+
 QList<MyBucket> DaoCloudsMock::login(const QString &secretId, const QString &secretKey)
 {
     QThread::sleep(3);

@@ -17,6 +17,9 @@ public:
 
     virtual QList<MyObject> getObjects(const QString& bucketName, const QString& dir) override;
 
+    virtual void putObject(const QString& bucketName, const QString& key, const QString& localPath, const TransProgressCallback& callback) override;
+    virtual void getObject(const QString& bucketName, const QString& key, const QString& localPath, const TransProgressCallback& callback) override;
+
     virtual QList<MyBucket> login(const QString &secretId, const QString &secretKey) override;
 
 private:

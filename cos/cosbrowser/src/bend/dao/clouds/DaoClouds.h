@@ -2,6 +2,12 @@
 #define DAOCLOUDS_H
 
 #include <src/middle/models/cloudmodels.h>
+#include <functional>
+
+// 传输进度回调函数
+using TransProgressCallback = std::function<void(uint64_t transferred_size,
+                                                 uint64_t total_size,
+                                                 void*)>;
 
 class DaoClouds
 {
@@ -13,6 +19,9 @@ public:
     virtual void deleteBucket(const QString& bucketName) = 0;
 
     virtual QList<MyObject> getObjects(const QString& bucketName, const QString& dir) = 0;
+
+    virtual void putObject(const QString& bucketName, const QString& key, const QString& localPath, const TransProgressCallback& callback) = 0;
+    virtual void getObject(const QString& bucketName, const QString& key, const QString& localPath, const TransProgressCallback& callback) = 0;
 
     virtual QList<MyBucket> login(const QString& secretId, const QString& secretKey) = 0;
 

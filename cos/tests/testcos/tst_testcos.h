@@ -30,9 +30,18 @@ private slots:
 
     void test_getObjectError();
 
+    void test_putObject();
+    void test_getObject();
+
 private:
     DaoCloudsCos m_cos;
+    QString m_secretId = "AKIDHgyY7e7bRE7sW2qrkU97QgyhceCiBzYx";
+    QString m_secretKey = "LxeaPIXkt2P3hIiXN9Rix8DVsLvXAdBf";
     QString m_bucketName = "file-1303438180";
+
+    QString m_uploadLocalPath = "./upload.txt";
+    QString m_downloadLocalPath = "./download.txt";
+    QString m_updownKey = "petclinic/jdbc/newUpload.txt";
 
 };
 
