@@ -31,6 +31,7 @@ SOURCES += \
     $$PWD/src/config/loggerproxy.cpp \
     $$PWD/src/fend/uicommon/basedialog.cpp \
     $$PWD/src/fend/uicommon/breadwidget.cpp \
+    $$PWD/src/fend/uicommon/cosdialog.cpp \
     $$PWD/src/fend/uicommon/mylineedit.cpp \
     $$PWD/src/fend/uicommon/pagewidget.cpp \
     $$PWD/src/fend/uidelegate/bucketdelegate.cpp \
@@ -67,6 +68,7 @@ HEADERS += \
     $$PWD/src/config/loggerproxy.h \
     $$PWD/src/fend/uicommon/basedialog.h \
     $$PWD/src/fend/uicommon/breadwidget.h \
+    $$PWD/src/fend/uicommon/cosdialog.h \
     $$PWD/src/fend/uicommon/mylineedit.h \
     $$PWD/src/fend/uicommon/pagewidget.h \
     $$PWD/src/fend/uidelegate/bucketdelegate.h \
@@ -87,6 +89,7 @@ HEADERS += \
 FORMS += \
     $$PWD/src/fend/uicommon/basedialog.ui \
     $$PWD/src/fend/uicommon/breadwidget.ui \
+    $$PWD/src/fend/uicommon/cosdialog.ui \
     $$PWD/src/fend/uicommon/pagewidget.ui \
     $$PWD/src/fend/uilogin/logindialog.ui \
     $$PWD/src/fend/uimain/bucketswidget.ui \
