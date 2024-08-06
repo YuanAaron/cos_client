@@ -29,6 +29,7 @@ SOURCES += \
     $$PWD/src/bend/manager/managerdb.cpp \
     $$PWD/src/config/exceptions.cpp \
     $$PWD/src/config/loggerproxy.cpp \
+    $$PWD/src/fend/uicommon/basedialog.cpp \
     $$PWD/src/fend/uicommon/breadwidget.cpp \
     $$PWD/src/fend/uicommon/mylineedit.cpp \
     $$PWD/src/fend/uicommon/pagewidget.cpp \
@@ -64,6 +65,7 @@ HEADERS += \
     $$PWD/src/config/exceptions.h \
     $$PWD/src/config/global.h \
     $$PWD/src/config/loggerproxy.h \
+    $$PWD/src/fend/uicommon/basedialog.h \
     $$PWD/src/fend/uicommon/breadwidget.h \
     $$PWD/src/fend/uicommon/mylineedit.h \
     $$PWD/src/fend/uicommon/pagewidget.h \
@@ -83,6 +85,7 @@ HEADERS += \
     $$PWD/src/plugins/managerplugin.h
 
 FORMS += \
+    $$PWD/src/fend/uicommon/basedialog.ui \
     $$PWD/src/fend/uicommon/breadwidget.ui \
     $$PWD/src/fend/uicommon/pagewidget.ui \
     $$PWD/src/fend/uilogin/logindialog.ui \
