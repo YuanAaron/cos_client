@@ -45,11 +45,11 @@ QLineEdit:hover{
 QLabel{
 	background-color: transparent;
 }
-QLabel#labelLogo{
+/*QLabel#labelLogo{
 	min-width: 32px;
 	min-height: 32px;
 	border-image: url(":/static/imgs/logo.png");
-}
+}*/
 
 /*通用按钮设置*/
 QPushButton{
@@ -70,9 +70,9 @@ QPushButton#btnLogin{
     font: bold 12pt;
 }
 
-QPushButton#btnClose:hover{
+/*QPushButton#btnClose:hover{
 	color:red;
-}
+}*/
 
 
 

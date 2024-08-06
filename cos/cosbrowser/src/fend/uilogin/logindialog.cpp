@@ -13,29 +13,21 @@
 #include "src/middle/managerglobal.h"
 
 LoginDialog::LoginDialog(QWidget *parent)
-    : QDialog(parent)
+    : CosDialog(parent)
     , ui(new Ui::LoginDialog)
 {
-    ui->setupUi(this);
+    ui->setupUi(body());
 
-    //设置窗口无标题栏
-    this->setWindowFlags(Qt::CustomizeWindowHint);
-
-//    QPixmap pixmap("C:/Users/oshacker/Documents/qt/10-3/qt.png");
-////    ui->labelLogo->setPixmap(pixmap);
-////    ui->labelLogo->setScaledContents(true);
-//    ui->labelLogo->setPixmap(pixmap.scaled(ui->labelLogo->size()));
+    setTitle(QString::fromLocal8Bit("登录"));
 
     ui->lineSecretKey->installEventFilter(this);
 
     //设置"登录窗口"的样式
-    ui->labelTitle->setProperty("style","h3");
-    ui->labelLgoinName->setProperty("style","h4");
-    ui->labelSecretId->setProperty("style","h4");
-    ui->labelSecretKey->setProperty("style","h4");
-    ui->labelRemark->setProperty("style","h4");
-    ui->btnClose->setProperty("style","h3");
-    ui->btnLogin->setProperty("style","h4");
+    ui->labelLgoinName->setProperty("style","h5");
+    ui->labelSecretId->setProperty("style","h5");
+    ui->labelSecretKey->setProperty("style","h5");
+    ui->labelRemark->setProperty("style","h5");
+    ui->btnLogin->setProperty("style","h5");
 
     //关心 登录成功 的信号
     connect(MG->m_signal,&ManagerSignals::loginSuccess, this, &LoginDialog::onLoginSucceed);
@@ -51,29 +43,6 @@ LoginDialog::~LoginDialog()
 {
     delete ui;
     qDebug() << "delete LoginDialog";
-}
-
-void LoginDialog::mousePressEvent(QMouseEvent *e)
-{
-    //鼠标左键
-    if(e->button() == Qt::LeftButton)
-    {
-        m_start = e->pos(); //相对于父控件坐标原点的位置
-    }
-    QDialog::mousePressEvent(e);
-
-}
-
-void LoginDialog::mouseMoveEvent(QMouseEvent *e)
-{
-//    qDebug() << e->buttons()<<Qt::LeftButton;
-    //原项目中使用e->buttons() & Qt::LeftButton屏蔽右键，这样即可同时按下鼠标左右键（右键被屏蔽了）也可以移动窗口
-    if(e->buttons() == Qt::LeftButton)
-    {
-        QPoint target =  e->pos() - m_start + pos();
-        this->move(target);
-    }
-    QDialog::mouseMoveEvent(e);
 }
 
 bool LoginDialog::eventFilter(QObject *watched, QEvent *event)
@@ -124,17 +93,6 @@ void LoginDialog::updateLoginInfo()
                 ui->checkSaveSession->setChecked(false);
             }
     });
-}
-
-
-void LoginDialog::on_btnClose_clicked()
-{
-    //如果最后一个可见主窗口（即没有父窗口），发出QApplication::lastWindowClosed信号，则qt退出事件循环，从而终止程序。
-    //close();
-
-    //Hides the modal dialog and sets the result code to Rejected.
-    //搞不懂为什么换成了这个？
-    reject();
 }
 
 //测试网关

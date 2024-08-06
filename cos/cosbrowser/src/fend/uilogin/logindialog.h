@@ -1,13 +1,14 @@
 ﻿#ifndef LOGINDIALOG_H
 #define LOGINDIALOG_H
 
-#include <QDialog>
+#include <src/fend/uicommon/cosdialog.h>
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class LoginDialog; }
 QT_END_NAMESPACE
 
-class LoginDialog : public QDialog
+class LoginDialog : public CosDialog
 {
     Q_OBJECT
 
@@ -19,14 +20,9 @@ public:
     void updateLoginInfo();
 
 protected:
-    void mousePressEvent(QMouseEvent *e);
-    void mouseMoveEvent(QMouseEvent *e);
-
     bool eventFilter(QObject *watched, QEvent *event);
 
 private slots:
-    void on_btnClose_clicked();
-
     void on_btnLogin_clicked();
 
     void onLoginSucceed();
@@ -34,6 +30,5 @@ private slots:
 
 private:
     Ui::LoginDialog *ui;
-    QPoint m_start;
 };
 #endif // LOGINDIALOG_H
