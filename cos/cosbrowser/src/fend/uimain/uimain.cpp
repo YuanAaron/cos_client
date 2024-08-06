@@ -8,10 +8,17 @@
 #include <QDebug>
 
 UiMain::UiMain(QWidget *parent) :
-    QWidget(parent),
+    CosDialog(parent),
     ui(new Ui::UiMain)
 {
-    ui->setupUi(this);
+    ui->setupUi(body());
+
+    addMinButton(GLOBAL::PATH::MIN_PATH, GLOBAL::PATH::MIN_HOVER_PATH);
+    addMaxButton(GLOBAL::PATH::MAX_PATH, GLOBAL::PATH::MAX_HOVER_PATH,
+                 GLOBAL::PATH::NORMAL_PATH, GLOBAL::PATH::NORMAL_HOVER_PATH);
+
+    setTitle(QString::fromLocal8Bit("Cos Client"));
+    resize(1080,640);
 
     //使用分割器后，设置窗口占用的初始比例
     ui->splitter->setStretchFactor(0,1);

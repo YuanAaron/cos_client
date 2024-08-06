@@ -1,7 +1,7 @@
 ﻿#ifndef UIMAIN_H
 #define UIMAIN_H
 
-#include <QWidget>
+#include <src/fend/uicommon/cosdialog.h>
 
 namespace Ui {
 class UiMain;
@@ -9,7 +9,7 @@ class UiMain;
 
 //class LoginDialog;
 
-class UiMain : public QWidget
+class UiMain : public CosDialog
 {
     Q_OBJECT
 

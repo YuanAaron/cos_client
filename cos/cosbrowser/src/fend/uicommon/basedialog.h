@@ -78,7 +78,7 @@ protected:
     Ui::BaseDialog *m_ui;
 
 private:
-    int m_sz = 20;
     QPoint m_start;
+//    int m_sz = 20;
 };
 #endif // BASEDIALOG_H
