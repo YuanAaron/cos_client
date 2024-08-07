@@ -65,7 +65,7 @@ void BaseDialog::addMaxButton(const QString &maxPath, const QString &maxPathHove
 QPushButton *BaseDialog::addButton(const QString &path, const QString &hoverPath)
 {
     QPushButton* btn = new QPushButton;
-//    btn->setFixedSize(m_sz, m_sz);
+    btn->setFixedSize(m_sz, m_sz);
     setButtonImage(btn, path, hoverPath);
     int i = m_ui->horizontalLayout->indexOf(m_ui->btnClose);
     m_ui->horizontalLayout->insertWidget(i, btn);
@@ -86,7 +86,7 @@ void BaseDialog::setAllButtonSize(int w)
     for (auto* btn: btnList) {
         btn->setFixedSize(w, w);
     }
-//    m_sz = w;
+    m_sz = w;
 }
 
 void BaseDialog::mousePressEvent(QMouseEvent *e)

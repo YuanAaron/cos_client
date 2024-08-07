@@ -79,6 +79,6 @@ protected:
 
 private:
     QPoint m_start;
-//    int m_sz = 20;
+    int m_sz = 20; //记录QPushButton设置的大小
 };
 #endif // BASEDIALOG_H

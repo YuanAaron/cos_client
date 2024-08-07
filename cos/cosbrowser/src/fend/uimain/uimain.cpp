@@ -13,6 +13,7 @@ UiMain::UiMain(QWidget *parent) :
 {
     ui->setupUi(body());
 
+    //QPushButton的大小在BaseDialog中就设置了，新添加按钮后没有再设置大小，在这里重新调用一次不合适，具体做法见本次commit
     addMinButton(GLOBAL::PATH::MIN_PATH, GLOBAL::PATH::MIN_HOVER_PATH);
     addMaxButton(GLOBAL::PATH::MAX_PATH, GLOBAL::PATH::MAX_HOVER_PATH,
                  GLOBAL::PATH::NORMAL_PATH, GLOBAL::PATH::NORMAL_HOVER_PATH);
