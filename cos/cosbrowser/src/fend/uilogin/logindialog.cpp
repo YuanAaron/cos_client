@@ -29,6 +29,9 @@ LoginDialog::LoginDialog(QWidget *parent)
     ui->labelRemark->setProperty("style","h5");
     ui->btnLogin->setProperty("style","h5");
 
+    //手动修改logindialog的xml，导致 登录按钮 的自动绑定失效
+    connect(ui->btnLogin, &QPushButton::clicked, this, &LoginDialog::onBtnLoginClicked);
+
     //关心 登录成功 的信号
     connect(MG->m_signal,&ManagerSignals::loginSuccess, this, &LoginDialog::onLoginSucceed);
     //关系 错误(这里指登录失败） 的信号
@@ -96,7 +99,7 @@ void LoginDialog::updateLoginInfo()
 }
 
 //测试网关
-void LoginDialog::on_btnLogin_clicked()
+void LoginDialog::onBtnLoginClicked()
 {
     QJsonObject params;
     params["secretId"] = ui->lineSecretId->text().trimmed();

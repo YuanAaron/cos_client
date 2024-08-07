@@ -23,7 +23,7 @@ protected:
     bool eventFilter(QObject *watched, QEvent *event);
 
 private slots:
-    void on_btnLogin_clicked();
+    void onBtnLoginClicked();
 
     void onLoginSucceed();
     void onLoginError(int api, const QString& msg);
