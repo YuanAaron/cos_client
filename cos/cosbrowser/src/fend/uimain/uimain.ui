@@ -29,7 +29,7 @@
         <widget class="ToolbarWidget" name="widgetToolbar" native="true"/>
        </item>
        <item>
-        <widget class="BreadWidget" name="widget_2" native="true"/>
+        <widget class="BreadWidget" name="widgetBread" native="true"/>
        </item>
        <item>
         <widget class="ObjectsWidget" name="widget_4" native="true"/>

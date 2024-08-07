@@ -34,6 +34,8 @@ UiMain::UiMain(QWidget *parent) :
 
     //关心 退出登录 的信号
     connect(MG->m_signal, &ManagerSignals::unLogin, this, &UiMain::onUnLogin);
+
+//    ui->widgetBread->setPath("file-1/a/b/c");
 }
 
 UiMain::~UiMain()
