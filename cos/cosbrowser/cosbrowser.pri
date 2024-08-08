@@ -31,6 +31,7 @@ SOURCES += \
     $$PWD/src/config/loggerproxy.cpp \
     $$PWD/src/fend/uicommon/basedialog.cpp \
     $$PWD/src/fend/uicommon/breadwidget.cpp \
+    $$PWD/src/fend/uicommon/comboline.cpp \
     $$PWD/src/fend/uicommon/cosdialog.cpp \
     $$PWD/src/fend/uicommon/mylineedit.cpp \
     $$PWD/src/fend/uicommon/pagewidget.cpp \
@@ -68,6 +69,7 @@ HEADERS += \
     $$PWD/src/config/loggerproxy.h \
     $$PWD/src/fend/uicommon/basedialog.h \
     $$PWD/src/fend/uicommon/breadwidget.h \
+    $$PWD/src/fend/uicommon/comboline.h \
     $$PWD/src/fend/uicommon/cosdialog.h \
     $$PWD/src/fend/uicommon/mylineedit.h \
     $$PWD/src/fend/uicommon/pagewidget.h \

@@ -50,7 +50,7 @@
     </widget>
    </item>
    <item>
-    <widget class="QLineEdit" name="lineLoginName">
+    <widget class="ComboLine" name="lineLoginName">
      <property name="minimumSize">
       <size>
        <width>0</width>
@@ -230,6 +230,13 @@
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>ComboLine</class>
+   <extends>QLineEdit</extends>
+   <header>src/fend/uicommon/comboline.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>
