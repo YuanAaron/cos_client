@@ -14,18 +14,6 @@
    <string>Form</string>
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout">
-   <property name="leftMargin">
-    <number>0</number>
-   </property>
-   <property name="topMargin">
-    <number>0</number>
-   </property>
-   <property name="rightMargin">
-    <number>0</number>
-   </property>
-   <property name="bottomMargin">
-    <number>0</number>
-   </property>
    <item>
     <spacer name="horizontalSpacer">
      <property name="orientation">
@@ -40,38 +28,45 @@
     </spacer>
    </item>
    <item>
-    <widget class="QLabel" name="label">
+    <widget class="QLabel" name="labelTotalCount">
+     <property name="minimumSize">
+      <size>
+       <width>10</width>
+       <height>0</height>
+      </size>
+     </property>
      <property name="text">
-      <string>每页显示行数</string>
+      <string/>
      </property>
     </widget>
    </item>
    <item>
-    <widget class="QComboBox" name="comboBox">
-     <item>
-      <property name="text">
-       <string>10</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>50</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>100</string>
-      </property>
-     </item>
+    <widget class="ComboLine" name="lineMaxRows">
+     <property name="maximumSize">
+      <size>
+       <width>36</width>
+       <height>16777215</height>
+      </size>
+     </property>
     </widget>
    </item>
    <item>
-    <widget class="QPushButton" name="pushButton">
+    <widget class="QLabel" name="label_2">
+     <property name="text">
+      <string>行</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="btnPre">
      <property name="maximumSize">
       <size>
        <width>25</width>
        <height>16777215</height>
       </size>
+     </property>
+     <property name="toolTip">
+      <string>上一页</string>
      </property>
      <property name="text">
       <string>＜</string>
@@ -79,31 +74,38 @@
     </widget>
    </item>
    <item>
-    <widget class="QComboBox" name="comboBox_2">
-     <item>
-      <property name="text">
-       <string>1</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>2</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>3</string>
-      </property>
-     </item>
+    <widget class="ComboLine" name="lineCurrentPage">
+     <property name="maximumSize">
+      <size>
+       <width>32</width>
+       <height>16777215</height>
+      </size>
+     </property>
     </widget>
    </item>
    <item>
-    <widget class="QPushButton" name="pushButton_2">
+    <widget class="QLabel" name="labelPageCount">
+     <property name="minimumSize">
+      <size>
+       <width>10</width>
+       <height>0</height>
+      </size>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="btnNext">
      <property name="maximumSize">
       <size>
        <width>25</width>
        <height>16777215</height>
       </size>
+     </property>
+     <property name="toolTip">
+      <string>下一页</string>
      </property>
      <property name="text">
       <string>＞</string>
@@ -112,6 +114,13 @@
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>ComboLine</class>
+   <extends>QLineEdit</extends>
+   <header>src/fend/uicommon/comboline.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>
