@@ -1,16 +1,17 @@
-﻿#include "objectswidget.h"
-#include "ui_objectswidget.h"
+﻿#include "bucketstablewidget.h"
+#include "ui_bucketstablewidget.h"
 
 #include "src/middle/managerglobal.h"
 #include "src/middle/managermodel.h"
 #include <QDebug>
 #include <src/fend/uidelegate/bucketdelegate.h>
 
-ObjectsWidget::ObjectsWidget(QWidget *parent) :
+BucketsTableWidget::BucketsTableWidget(QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::ObjectsWidget)
+    ui(new Ui::BucketsTableWidget)
 {
     ui->setupUi(this);
+
     ui->tableView->setModel(MG->m_model->model());
 //    ui->tableView->setItemDelegate(new BucketDelegate());
     ui->tableView->setItemDelegateForColumn(1,new BucketDelegate());
@@ -37,8 +38,8 @@ ObjectsWidget::ObjectsWidget(QWidget *parent) :
     ui->tableView->setSortingEnabled(true);
 }
 
-ObjectsWidget::~ObjectsWidget()
+BucketsTableWidget::~BucketsTableWidget()
 {
     delete ui;
-    qDebug() << "delete ObjectsWidget";
+    qDebug() << "delete BucketsTableWidget";
 }

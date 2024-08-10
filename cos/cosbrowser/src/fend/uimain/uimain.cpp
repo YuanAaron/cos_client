@@ -4,6 +4,7 @@
 //#include <src/fend/uilogin/logindialog.h>
 #include "src/middle/signals/managersignals.h"
 #include "src/middle/managerglobal.h"
+#include <QPushButton>
 
 #include <QDebug>
 
@@ -13,6 +14,15 @@ UiMain::UiMain(QWidget *parent) :
 {
     ui->setupUi(body());
 
+    //添加传输列表和退出登录按钮
+    addButton(GLOBAL::PATH::TRANS, GLOBAL::PATH::TRANS_HOVER);
+    QPushButton* quitBtn = addButton(GLOBAL::PATH::QUIT, GLOBAL::PATH::QUIT_HOVER);
+    //这里要进行信号传递，不能直接通过onUnLogin进行处理，因为可能有其他窗口（比如登录窗口）关心该信号
+    connect(quitBtn, &QPushButton::clicked, MG->m_signal, &ManagerSignals::unLogin);
+
+    //添加标题分割线
+    addTitleLine();
+
     //QPushButton的大小在BaseDialog中就设置了，新添加按钮后没有再设置大小，在这里重新调用一次不合适，具体做法见本次commit
     addMinButton(GLOBAL::PATH::MIN_PATH, GLOBAL::PATH::MIN_HOVER_PATH);
     addMaxButton(GLOBAL::PATH::MAX_PATH, GLOBAL::PATH::MAX_HOVER_PATH,
@@ -20,6 +30,8 @@ UiMain::UiMain(QWidget *parent) :
 
     setTitle(QString::fromLocal8Bit("Cos Client"));
     resize(1080,640);
+
+//    setKeyDisabled();
 
     //使用分割器后，设置窗口占用的初始比例
     ui->splitter->setStretchFactor(0,1);

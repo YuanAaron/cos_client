@@ -5,7 +5,6 @@
 #include <QMouseEvent>
 #include <QKeyEvent>
 #include <QPushButton>
-#include <QKeyEvent>
 
 BaseDialog::BaseDialog(QWidget *parent)
     : QDialog(parent)
@@ -67,8 +66,7 @@ QPushButton *BaseDialog::addButton(const QString &path, const QString &hoverPath
     QPushButton* btn = new QPushButton;
     btn->setFixedSize(m_sz, m_sz);
     setButtonImage(btn, path, hoverPath);
-    int i = m_ui->horizontalLayout->indexOf(m_ui->btnClose);
-    m_ui->horizontalLayout->insertWidget(i, btn);
+    addWidget(btn);
     return btn;
 }
 
@@ -87,6 +85,19 @@ void BaseDialog::setAllButtonSize(int w)
         btn->setFixedSize(w, w);
     }
     m_sz = w;
+}
+
+//void BaseDialog::setKeyDisabled()
+//{
+//    installEventFilter(this);
+//}
+
+void BaseDialog::addTitleLine(int w)
+{
+    QLabel* label = new QLabel;
+    label->setFixedSize(w,15);
+    label->setStyleSheet("QLabel{background-color: lightgray;}");
+    addWidget(label);
 }
 
 void BaseDialog::mousePressEvent(QMouseEvent *e)
@@ -109,6 +120,22 @@ void BaseDialog::mouseMoveEvent(QMouseEvent *e)
     QDialog::mouseMoveEvent(e);
 }
 
+//bool BaseDialog::eventFilter(QObject *obj, QEvent *event)
+//{
+//    BaseDialog *pDialog = dynamic_cast<BaseDialog *>(obj);
+//    if (pDialog && event->type() == QEvent::KeyPress)
+//    {
+//        QKeyEvent *pKeyEvent = static_cast<QKeyEvent*>(event);
+//        if (pKeyEvent->key() == Qt::Key_Return
+//            || pKeyEvent->key() == Qt::Key_Escape
+//            || pKeyEvent->key() == Qt::Key_Enter)
+//        {
+//            return true;
+//        }
+//    }
+//    return QObject::eventFilter(obj, event);
+//}
+
 QWidget *BaseDialog::body()
 {
     return m_ui->widgetBody;
@@ -116,7 +143,14 @@ QWidget *BaseDialog::body()
 
 void BaseDialog::addCloseButton(const QString &path, const QString &hoverPath)
 {
+//    m_ui->btnClose->setFocusPolicy(Qt::NoFocus); //https://blog.csdn.net/ji3009/article/details/116014811
     setButtonImage(m_ui->btnClose, path, hoverPath);
     m_ui->horizontalLayout->addWidget(m_ui->btnClose);
     connect(m_ui->btnClose, &QPushButton::clicked, this, &BaseDialog::reject);
+}
+
+void BaseDialog::addWidget(QWidget *w)
+{
+    int i = m_ui->horizontalLayout->indexOf(m_ui->btnClose);
+    m_ui->horizontalLayout->insertWidget(i, w);
 }

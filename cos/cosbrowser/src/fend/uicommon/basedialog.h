@@ -66,13 +66,26 @@ public:
     */
     void setAllButtonSize(int w=20);
 
+    /**
+     * @brief 禁用ESC和Enter导致窗口关闭
+     */
+//    void setKeyDisabled();
+
+    /**
+     * @brief 添加标题栏分割线
+     * @param w 线的宽度
+     */
+    void addTitleLine(int w = 2);
+
 protected:
     void mousePressEvent(QMouseEvent *e);
     void mouseMoveEvent(QMouseEvent *e);
+//    bool eventFilter(QObject *obj, QEvent* event);
     QWidget* body();
 
 private:
     void addCloseButton(const QString& path, const QString& hoverPath);
+    void addWidget(QWidget* w);
 
 protected:
     Ui::BaseDialog *m_ui;

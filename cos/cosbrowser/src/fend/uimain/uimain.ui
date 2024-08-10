@@ -22,20 +22,14 @@
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
      </property>
-     <widget class="BucketsWidget" name="widget_3" native="true"/>
+     <widget class="BucketsListWidget" name="widgetBucketsList" native="true"/>
      <widget class="QWidget" name="layoutWidget">
-      <layout class="QVBoxLayout" name="verticalLayout" stretch="0,0,1,0">
+      <layout class="QVBoxLayout" name="verticalLayout" stretch="0">
        <item>
-        <widget class="ToolbarWidget" name="widgetToolbar" native="true"/>
-       </item>
-       <item>
-        <widget class="BreadWidget" name="widgetBread" native="true"/>
-       </item>
-       <item>
-        <widget class="ObjectsWidget" name="widget_4" native="true"/>
-       </item>
-       <item>
-        <widget class="PageWidget" name="widget_5" native="true"/>
+        <widget class="QStackedWidget" name="stackedWidget">
+         <widget class="BucketsTableWidget" name="pageBuckets"/>
+         <widget class="ObjectsTableWidget" name="pageObjects"/>
+        </widget>
        </item>
       </layout>
      </widget>
@@ -45,33 +39,21 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>BucketsWidget</class>
+   <class>BucketsTableWidget</class>
    <extends>QWidget</extends>
-   <header>src/fend/uimain/bucketswidget.h</header>
+   <header>src/fend/uimain/bucketstablewidget.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>ToolbarWidget</class>
+   <class>ObjectsTableWidget</class>
    <extends>QWidget</extends>
-   <header>src/fend/uimain/toolbarwidget.h</header>
+   <header>src/fend/uimain/objectstablewidget.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>BreadWidget</class>
+   <class>BucketsListWidget</class>
    <extends>QWidget</extends>
-   <header>src/fend/uicommon/breadwidget.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>ObjectsWidget</class>
-   <extends>QWidget</extends>
-   <header>src/fend/uimain/objectswidget.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>PageWidget</class>
-   <extends>QWidget</extends>
-   <header>src/fend/uicommon/pagewidget.h</header>
+   <header>src/fend/uimain/bucketslistwidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

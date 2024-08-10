@@ -1,4 +1,4 @@
-#ifndef OBJECTSWIDGET_H
+﻿#ifndef OBJECTSWIDGET_H
 #define OBJECTSWIDGET_H
 
 #include <QWidget>
@@ -7,13 +7,13 @@ namespace Ui {
 class ObjectsWidget;
 }
 
-class ObjectsWidget : public QWidget
+class ObjectsTableWidget : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit ObjectsWidget(QWidget *parent = nullptr);
-    ~ObjectsWidget();
+    explicit ObjectsTableWidget(QWidget *parent = nullptr);
+    ~ObjectsTableWidget();
 
 private:
     Ui::ObjectsWidget *ui;

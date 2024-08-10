@@ -1,4 +1,4 @@
-#ifndef BUCKETSWIDGET_H
+﻿#ifndef BUCKETSWIDGET_H
 #define BUCKETSWIDGET_H
 
 #include <QWidget>
@@ -7,13 +7,13 @@ namespace Ui {
 class BucketsWidget;
 }
 
-class BucketsWidget : public QWidget
+class BucketsListWidget : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit BucketsWidget(QWidget *parent = nullptr);
-    ~BucketsWidget();
+    explicit BucketsListWidget(QWidget *parent = nullptr);
+    ~BucketsListWidget();
 
 private:
     Ui::BucketsWidget *ui;

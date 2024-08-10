@@ -1,11 +1,11 @@
-﻿#include "bucketswidget.h"
-#include "ui_bucketswidget.h"
+﻿#include "bucketslistwidget.h"
+#include "ui_bucketslistwidget.h"
 
 #include "src/middle/managerglobal.h"
 #include "src/middle/managermodel.h"
 #include <QDebug>
 
-BucketsWidget::BucketsWidget(QWidget *parent) :
+BucketsListWidget::BucketsListWidget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::BucketsWidget)
 {
@@ -13,7 +13,7 @@ BucketsWidget::BucketsWidget(QWidget *parent) :
     ui->listView->setModel(MG->m_model->model());
 }
 
-BucketsWidget::~BucketsWidget()
+BucketsListWidget::~BucketsListWidget()
 {
     delete ui;
     qDebug() << "delete BucketsWidget";

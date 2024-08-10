@@ -20,6 +20,11 @@ namespace GLOBAL {
         static const QString NORMAL_HOVER_PATH = ":/static/imgs/Maximize-4.png";
         static const QString MIN_PATH = ":/static/imgs/Minimize-1.png";
         static const QString MIN_HOVER_PATH = ":/static/imgs/Minimize-2.png";
+
+        static const QString TRANS = ":/static/imgs/Trans-1.png";
+        static const QString TRANS_HOVER = ":/static/imgs/Trans-2.png";
+        static const QString QUIT = ":/static/imgs/Quit-1.png";
+        static const QString QUIT_HOVER = ":/static/imgs/Quit-2.png";
     }
 
     namespace SQLITE {

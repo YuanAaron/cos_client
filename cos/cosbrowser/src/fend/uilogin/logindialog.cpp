@@ -29,6 +29,8 @@ LoginDialog::LoginDialog(QWidget *parent)
     ui->labelRemark->setProperty("style","h5");
     ui->btnLogin->setProperty("style","h5");
 
+//    setKeyDisabled();
+
     //手动修改logindialog的xml，导致 登录按钮 的自动绑定失效
     connect(ui->btnLogin, &QPushButton::clicked, this, &LoginDialog::onBtnLoginClicked);
 

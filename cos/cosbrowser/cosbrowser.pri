@@ -37,8 +37,9 @@ SOURCES += \
     $$PWD/src/fend/uicommon/pagewidget.cpp \
     $$PWD/src/fend/uidelegate/bucketdelegate.cpp \
     $$PWD/src/fend/uilogin/logindialog.cpp \
-    $$PWD/src/fend/uimain/bucketswidget.cpp \
-    $$PWD/src/fend/uimain/objectswidget.cpp \
+    $$PWD/src/fend/uimain/bucketslistwidget.cpp \
+    $$PWD/src/fend/uimain/bucketstablewidget.cpp \
+    $$PWD/src/fend/uimain/objectstablewidget.cpp \
     $$PWD/src/fend/uimain/toolbarwidget.cpp \
     $$PWD/src/fend/uimain/uimain.cpp \
     $$PWD/src/helper/dbsqlite.cpp \
@@ -75,8 +76,9 @@ HEADERS += \
     $$PWD/src/fend/uicommon/pagewidget.h \
     $$PWD/src/fend/uidelegate/bucketdelegate.h \
     $$PWD/src/fend/uilogin/logindialog.h \
-    $$PWD/src/fend/uimain/bucketswidget.h \
-    $$PWD/src/fend/uimain/objectswidget.h \
+    $$PWD/src/fend/uimain/bucketslistwidget.h \
+    $$PWD/src/fend/uimain/bucketstablewidget.h \
+    $$PWD/src/fend/uimain/objectstablewidget.h \
     $$PWD/src/fend/uimain/toolbarwidget.h \
     $$PWD/src/fend/uimain/uimain.h \
     $$PWD/src/helper/dbsqlite.h \
@@ -94,8 +96,9 @@ FORMS += \
     $$PWD/src/fend/uicommon/cosdialog.ui \
     $$PWD/src/fend/uicommon/pagewidget.ui \
     $$PWD/src/fend/uilogin/logindialog.ui \
-    $$PWD/src/fend/uimain/bucketswidget.ui \
-    $$PWD/src/fend/uimain/objectswidget.ui \
+    $$PWD/src/fend/uimain/bucketslistwidget.ui \
+    $$PWD/src/fend/uimain/bucketstablewidget.ui \
+    $$PWD/src/fend/uimain/objectstablewidget.ui \
     $$PWD/src/fend/uimain/toolbarwidget.ui \
     $$PWD/src/fend/uimain/uimain.ui
 
