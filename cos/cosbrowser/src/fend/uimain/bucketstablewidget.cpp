@@ -5,6 +5,9 @@
 #include "src/middle/managermodel.h"
 #include <QDebug>
 #include <src/fend/uidelegate/bucketdelegate.h>
+#include "src/bend/gateway.h"
+#include "src/config/api.h"
+#include <QJsonObject>
 
 BucketsTableWidget::BucketsTableWidget(QWidget *parent) :
     QWidget(parent),
@@ -12,18 +15,11 @@ BucketsTableWidget::BucketsTableWidget(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    ui->tableView->setModel(MG->m_model->model());
+    ui->tableView->setModel(MG->m_model->modelBuckets());
 //    ui->tableView->setItemDelegate(new BucketDelegate());
     ui->tableView->setItemDelegateForColumn(1,new BucketDelegate());
 
-    //设置表格标题栏的标题
-    QStandardItemModel* model = MG->m_model->model();
-    QStringList labels;
-    labels << QString::fromLocal8Bit("桶名称")
-           << QString::fromLocal8Bit("地区")
-           << QString::fromLocal8Bit("创建时间");
-    model->setColumnCount(3);
-    model->setHorizontalHeaderLabels(labels);
+    //设置表格标题栏的标题（放到了ManagerModel中）
 
     //设置表格标题栏的宽度
     ui->tableView->setColumnWidth(0,200);
@@ -42,4 +38,15 @@ BucketsTableWidget::~BucketsTableWidget()
 {
     delete ui;
     qDebug() << "delete BucketsTableWidget";
+}
+
+void BucketsTableWidget::on_tableView_doubleClicked(const QModelIndex &index)
+{
+    if(index.column() == 0)
+    {
+        QJsonObject params;
+        params["bucketName"] = index.data().toString();
+        params["dir"] = "";
+        MG->m_gate->send(API::OBJECTS::LIST, params);
+    }
 }

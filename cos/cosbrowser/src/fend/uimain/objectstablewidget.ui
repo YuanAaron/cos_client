@@ -69,6 +69,19 @@
         </property>
        </widget>
       </item>
+      <item>
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>149</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
      </layout>
     </widget>
    </item>
@@ -85,15 +98,15 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>BreadWidget</class>
-   <extends>QWidget</extends>
-   <header>src/fend/uicommon/breadwidget.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
    <class>PageWidget</class>
    <extends>QWidget</extends>
    <header>src/fend/uicommon/pagewidget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>BreadWidget</class>
+   <extends>QWidget</extends>
+   <header>src/fend/uicommon/breadwidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

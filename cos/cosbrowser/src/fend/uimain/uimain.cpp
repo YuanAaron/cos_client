@@ -43,11 +43,13 @@ UiMain::UiMain(QWidget *parent) :
 
     //关心 登录成功 的信号
     connect(MG->m_signal, &ManagerSignals::loginSuccess, this, &UiMain::show);
-
     //关心 退出登录 的信号
     connect(MG->m_signal, &ManagerSignals::unLogin, this, &UiMain::onUnLogin);
 
-//    ui->widgetBread->setPath("file-1/a/b/c");
+    //关心 获取桶列表成功 的信号
+    connect(MG->m_signal, &ManagerSignals::bucketsSuccess, this, &UiMain::onBucketsSuccess);
+    //关心 获取对象列表成功 的信号
+    connect(MG->m_signal, &ManagerSignals::objectsSuccess, this, &UiMain::onObjectsSuccess);
 }
 
 UiMain::~UiMain()
@@ -106,6 +108,16 @@ void UiMain::onUnLogin()
 {
 //    showLoginDialog();
     hide();
+}
+
+void UiMain::onBucketsSuccess(const QList<MyBucket> &buckets)
+{
+    ui->stackedWidget->setCurrentIndex(0);
+}
+
+void UiMain::onObjectsSuccess(const QList<MyObject> &objects)
+{
+    ui->stackedWidget->setCurrentIndex(1);
 }
 
 //void UiMain::onRefresh()

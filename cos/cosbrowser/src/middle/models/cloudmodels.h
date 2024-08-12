@@ -2,6 +2,7 @@
 #define CLOUDMODELS_H
 
 #include <QString>
+#include <QMetaType>
 
 struct BaseObject{
     bool isValid() const{
@@ -13,12 +14,14 @@ struct BaseObject{
 
     QString name;
 };
+Q_DECLARE_METATYPE(BaseObject); //没有好像也没问题
 
 struct MyBucket: public BaseObject
 {
     QString location;
     QString createDate;
 };
+Q_DECLARE_METATYPE(MyBucket); //没有好像也没问题
 
 struct MyObject: public BaseObject
 {
@@ -26,5 +29,6 @@ struct MyObject: public BaseObject
     qulonglong size = 0;
     QString dir; //父对象路径（父目录），需要带/
 };
+Q_DECLARE_METATYPE(MyObject); //没有好像也没问题
 
 #endif // CLOUDMODELS_H

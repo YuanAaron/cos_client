@@ -11,13 +11,20 @@ class ManagerModel: public QObject
 public:
     ManagerModel(QObject* parent = nullptr);
 
-    QStandardItemModel *model() const;
+    QStandardItemModel *modelBuckets() const;
+    QStandardItemModel *modelObjects() const;
 
 private slots:
     void setBuckets(const QList<MyBucket>& buckets);
+    void setObjects(const QList<MyObject>& objects);
 
 private:
-    QStandardItemModel* m_model = nullptr; //这里好像不加也不会报错
+    void initBucketsTable();
+    void initObjectsTable();
+
+private:
+    QStandardItemModel* m_modelBuckets = nullptr; //这里好像不加也不会报错 //存储桶表格模型
+    QStandardItemModel* m_modelObjects = nullptr; //对象表格模型
 };
 
 #endif // MANAGERMODEL_H

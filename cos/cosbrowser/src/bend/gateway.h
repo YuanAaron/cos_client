@@ -11,7 +11,7 @@ public:
     explicit GateWay(QObject *parent = nullptr);
     ~GateWay();
 
-    void send(int api, const QJsonValue& value);
+    void send(int api, const QJsonValue& params = QJsonValue());
 
 private:
     void dispatch(int api, const QJsonValue& value);
