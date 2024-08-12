@@ -3,9 +3,12 @@
 
 #include <QDebug>
 #include "src/middle/managerglobal.h"
+#include "src/bend/manager/managercloud.h"
 #include "src/middle/managermodel.h"
 #include "src/bend/gateway.h"
 #include "src/config/api.h"
+#include <QJsonObject>
+#include <src/middle/signals/managersignals.h>
 
 ObjectsTableWidget::ObjectsTableWidget(QWidget *parent) :
     QWidget(parent),
@@ -26,6 +29,9 @@ ObjectsTableWidget::ObjectsTableWidget(QWidget *parent) :
 
     // 设置鼠标点击排序
     ui->tableView->setSortingEnabled(true);
+
+    //关心 获取对象列表成功 的信号
+    connect(MG->m_signal, &ManagerSignals::objectsSuccess, this, &ObjectsTableWidget::onObjectsSuccess);
 }
 
 ObjectsTableWidget::~ObjectsTableWidget()
@@ -37,4 +43,23 @@ ObjectsTableWidget::~ObjectsTableWidget()
 void ObjectsTableWidget::on_btnBuckets_clicked()
 {
     MG->m_gate->send(API::BUCKETS::LIST);
+}
+
+void ObjectsTableWidget::on_tableView_doubleClicked(const QModelIndex &index)
+{
+    //MyCustomStruct c1 = v.value<MyCustomStruct>();
+    MyObject obj = index.data(Qt::UserRole).value<MyObject>();
+    if(obj.isDir())
+    {
+        QJsonObject params;
+        params["bucketName"] = MG->m_cloud->getCurrentBucketName();
+        params["dir"] = obj.key;
+        MG->m_gate->send(API::OBJECTS::LIST, params);
+    }
+}
+
+void ObjectsTableWidget::onObjectsSuccess(const QList<MyObject> &objects)
+{
+    QString path = MG->m_cloud->getCurrentBucketName() + "/" + MG->m_cloud->getCurrentDir();
+    ui->widgetBread->setPath(path);
 }

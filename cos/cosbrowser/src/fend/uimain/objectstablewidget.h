@@ -3,6 +3,8 @@
 
 #include <QWidget>
 
+#include <src/middle/models/cloudmodels.h>
+
 namespace Ui {
 class ObjectsWidget;
 }
@@ -17,6 +19,8 @@ public:
 
 private slots:
     void on_btnBuckets_clicked();
+    void on_tableView_doubleClicked(const QModelIndex &index);
+    void onObjectsSuccess(const QList<MyObject>& objects);
 
 private:
     Ui::ObjectsWidget *ui;

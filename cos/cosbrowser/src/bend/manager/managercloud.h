@@ -30,8 +30,15 @@ public:
                    const QString& key,
                    const QString& localPath);
 
+    QString getCurrentBucketName() const;
+    QString getCurrentDir() const;
+
 private:
     void bucketsAlready(const QList<MyBucket>& buckets);
+
+private:
+    QString m_currentBucketName; //记录当前对象所在的存储桶名
+    QString m_currentDir; //记录当前对象所在的父目录
 
 };
 

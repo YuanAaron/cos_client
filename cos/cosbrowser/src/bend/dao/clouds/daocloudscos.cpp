@@ -226,6 +226,7 @@ QList<MyObject> DaoCloudsCos::getDirList(GetBucketResp &resp, const QString &dir
         object.dir = dir;
         object.name = key.mid(dir.size());
         object.lastmodified = "-";
+        object.key = key;
         res.append(object);
 //        qDebug() << "dirName: " << object.name;
     }
@@ -250,6 +251,7 @@ QList<MyObject> DaoCloudsCos::getFileList(GetBucketResp &resp, const QString &di
             object.lastmodified = QString(content.m_last_modified.c_str());
             object.size = QString(content.m_size.c_str()).toULongLong();
             object.dir = dir;
+            object.key = key;
             res.append(object);
 //            qDebug() << "fileName: " << object.name;
         }

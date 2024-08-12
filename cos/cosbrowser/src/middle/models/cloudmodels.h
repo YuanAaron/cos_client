@@ -25,9 +25,20 @@ Q_DECLARE_METATYPE(MyBucket); //没有好像也没问题
 
 struct MyObject: public BaseObject
 {
+    bool isDir() const
+    {
+        return isValid() && name.endsWith("/");
+    }
+    bool isFile() const
+    {
+        return isValid() && !name.endsWith("/");
+    }
+
     QString lastmodified;
     qulonglong size = 0;
     QString dir; //父对象路径（父目录），需要带/
+
+    QString key;
 };
 Q_DECLARE_METATYPE(MyObject); //没有好像也没问题
 

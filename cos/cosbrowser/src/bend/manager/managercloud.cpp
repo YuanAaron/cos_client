@@ -45,6 +45,8 @@ void ManagerCloud::deleteBucket(const QString &bucketName)
 void ManagerCloud::getObjects(const QString &bucketName, const QString &dir)
 {
     QList<MyObject> objs = MG->m_plugin->clouds()->getObjects(bucketName, dir);
+    m_currentBucketName = bucketName;
+    m_currentDir = dir;
     emit MG->m_signal->objectsSuccess(objs);
 }
 
@@ -76,5 +78,17 @@ void ManagerCloud::putObjcet(const QString &jobId, const QString &bucketName, co
 
 void ManagerCloud::bucketsAlready(const QList<MyBucket> &buckets)
 {
+    m_currentBucketName.clear();
+    m_currentDir.clear();
     emit MG->m_signal->bucketsSuccess(buckets);
+}
+
+QString ManagerCloud::getCurrentDir() const
+{
+    return m_currentDir;
+}
+
+QString ManagerCloud::getCurrentBucketName() const
+{
+    return m_currentBucketName;
 }
