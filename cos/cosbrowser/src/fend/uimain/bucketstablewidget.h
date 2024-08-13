@@ -22,6 +22,8 @@ private slots:
     void onPageNumChanged(int start, int maxLen);
     void onBucketsSuccess(const QList<MyBucket>& buckets);
 
+    void on_btnCreateBucket_clicked();
+
 private:
     Ui::BucketsTableWidget *ui;
 };

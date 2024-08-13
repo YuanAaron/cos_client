@@ -39,6 +39,7 @@ SOURCES += \
     $$PWD/src/fend/uilogin/logindialog.cpp \
     $$PWD/src/fend/uimain/bucketslistwidget.cpp \
     $$PWD/src/fend/uimain/bucketstablewidget.cpp \
+    $$PWD/src/fend/uimain/createbucketdialog.cpp \
     $$PWD/src/fend/uimain/objectstablewidget.cpp \
     $$PWD/src/fend/uimain/toolbarwidget.cpp \
     $$PWD/src/fend/uimain/uimain.cpp \
@@ -78,6 +79,7 @@ HEADERS += \
     $$PWD/src/fend/uilogin/logindialog.h \
     $$PWD/src/fend/uimain/bucketslistwidget.h \
     $$PWD/src/fend/uimain/bucketstablewidget.h \
+    $$PWD/src/fend/uimain/createbucketdialog.h \
     $$PWD/src/fend/uimain/objectstablewidget.h \
     $$PWD/src/fend/uimain/toolbarwidget.h \
     $$PWD/src/fend/uimain/uimain.h \
@@ -98,6 +100,7 @@ FORMS += \
     $$PWD/src/fend/uilogin/logindialog.ui \
     $$PWD/src/fend/uimain/bucketslistwidget.ui \
     $$PWD/src/fend/uimain/bucketstablewidget.ui \
+    $$PWD/src/fend/uimain/createbucketdialog.ui \
     $$PWD/src/fend/uimain/objectstablewidget.ui \
     $$PWD/src/fend/uimain/toolbarwidget.ui \
     $$PWD/src/fend/uimain/uimain.ui

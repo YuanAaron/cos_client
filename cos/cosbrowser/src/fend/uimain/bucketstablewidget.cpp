@@ -1,4 +1,5 @@
 ﻿#include "bucketstablewidget.h"
+#include "createbucketdialog.h"
 #include "ui_bucketstablewidget.h"
 
 #include "src/middle/managerglobal.h"
@@ -70,4 +71,22 @@ void BucketsTableWidget::onPageNumChanged(int start, int maxLen)
 void BucketsTableWidget::onBucketsSuccess(const QList<MyBucket> &buckets)
 {
     ui->widgetPage->setTotalRow(buckets.size());
+}
+
+void BucketsTableWidget::on_btnCreateBucket_clicked()
+{
+//    CreateBucketDialog dialog(this); //这样写会报错，CreateBucketDialog的创建跟前面的LoginDialog、UiMain不应该是一样的吗？
+    CreateBucketDialog dialog;
+    int ret = dialog.exec();
+    if(ret == QDialog::Accepted)
+    {
+        MyBucket bucket = dialog.getBucket();
+        if(bucket.isValid())
+        {
+            QJsonObject params;
+            params["bucketName"] = bucket.name;
+            params["location"] = bucket.location;
+            MG->m_gate->send(API::BUCKETS::PUT, params);
+        }
+    }
 }

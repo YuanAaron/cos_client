@@ -3,6 +3,8 @@
 #include "src/config/global.h"
 #include "ui_basedialog.h"
 
+#include <QDebug>
+
 CosDialog::CosDialog(QWidget *parent) :
     BaseDialog(parent),
     ui(new Ui::CosDialog)
@@ -19,4 +21,5 @@ CosDialog::CosDialog(QWidget *parent) :
 CosDialog::~CosDialog()
 {
     delete ui;
+    qDebug() << "delete CosDialog";
 }

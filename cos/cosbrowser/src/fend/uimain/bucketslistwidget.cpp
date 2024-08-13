@@ -29,7 +29,7 @@ BucketsListWidget::BucketsListWidget(QWidget *parent) :
 BucketsListWidget::~BucketsListWidget()
 {
     delete ui;
-    qDebug() << "delete BucketsWidget";
+    qDebug() << "delete BucketsListWidget";
 }
 
 void BucketsListWidget::on_listView_doubleClicked(const QModelIndex &index)
