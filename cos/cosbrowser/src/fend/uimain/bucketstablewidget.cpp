@@ -5,6 +5,7 @@
 #include "src/middle/managermodel.h"
 #include <QDebug>
 #include <src/fend/uidelegate/bucketdelegate.h>
+#include <src/middle/signals/managersignals.h>
 #include "src/bend/gateway.h"
 #include "src/config/api.h"
 #include <QJsonObject>
@@ -32,6 +33,11 @@ BucketsTableWidget::BucketsTableWidget(QWidget *parent) :
 
     //设置鼠标点击排序
     ui->tableView->setSortingEnabled(true);
+
+    //初始化翻页按钮
+    ui->widgetPage->setMaxRowList(QList<int>() << 2 << 5 << 10);
+    connect(ui->widgetPage, &PageWidget::pageNumChanged, this, &BucketsTableWidget::onPageNumChanged);
+    connect(MG->m_signal, &ManagerSignals::bucketsSuccess, this, &BucketsTableWidget::onBucketsSuccess);
 }
 
 BucketsTableWidget::~BucketsTableWidget()
@@ -49,4 +55,19 @@ void BucketsTableWidget::on_tableView_doubleClicked(const QModelIndex &index)
         params["dir"] = "";
         MG->m_gate->send(API::OBJECTS::LIST, params);
     }
+}
+
+void BucketsTableWidget::onPageNumChanged(int start, int maxLen)
+{
+    QStandardItemModel* model = MG->m_model->modelBuckets();
+    for(int i=0; i<model->rowCount(); i++)
+    {
+        bool hidden = (i<start || i>=start+maxLen);
+        ui->tableView->setRowHidden(i,hidden);
+    }
+}
+
+void BucketsTableWidget::onBucketsSuccess(const QList<MyBucket> &buckets)
+{
+    ui->widgetPage->setTotalRow(buckets.size());
 }

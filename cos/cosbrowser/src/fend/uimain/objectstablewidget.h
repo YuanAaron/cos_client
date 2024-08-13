@@ -22,6 +22,7 @@ private slots:
     void on_tableView_doubleClicked(const QModelIndex &index);
     void onObjectsSuccess(const QList<MyObject>& objects);
     void onPathChanged(const QString& newPath);
+    void onPageNumChanged(int start, int maxLen);
 
 private:
     Ui::ObjectsWidget *ui;

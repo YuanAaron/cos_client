@@ -30,6 +30,10 @@ ObjectsTableWidget::ObjectsTableWidget(QWidget *parent) :
     // 设置鼠标点击排序
     ui->tableView->setSortingEnabled(true);
 
+    // 初始化翻页按钮
+    ui->widgetPage->setMaxRowList(QList<int>() << 5 << 10 << 20);
+    connect(ui->widgetPage, &PageWidget::pageNumChanged, this, &ObjectsTableWidget::onPageNumChanged);
+
     //关心 获取对象列表成功 的信号
     connect(MG->m_signal, &ManagerSignals::objectsSuccess, this, &ObjectsTableWidget::onObjectsSuccess);
     //关心 面包屑的pathChanged 信号
@@ -64,6 +68,7 @@ void ObjectsTableWidget::onObjectsSuccess(const QList<MyObject> &objects)
 {
     QString path = MG->m_cloud->getCurrentBucketName() + "/" + MG->m_cloud->getCurrentDir();
     ui->widgetBread->setPath(path);
+    ui->widgetPage->setTotalRow(objects.size());
 }
 
 void ObjectsTableWidget::onPathChanged(const QString &newPath)
@@ -77,4 +82,14 @@ void ObjectsTableWidget::onPathChanged(const QString &newPath)
     params["bucketName"] = MG->m_cloud->getCurrentBucketName();
     params["dir"] = key;
     MG->m_gate->send(API::OBJECTS::LIST, params);
+}
+
+void ObjectsTableWidget::onPageNumChanged(int start, int maxLen)
+{
+    QStandardItemModel* model = MG->m_model->modelObjects();
+    for(int i=0; i<model->rowCount(); i++)
+    {
+        bool hidden = (i<start || i>=start+maxLen);
+        ui->tableView->setRowHidden(i,hidden);
+    }
 }

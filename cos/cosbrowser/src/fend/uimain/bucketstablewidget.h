@@ -3,6 +3,8 @@
 
 #include <QWidget>
 
+#include <src/middle/models/cloudmodels.h>
+
 namespace Ui {
 class BucketsTableWidget;
 }
@@ -17,6 +19,8 @@ public:
 
 private slots:
     void on_tableView_doubleClicked(const QModelIndex &index);
+    void onPageNumChanged(int start, int maxLen);
+    void onBucketsSuccess(const QList<MyBucket>& buckets);
 
 private:
     Ui::BucketsTableWidget *ui;
