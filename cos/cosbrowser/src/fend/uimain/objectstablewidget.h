@@ -21,6 +21,7 @@ private slots:
     void on_btnBuckets_clicked();
     void on_tableView_doubleClicked(const QModelIndex &index);
     void onObjectsSuccess(const QList<MyObject>& objects);
+    void onPathChanged(const QString& newPath);
 
 private:
     Ui::ObjectsWidget *ui;

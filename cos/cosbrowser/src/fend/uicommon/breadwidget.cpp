@@ -97,8 +97,10 @@ void BreadWidget::onItemClicked(const QModelIndex &index)
     else
     {
         QString newPath = getPath(newItem);
-        int idx = newItem->row();
-        m_model->removeRows(idx+1, m_model->rowCount()-(idx+1));
+        //注释掉的原因：不注释，会先删除面包屑中点击处后面的路径，然后更新对应路径的对象详情；
+        //注释后，会先更新对应路径的对象详情，然后才会更新面包屑中的路径。后者可以防止删除了面包屑路径而对应路径的对象详情更新失败的情况
+//        int idx = newItem->row();
+//        m_model->removeRows(idx+1, m_model->rowCount()-(idx+1));
         emit pathChanged(newPath);
         qDebug() << "pathChanged" << newPath;
     }

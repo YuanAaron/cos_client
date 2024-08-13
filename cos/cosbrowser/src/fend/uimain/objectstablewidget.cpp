@@ -32,6 +32,8 @@ ObjectsTableWidget::ObjectsTableWidget(QWidget *parent) :
 
     //关心 获取对象列表成功 的信号
     connect(MG->m_signal, &ManagerSignals::objectsSuccess, this, &ObjectsTableWidget::onObjectsSuccess);
+    //关心 面包屑的pathChanged 信号
+    connect(ui->widgetBread, &BreadWidget::pathChanged, this, &ObjectsTableWidget::onPathChanged);
 }
 
 ObjectsTableWidget::~ObjectsTableWidget()
@@ -62,4 +64,17 @@ void ObjectsTableWidget::onObjectsSuccess(const QList<MyObject> &objects)
 {
     QString path = MG->m_cloud->getCurrentBucketName() + "/" + MG->m_cloud->getCurrentDir();
     ui->widgetBread->setPath(path);
+}
+
+void ObjectsTableWidget::onPathChanged(const QString &newPath)
+{
+    // newPath=file-1300416378/test/bll
+    // 需要将newPath 转化为 test/bll/
+    QString key = newPath+"/";
+    key = key.mid(key.indexOf("/")+1);
+
+    QJsonObject params;
+    params["bucketName"] = MG->m_cloud->getCurrentBucketName();
+    params["dir"] = key;
+    MG->m_gate->send(API::OBJECTS::LIST, params);
 }
