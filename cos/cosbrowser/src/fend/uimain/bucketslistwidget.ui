@@ -29,14 +29,14 @@
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
-      <widget class="QLineEdit" name="lineEdit"/>
-     </item>
-     <item>
-      <widget class="QPushButton" name="pushButton">
+      <widget class="QLabel" name="label">
        <property name="text">
         <string>搜索</string>
        </property>
       </widget>
+     </item>
+     <item>
+      <widget class="ComboLine" name="lineEdit"/>
      </item>
     </layout>
    </item>
@@ -45,6 +45,13 @@
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>ComboLine</class>
+   <extends>QLineEdit</extends>
+   <header>src/fend/uicommon/comboline.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>
