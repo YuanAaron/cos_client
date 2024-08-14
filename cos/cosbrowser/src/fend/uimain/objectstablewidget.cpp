@@ -93,3 +93,8 @@ void ObjectsTableWidget::onPageNumChanged(int start, int maxLen)
         ui->tableView->setRowHidden(i,hidden);
     }
 }
+
+void ObjectsTableWidget::on_btnRefresh_clicked()
+{
+    onPathChanged(ui->widgetBread->currentPath());
+}

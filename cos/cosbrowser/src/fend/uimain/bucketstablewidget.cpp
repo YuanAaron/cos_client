@@ -129,3 +129,8 @@ void BucketsTableWidget::onDeleteBucket()
         }
     }
 }
+
+void BucketsTableWidget::on_btnRefresh_clicked()
+{
+    MG->m_gate->send(API::BUCKETS::LIST);
+}

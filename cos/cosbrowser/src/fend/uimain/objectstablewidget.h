@@ -24,6 +24,8 @@ private slots:
     void onPathChanged(const QString& newPath);
     void onPageNumChanged(int start, int maxLen);
 
+    void on_btnRefresh_clicked();
+
 private:
     Ui::ObjectsWidget *ui;
 };
