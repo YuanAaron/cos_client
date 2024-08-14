@@ -9,7 +9,9 @@
 #include <src/middle/signals/managersignals.h>
 #include "src/bend/gateway.h"
 #include "src/config/api.h"
+#include <QAction>
 #include <QJsonObject>
+#include <QMessageBox>
 
 BucketsTableWidget::BucketsTableWidget(QWidget *parent) :
     QWidget(parent),
@@ -39,6 +41,13 @@ BucketsTableWidget::BucketsTableWidget(QWidget *parent) :
     ui->widgetPage->setMaxRowList(QList<int>() << 2 << 5 << 10);
     connect(ui->widgetPage, &PageWidget::pageNumChanged, this, &BucketsTableWidget::onPageNumChanged);
     connect(MG->m_signal, &ManagerSignals::bucketsSuccess, this, &BucketsTableWidget::onBucketsSuccess);
+
+    //删除桶
+    //1.创建右键菜单
+    ui->tableView->setContextMenuPolicy(Qt::ActionsContextMenu);
+    QAction* delAction = new QAction(QString::fromLocal8Bit("删除"),this);
+    connect(delAction, &QAction::triggered, this, &BucketsTableWidget::onDeleteBucket);
+    ui->tableView->addAction(delAction);
 }
 
 BucketsTableWidget::~BucketsTableWidget()
@@ -87,6 +96,36 @@ void BucketsTableWidget::on_btnCreateBucket_clicked()
             params["bucketName"] = bucket.name;
             params["location"] = bucket.location;
             MG->m_gate->send(API::BUCKETS::PUT, params);
+        }
+    }
+}
+
+void BucketsTableWidget::onDeleteBucket()
+{
+    //删除桶
+    //2.弹出提示信息
+    QModelIndex idx = ui->tableView->currentIndex();
+    if(idx.isValid())
+    {
+        QString name = idx.data().toString();
+
+        //按钮为英文的写法
+//        int ret = QMessageBox::question(this, QString::fromLocal8Bit("删除桶"),
+//                              QString::fromLocal8Bit("是否确认删除桶【%1】吗？").arg(name));
+
+        //按钮为中文的写法
+        QMessageBox box(QMessageBox::Question, QString::fromLocal8Bit("删除桶"),
+                        QString::fromLocal8Bit("是否确认删除桶【%1】吗？").arg(name),
+                        QMessageBox::Yes|QMessageBox::No);
+        box.setButtonText(QMessageBox::Yes, QString::fromLocal8Bit("删除"));
+        box.setButtonText(QMessageBox::No, QString::fromLocal8Bit("取消"));
+        int ret = box.exec();
+
+        if(ret == QMessageBox::Yes)
+        {
+            QJsonObject params;
+            params["bucketName"] = name;
+            MG->m_gate->send(API::BUCKETS::DEL, params);
         }
     }
 }

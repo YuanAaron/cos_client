@@ -23,6 +23,7 @@ private slots:
     void onBucketsSuccess(const QList<MyBucket>& buckets);
 
     void on_btnCreateBucket_clicked();
+    void onDeleteBucket();
 
 private:
     Ui::BucketsTableWidget *ui;
