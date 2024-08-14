@@ -2,6 +2,9 @@
 #include "ui_objectstablewidget.h"
 
 #include <QDebug>
+#include <QFileDialog>
+#include <QMessageBox>
+#include <QUuid>
 #include "src/middle/managerglobal.h"
 #include "src/bend/manager/managercloud.h"
 #include "src/middle/managermodel.h"
@@ -38,6 +41,10 @@ ObjectsTableWidget::ObjectsTableWidget(QWidget *parent) :
     connect(MG->m_signal, &ManagerSignals::objectsSuccess, this, &ObjectsTableWidget::onObjectsSuccess);
     //关心 面包屑的pathChanged 信号
     connect(ui->widgetBread, &BreadWidget::pathChanged, this, &ObjectsTableWidget::onPathChanged);
+    //关心 上传成功 的信号
+    connect(MG->m_signal, &ManagerSignals::uploadSuccess, this, &ObjectsTableWidget::onUploadSuccess);
+    //关心 下载成功 的信号
+    connect(MG->m_signal, &ManagerSignals::downloadSuccess, this, &ObjectsTableWidget::onDownloadSuccess);
 }
 
 ObjectsTableWidget::~ObjectsTableWidget()
@@ -97,4 +104,99 @@ void ObjectsTableWidget::onPageNumChanged(int start, int maxLen)
 void ObjectsTableWidget::on_btnRefresh_clicked()
 {
     onPathChanged(ui->widgetBread->currentPath());
+}
+
+void ObjectsTableWidget::on_btnUpload_clicked()
+{
+    //上传
+    static QString lastDir = "./";
+    //获取本地文件
+    QString filePath = QFileDialog::getOpenFileName(this, QString::fromLocal8Bit("上传文件"), lastDir);
+//    qDebug() << filePath;
+    QFileInfo info(filePath);
+    if(info.isFile() && info.exists())
+    {
+        QJsonObject params;
+        QString jobId = QUuid::createUuid().toString();
+        filePath = filePath.replace("\\", "/");
+        QString key = MG->m_cloud->getCurrentDir() + info.fileName();
+//        qDebug() << MG->m_cloud->getCurrentDir() << info.fileName();
+
+        params["jobId"] = jobId;
+        params["bucketName"] = MG->m_cloud->getCurrentBucketName();
+        params["key"] = key;
+        params["localPath"] = filePath;
+        MG->m_gate->send(API::OBJECTS::PUT, params);
+        lastDir = info.dir().absolutePath();
+//        qDebug() << lastDir;
+    }
+
+}
+
+void ObjectsTableWidget::onUploadSuccess(const QString &jobId)
+{
+    on_btnRefresh_clicked();
+
+    showMessage(QString::fromLocal8Bit("上传文件"), QString::fromLocal8Bit("文件上传成功"));
+}
+
+void ObjectsTableWidget::on_btnDownload_clicked()
+{
+    QModelIndex idx = ui->tableView->currentIndex();
+    if(!idx.isValid())
+    {
+        showMessage(QString::fromLocal8Bit("下载文件"),
+                    QString::fromLocal8Bit("请选择要下载的文件"));
+        return;
+    }
+
+    MyObject obj = idx.data(Qt::UserRole).value<MyObject>();
+    if(obj.isDir())
+    {
+        showMessage(QString::fromLocal8Bit("下载文件"),
+                    QString::fromLocal8Bit("只能选择文件进行下载"));
+        return;
+    }
+
+    //下载文件
+    static QString lastDir = "./";
+    QString name = idx.data().toString();
+
+    QString filePath = QFileDialog::getSaveFileName(this, QString::fromLocal8Bit("下载文件"),
+                                 FileHelper::joinPath(lastDir, name));
+//    qDebug() << filePath;
+    if(!filePath.isEmpty())
+    {
+        QFileInfo info(filePath);
+
+        QString jobId = QUuid::createUuid().toString();
+        filePath = filePath.replace("\\", "/");
+        QString key = MG->m_cloud->getCurrentDir() + name;
+//        qDebug() << MG->m_cloud->getCurrentDir() << name;
+
+        QJsonObject params;
+        params["jobId"] = jobId;
+        params["bucketName"] = MG->m_cloud->getCurrentBucketName();
+        params["key"] = key;
+        params["localPath"] = filePath;
+        MG->m_gate->send(API::OBJECTS::GET, params);
+        lastDir = info.dir().absolutePath();
+//        qDebug() << lastDir;
+    }
+}
+
+void ObjectsTableWidget::onDownloadSuccess(const QString &jobId)
+{
+    showMessage(QString::fromLocal8Bit("下载文件"),
+                QString::fromLocal8Bit("下载成功"));
+}
+
+void ObjectsTableWidget::showMessage(const QString& title, const QString& info)
+{
+    QMessageBox box(QMessageBox::Information,
+                    title,
+                    info,
+                    QMessageBox::Yes);
+    box.setButtonText(QMessageBox::Yes, QString::fromLocal8Bit("确定"));
+    box.exec();
 }
