@@ -88,6 +88,21 @@ QPushButton[style_button="main"]:hover {
 	background: #006eff;
 }
 
+/*QListView*/
+QListView {
+	border: none;
+}
+
+QListView::item {
+	height: 30px;
+}
+
+QListView::item:hover,
+QListView::item:selected {
+	background-color: #66dddddd; /*00表示全透明，ff表示不透明*/
+	color: blue;
+}
+
 
 
 

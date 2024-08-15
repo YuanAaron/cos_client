@@ -9,6 +9,9 @@ BreadWidget::BreadWidget(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    //美化：设置鼠标形状为手形
+    ui->listView->setCursor(Qt::PointingHandCursor);
+
     ui->listView->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->listView->setFlow(QListView::LeftToRight);
     ui->listView->setStyleSheet("QListView{border:none;}");
