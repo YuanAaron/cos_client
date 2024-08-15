@@ -11,6 +11,7 @@
 #include "src/bend/gateway.h"
 #include "src/config/api.h"
 #include <QJsonObject>
+#include <src/fend/uidelegate/tableitemdelegate.h>
 #include <src/middle/signals/managersignals.h>
 
 ObjectsTableWidget::ObjectsTableWidget(QWidget *parent) :
@@ -20,6 +21,8 @@ ObjectsTableWidget::ObjectsTableWidget(QWidget *parent) :
     ui->setupUi(this);
     //美化 创建桶 按钮
     ui->btnBuckets->setProperty("style_button", "main");
+    //美化：鼠标悬停（不是选中哦），整行而非item hover的效果实现
+    ui->tableView->setItemDelegate(new TableItemDelegate(ui->tableView));
 
     ui->tableView->setModel(MG->m_model->modelObjects());
 
@@ -79,6 +82,13 @@ void ObjectsTableWidget::onObjectsSuccess(const QList<MyObject> &objects)
     QString path = MG->m_cloud->getCurrentBucketName() + "/" + MG->m_cloud->getCurrentDir();
     ui->widgetBread->setPath(path);
     ui->widgetPage->setTotalRow(objects.size());
+
+    //美化：设置QTableView的行高
+    QStandardItemModel* model = MG->m_model->modelObjects();
+    for(int i=0; i<model->rowCount(); i++)
+    {
+        ui->tableView->setRowHeight(i,40);
+    }
 }
 
 void ObjectsTableWidget::onPathChanged(const QString &newPath)

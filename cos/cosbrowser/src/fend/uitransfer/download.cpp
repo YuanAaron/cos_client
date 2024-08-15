@@ -5,6 +5,7 @@
 #include "src/middle/signals/managersignals.h"
 #include "src/config/api.h"
 #include <QDebug>
+#include <src/fend/uidelegate/tableitemdelegate.h>
 
 Download::Download(QWidget *parent) :
     QWidget(parent),
@@ -18,6 +19,9 @@ Download::Download(QWidget *parent) :
     connect(MG->m_signal, &ManagerSignals::downloadProcess, this, &Download::onDownloadProcess);
     connect(MG->m_signal, &ManagerSignals::downloadSuccess, this, &Download::onDownloadSuccess);
     connect(MG->m_signal, &ManagerSignals::error, this, &Download::onError);
+
+    //美化：鼠标悬停（不是选中哦），整行而非item hover的效果实现
+    ui->tableWidget->setItemDelegate(new TableItemDelegate(ui->tableWidget));
     qDebug() << QString::fromLocal8Bit("Download构造结束");
 }
 
@@ -30,7 +34,9 @@ Download::~Download()
 void Download::onStartDownload(const QString& jobId, const QString& key, const QString& localPath, qulonglong total)
 {
     ui->tableWidget->insertRow(0);
+    //美化：设置QTableWidget的行高
     ui->tableWidget->setRowHeight(0, 40);
+
     QTableWidgetItem* item = new QTableWidgetItem(key);
     item->setData(Qt::UserRole, jobId);
     ui->tableWidget->setItem(0, 0, item);

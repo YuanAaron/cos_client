@@ -5,6 +5,7 @@
 #include "src/middle/signals/managersignals.h"
 #include "src/config/api.h"
 #include <QDebug>
+#include <src/fend/uidelegate/tableitemdelegate.h>
 
 Upload::Upload(QWidget *parent) :
     QWidget(parent),
@@ -17,6 +18,9 @@ Upload::Upload(QWidget *parent) :
     connect(MG->m_signal, &ManagerSignals::uploadProcess, this, &Upload::onUploadProcess);
     connect(MG->m_signal, &ManagerSignals::uploadSuccess, this, &Upload::onUploadSuccess);
     connect(MG->m_signal, &ManagerSignals::error, this, &Upload::onError);
+
+    //美化：鼠标悬停（不是选中哦），整行而非item hover的效果实现
+    ui->tableWidget->setItemDelegate(new TableItemDelegate(ui->tableWidget));
     qDebug() << QString::fromLocal8Bit("Upload 构造结束");
 }
 
@@ -30,6 +34,7 @@ void Upload::onStartUpload(const QString &jobId, const QString &key, const QStri
 {
     //在第一行插入一行数据
     ui->tableWidget->insertRow(0);
+    //美化：设置QTableWidget的行高
     ui->tableWidget->setRowHeight(0, 40);
 
     //更新每列的数据

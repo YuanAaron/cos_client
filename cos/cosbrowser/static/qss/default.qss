@@ -89,8 +89,13 @@ QPushButton[style_button="main"]:hover {
 }
 
 /*QListView*/
-QListView {
+QListView, QTableView, QTableWidget {
 	border: none;
+	border-top: 1px solid #dddddd;
+}
+
+QTableView::item, QTableWidget::item {
+	border-bottom: 1px solid #dddddd;
 }
 
 QListView::item {
@@ -98,7 +103,11 @@ QListView::item {
 }
 
 QListView::item:hover,
-QListView::item:selected {
+QListView::item:selected,
+QTableView::item:hover,
+QTableView::item:selected,
+QTableWidget::item:hover,
+QTableWidget::item:selected {
 	background-color: #66dddddd; /*00表示全透明，ff表示不透明*/
 	color: blue;
 }

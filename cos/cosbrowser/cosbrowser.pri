@@ -39,6 +39,7 @@ SOURCES += \
     $$PWD/src/fend/uicommon/progresswidget.cpp \
     $$PWD/src/fend/uicommon/pushbutton.cpp \
     $$PWD/src/fend/uidelegate/bucketdelegate.cpp \
+    $$PWD/src/fend/uidelegate/tableitemdelegate.cpp \
     $$PWD/src/fend/uilogin/logindialog.cpp \
     $$PWD/src/fend/uimain/bucketslistwidget.cpp \
     $$PWD/src/fend/uimain/bucketstablewidget.cpp \
@@ -86,6 +87,7 @@ HEADERS += \
     $$PWD/src/fend/uicommon/progresswidget.h \
     $$PWD/src/fend/uicommon/pushbutton.h \
     $$PWD/src/fend/uidelegate/bucketdelegate.h \
+    $$PWD/src/fend/uidelegate/tableitemdelegate.h \
     $$PWD/src/fend/uilogin/logindialog.h \
     $$PWD/src/fend/uimain/bucketslistwidget.h \
     $$PWD/src/fend/uimain/bucketstablewidget.h \

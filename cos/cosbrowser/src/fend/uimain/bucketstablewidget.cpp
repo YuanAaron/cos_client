@@ -6,6 +6,7 @@
 #include "src/middle/managermodel.h"
 #include <QDebug>
 #include <src/fend/uidelegate/bucketdelegate.h>
+#include <src/fend/uidelegate/tableitemdelegate.h>
 #include <src/middle/signals/managersignals.h>
 #include "src/bend/gateway.h"
 #include "src/config/api.h"
@@ -20,6 +21,8 @@ BucketsTableWidget::BucketsTableWidget(QWidget *parent) :
     ui->setupUi(this);
     //美化 创建桶 按钮
     ui->btnCreateBucket->setProperty("style_button", "main");
+    //美化：鼠标悬停（不是选中哦），整行而非item hover的效果实现
+    ui->tableView->setItemDelegate(new TableItemDelegate(ui->tableView));
 
     ui->tableView->setModel(MG->m_model->modelBuckets());
 //    ui->tableView->setItemDelegate(new BucketDelegate());
@@ -82,6 +85,20 @@ void BucketsTableWidget::onPageNumChanged(int start, int maxLen)
 void BucketsTableWidget::onBucketsSuccess(const QList<MyBucket> &buckets)
 {
     ui->widgetPage->setTotalRow(buckets.size());
+
+    //美化：设置QTableView的行高
+//    QStandardItemModel* model = MG->m_model->modelBuckets();
+//    for(int i=0; i<model->rowCount(); i++)
+//    {
+//        ui->tableView->setRowHeight(i,40);
+//    }
+
+    //直接这样写不行吗？为什么非要用model->rowCount()呢？
+    for(int i=0; i<buckets.size(); i++)
+    {
+        ui->tableView->setRowHeight(i,40);
+    }
+
 }
 
 void BucketsTableWidget::on_btnCreateBucket_clicked()
