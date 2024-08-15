@@ -26,7 +26,7 @@ private slots:
     void onBtnLoginClicked();
 
     void onLoginSucceed();
-    void onLoginError(int api, const QString& msg);
+    void onLoginError(int api, const QString& msg, const QJsonValue& req);
 
 private:
     Ui::LoginDialog *ui;

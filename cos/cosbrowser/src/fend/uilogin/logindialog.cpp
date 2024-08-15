@@ -132,7 +132,7 @@ void LoginDialog::onLoginSucceed()
     }
 }
 
-void LoginDialog::onLoginError(int api, const QString &msg)
+void LoginDialog::onLoginError(int api, const QString &msg, const QJsonValue& req)
 {
     if(api != API::LOGIN::NORMAL)
         return;

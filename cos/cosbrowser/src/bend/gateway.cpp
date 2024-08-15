@@ -19,18 +19,18 @@ GateWay::~GateWay()
     qDebug("delete GateWay");
 }
 
-void GateWay::send(int api, const QJsonValue &value)
+void GateWay::send(int api, const QJsonValue &params)
 {
     QtConcurrent::run([=](){
         try {
-            this->dispatch(api,value);
+            this->dispatch(api,params);
         } catch (BaseException e) {
             mError(e.msg());
-            emit MG->m_signal->error(api,e.msg());
+            emit MG->m_signal->error(api,e.msg(), params);
         } catch(...){
             BaseException e = BaseException(EC_100000,QString::fromLocal8Bit("未知错误"));
             mError(e.msg());
-            emit MG->m_signal->error(api, e.msg());
+            emit MG->m_signal->error(api, e.msg(), params);
         }
     });
 }

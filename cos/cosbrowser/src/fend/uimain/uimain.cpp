@@ -4,9 +4,12 @@
 //#include <src/fend/uilogin/logindialog.h>
 #include "src/middle/signals/managersignals.h"
 #include "src/middle/managerglobal.h"
+#include "src/config/api.h"
 #include <QPushButton>
 
 #include <QDebug>
+
+#include <src/fend/uicommon/messagebox.h>
 
 UiMain::UiMain(QWidget *parent) :
     CosDialog(parent),
@@ -15,7 +18,8 @@ UiMain::UiMain(QWidget *parent) :
     ui->setupUi(body());
 
     //添加传输列表和退出登录按钮
-    addButton(GLOBAL::PATH::TRANS, GLOBAL::PATH::TRANS_HOVER);
+    QPushButton* transferBtn = addButton(GLOBAL::PATH::TRANS, GLOBAL::PATH::TRANS_HOVER);
+//    connect(transferBtn, &QPushButton::clicked, this, &UiMain::showTransfer);
     QPushButton* quitBtn = addButton(GLOBAL::PATH::QUIT, GLOBAL::PATH::QUIT_HOVER);
     //这里要进行信号传递，不能直接通过onUnLogin进行处理，因为可能有其他窗口（比如登录窗口）关心该信号
     connect(quitBtn, &QPushButton::clicked, MG->m_signal, &ManagerSignals::unLogin);
@@ -50,6 +54,8 @@ UiMain::UiMain(QWidget *parent) :
     connect(MG->m_signal, &ManagerSignals::bucketsSuccess, this, &UiMain::onBucketsSuccess);
     //关心 获取对象列表成功 的信号
     connect(MG->m_signal, &ManagerSignals::objectsSuccess, this, &UiMain::onObjectsSuccess);
+
+    connect(MG->m_signal, &ManagerSignals::error, this, &UiMain::onError);
 }
 
 UiMain::~UiMain()
@@ -61,6 +67,13 @@ UiMain::~UiMain()
 //    if(m_loginDialog)
 //    {
 //        delete m_loginDialog;
+//    }
+
+//    //自己添加
+//    if(m_transfer)
+//    {
+//        delete m_transfer;
+//        m_transfer = nullptr;
 //    }
 }
 
@@ -119,6 +132,26 @@ void UiMain::onObjectsSuccess(const QList<MyObject> &objects)
 {
     ui->stackedWidget->setCurrentIndex(1);
 }
+
+void UiMain::onError(int api, const QString &msg, const QJsonValue &req)
+{
+    if(api > API::BUCKETS::BASE)
+    {
+        MessageBox box;
+        box.showMessage(QString::fromLocal8Bit("错误"), msg);
+    }
+}
+
+//void UiMain::showTransfer()
+//{
+//    if(!m_transfer)
+//    {
+////        m_transfer = new Transfer(this); //写法报错
+//        m_transfer = new Transfer;
+//    }
+
+//    m_transfer->show();
+//}
 
 //void UiMain::onRefresh()
 //{

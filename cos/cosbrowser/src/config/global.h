@@ -65,7 +65,7 @@ namespace GLOBAL {
 
     static const QStringList LOG_NAMES = QStringList() << "TOTAL" <<"DEBUG" << "INFO" << "WARNING" << "ERROR" <<"FATAL";
 
-    static const QStringList LOCATION_LIST = QStringList() << "ap-beijing" <<"ap-shanghai" << "ap-guangzhou" << "ap-nanjing";
+    static const QStringList LOCATION_LIST = QStringList() << "" <<"ap-beijing" <<"ap-shanghai" << "ap-guangzhou" << "ap-nanjing";
 
 //    static bool init()
 //    {

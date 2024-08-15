@@ -5,6 +5,8 @@
 
 #include <src/middle/models/cloudmodels.h>
 
+#include <src/fend/uitransfer/transfer.h>
+
 namespace Ui {
 class UiMain;
 }
@@ -30,9 +32,13 @@ protected slots:
     void onBucketsSuccess(const QList<MyBucket>& buckets);
     void onObjectsSuccess(const QList<MyObject>& objects);
 
+    void onError(int api, const QString& msg, const QJsonValue& req);
+//    void showTransfer();
+
 private:
     Ui::UiMain *ui;
 //    LoginDialog* m_loginDialog = nullptr;
+//    Transfer* m_transfer = nullptr;
 };
 
 #endif // UIMAIN_H

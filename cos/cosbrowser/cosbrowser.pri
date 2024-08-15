@@ -33,8 +33,10 @@ SOURCES += \
     $$PWD/src/fend/uicommon/breadwidget.cpp \
     $$PWD/src/fend/uicommon/comboline.cpp \
     $$PWD/src/fend/uicommon/cosdialog.cpp \
+    $$PWD/src/fend/uicommon/messagebox.cpp \
     $$PWD/src/fend/uicommon/mylineedit.cpp \
     $$PWD/src/fend/uicommon/pagewidget.cpp \
+#    $$PWD/src/fend/uicommon/progresswidget.cpp \
     $$PWD/src/fend/uidelegate/bucketdelegate.cpp \
     $$PWD/src/fend/uilogin/logindialog.cpp \
     $$PWD/src/fend/uimain/bucketslistwidget.cpp \
@@ -43,6 +45,10 @@ SOURCES += \
     $$PWD/src/fend/uimain/objectstablewidget.cpp \
     $$PWD/src/fend/uimain/toolbarwidget.cpp \
     $$PWD/src/fend/uimain/uimain.cpp \
+#    $$PWD/src/fend/uitransfer/download.cpp \
+#    $$PWD/src/fend/uitransfer/transfer.cpp \
+#    $$PWD/src/fend/uitransfer/upload.cpp \
+#    $$PWD/src/helper/bytehelper.cpp \
     $$PWD/src/helper/dbsqlite.cpp \
     $$PWD/src/helper/filehelper.cpp \
     $$PWD/src/middle/managerglobal.cpp \
@@ -73,8 +79,10 @@ HEADERS += \
     $$PWD/src/fend/uicommon/breadwidget.h \
     $$PWD/src/fend/uicommon/comboline.h \
     $$PWD/src/fend/uicommon/cosdialog.h \
+    $$PWD/src/fend/uicommon/messagebox.h \
     $$PWD/src/fend/uicommon/mylineedit.h \
     $$PWD/src/fend/uicommon/pagewidget.h \
+#    $$PWD/src/fend/uicommon/progresswidget.h \
     $$PWD/src/fend/uidelegate/bucketdelegate.h \
     $$PWD/src/fend/uilogin/logindialog.h \
     $$PWD/src/fend/uimain/bucketslistwidget.h \
@@ -83,6 +91,10 @@ HEADERS += \
     $$PWD/src/fend/uimain/objectstablewidget.h \
     $$PWD/src/fend/uimain/toolbarwidget.h \
     $$PWD/src/fend/uimain/uimain.h \
+#    $$PWD/src/fend/uitransfer/download.h \
+#    $$PWD/src/fend/uitransfer/transfer.h \
+#    $$PWD/src/fend/uitransfer/upload.h \
+#    $$PWD/src/helper/bytehelper.h \
     $$PWD/src/helper/dbsqlite.h \
     $$PWD/src/helper/filehelper.h \
     $$PWD/src/middle/managerglobal.h \
@@ -96,14 +108,19 @@ FORMS += \
     $$PWD/src/fend/uicommon/basedialog.ui \
     $$PWD/src/fend/uicommon/breadwidget.ui \
     $$PWD/src/fend/uicommon/cosdialog.ui \
+    $$PWD/src/fend/uicommon/messagebox.ui \
     $$PWD/src/fend/uicommon/pagewidget.ui \
+#    $$PWD/src/fend/uicommon/progresswidget.ui \
     $$PWD/src/fend/uilogin/logindialog.ui \
     $$PWD/src/fend/uimain/bucketslistwidget.ui \
     $$PWD/src/fend/uimain/bucketstablewidget.ui \
     $$PWD/src/fend/uimain/createbucketdialog.ui \
     $$PWD/src/fend/uimain/objectstablewidget.ui \
     $$PWD/src/fend/uimain/toolbarwidget.ui \
-    $$PWD/src/fend/uimain/uimain.ui
+    $$PWD/src/fend/uimain/uimain.ui \
+#    $$PWD/src/fend/uitransfer/download.ui \
+#    $$PWD/src/fend/uitransfer/transfer.ui \
+#    $$PWD/src/fend/uitransfer/upload.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
