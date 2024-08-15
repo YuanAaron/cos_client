@@ -3,6 +3,8 @@
 #include <QCompleter>
 #include <QAbstractItemView>
 
+#include <src/fend/uidelegate/tableitemdelegate.h>
+
 ComboLine::ComboLine(QWidget* parent)
         :QLineEdit(parent)
 {
@@ -18,8 +20,14 @@ ComboLine::ComboLine(const QStringList &words, QWidget *parent)
 void ComboLine::setWords(const QStringList &words)
 {
     QCompleter* completer = new QCompleter(words, this);
-    completer->popup()->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    completer->popup()->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    QAbstractItemView* view = completer->popup(); //其实是QListView
+    view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+
+    //美化：这里的view列表其实是QListView，这样设置后view可以享有Qss中QAbstractItemView的效果、TableItemDelegate的效果以及手形鼠标的效果
+    view->setItemDelegate(new TableItemDelegate(view));
+    view->setCursor(Qt::PointingHandCursor);
+
     connect(completer, QOverload<const QString&>::of(&QCompleter::activated),
             [=](const QString& text) {
         emit itemSelected(text);
