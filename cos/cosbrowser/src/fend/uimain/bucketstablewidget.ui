@@ -42,14 +42,14 @@
        <number>0</number>
       </property>
       <item>
-       <widget class="QPushButton" name="btnCreateBucket">
+       <widget class="PushButton" name="btnCreateBucket">
         <property name="text">
          <string>创建桶</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="btnRefresh">
+       <widget class="PushButton" name="btnRefresh">
         <property name="text">
          <string>刷新</string>
         </property>
@@ -80,6 +80,11 @@
   </layout>
  </widget>
  <customwidgets>
+  <customwidget>
+   <class>PushButton</class>
+   <extends>QPushButton</extends>
+   <header>src/fend/uicommon/pushbutton.h</header>
+  </customwidget>
   <customwidget>
    <class>PageWidget</class>
    <extends>QWidget</extends>

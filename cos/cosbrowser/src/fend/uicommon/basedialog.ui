@@ -76,6 +76,7 @@
        <widget class="QLabel" name="labelTitle">
         <property name="font">
          <font>
+          <weight>50</weight>
           <bold>false</bold>
          </font>
         </property>
@@ -85,7 +86,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="btnClose">
+       <widget class="PushButton" name="btnClose">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
           <horstretch>0</horstretch>
@@ -118,6 +119,13 @@
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>PushButton</class>
+   <extends>QPushButton</extends>
+   <header>src/fend/uicommon/pushbutton.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

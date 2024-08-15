@@ -58,7 +58,7 @@
     </widget>
    </item>
    <item>
-    <widget class="QPushButton" name="btnPre">
+    <widget class="PushButton" name="btnPre">
      <property name="maximumSize">
       <size>
        <width>25</width>
@@ -97,7 +97,7 @@
     </widget>
    </item>
    <item>
-    <widget class="QPushButton" name="btnNext">
+    <widget class="PushButton" name="btnNext">
      <property name="maximumSize">
       <size>
        <width>25</width>
@@ -115,6 +115,11 @@
   </layout>
  </widget>
  <customwidgets>
+  <customwidget>
+   <class>PushButton</class>
+   <extends>QPushButton</extends>
+   <header>src/fend/uicommon/pushbutton.h</header>
+  </customwidget>
   <customwidget>
    <class>ComboLine</class>
    <extends>QLineEdit</extends>

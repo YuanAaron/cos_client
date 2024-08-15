@@ -37,6 +37,7 @@ SOURCES += \
     $$PWD/src/fend/uicommon/mylineedit.cpp \
     $$PWD/src/fend/uicommon/pagewidget.cpp \
     $$PWD/src/fend/uicommon/progresswidget.cpp \
+    $$PWD/src/fend/uicommon/pushbutton.cpp \
     $$PWD/src/fend/uidelegate/bucketdelegate.cpp \
     $$PWD/src/fend/uilogin/logindialog.cpp \
     $$PWD/src/fend/uimain/bucketslistwidget.cpp \
@@ -83,6 +84,7 @@ HEADERS += \
     $$PWD/src/fend/uicommon/mylineedit.h \
     $$PWD/src/fend/uicommon/pagewidget.h \
     $$PWD/src/fend/uicommon/progresswidget.h \
+    $$PWD/src/fend/uicommon/pushbutton.h \
     $$PWD/src/fend/uidelegate/bucketdelegate.h \
     $$PWD/src/fend/uilogin/logindialog.h \
     $$PWD/src/fend/uimain/bucketslistwidget.h \

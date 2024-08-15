@@ -197,7 +197,7 @@
     </widget>
    </item>
    <item>
-    <widget class="QPushButton" name="btnLogin">
+    <widget class="PushButton" name="btnLogin">
      <property name="minimumSize">
       <size>
        <width>0</width>
@@ -231,6 +231,11 @@
   </layout>
  </widget>
  <customwidgets>
+  <customwidget>
+   <class>PushButton</class>
+   <extends>QPushButton</extends>
+   <header>src/fend/uicommon/pushbutton.h</header>
+  </customwidget>
   <customwidget>
    <class>ComboLine</class>
    <extends>QLineEdit</extends>

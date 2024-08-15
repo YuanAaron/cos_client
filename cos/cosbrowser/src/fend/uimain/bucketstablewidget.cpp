@@ -18,6 +18,8 @@ BucketsTableWidget::BucketsTableWidget(QWidget *parent) :
     ui(new Ui::BucketsTableWidget)
 {
     ui->setupUi(this);
+    //美化 创建桶 按钮
+    ui->btnCreateBucket->setProperty("style_button", "main");
 
     ui->tableView->setModel(MG->m_model->modelBuckets());
 //    ui->tableView->setItemDelegate(new BucketDelegate());

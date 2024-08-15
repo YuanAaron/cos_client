@@ -5,6 +5,7 @@
 #include <QMouseEvent>
 #include <QKeyEvent>
 #include <QPushButton>
+#include "src/fend/uicommon/pushbutton.h"
 
 BaseDialog::BaseDialog(QWidget *parent)
     : QDialog(parent)
@@ -63,7 +64,7 @@ void BaseDialog::addMaxButton(const QString &maxPath, const QString &maxPathHove
 
 QPushButton *BaseDialog::addButton(const QString &path, const QString &hoverPath)
 {
-    QPushButton* btn = new QPushButton;
+    PushButton* btn = new PushButton;
     btn->setFixedSize(m_sz, m_sz);
     setButtonImage(btn, path, hoverPath);
     addWidget(btn);

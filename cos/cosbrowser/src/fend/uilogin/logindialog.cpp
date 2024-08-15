@@ -24,11 +24,13 @@ LoginDialog::LoginDialog(QWidget *parent)
     ui->lineSecretKey->installEventFilter(this);
 
     //设置"登录窗口"的样式
-    ui->labelLgoinName->setProperty("style","h5");
-    ui->labelSecretId->setProperty("style","h5");
-    ui->labelSecretKey->setProperty("style","h5");
-    ui->labelRemark->setProperty("style","h5");
-    ui->btnLogin->setProperty("style","h5");
+    ui->labelLgoinName->setProperty("style_font","h5");
+    ui->labelSecretId->setProperty("style_font","h5");
+    ui->labelSecretKey->setProperty("style_font","h5");
+    ui->labelRemark->setProperty("style_font","h5");
+
+    ui->btnLogin->setProperty("style_font","h5");
+    ui->btnLogin->setProperty("style_button", "main");
 
 //    setKeyDisabled();
 

@@ -15,7 +15,7 @@ CosDialog::CosDialog(QWidget *parent) :
     setTitle(QString::fromLocal8Bit("Cos"));
     m_ui->labelLogo->setFixedSize(32, 24);
 
-    m_ui->labelTitle->setProperty("style", "h4"); //从logindialog中提取为通用的
+    m_ui->labelTitle->setProperty("style_font", "h4"); //从logindialog中提取为通用的
 }
 
 CosDialog::~CosDialog()

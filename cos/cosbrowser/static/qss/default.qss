@@ -10,23 +10,23 @@ color: #555555
 }
 
 /*通用：设置标题*/
-*[style="h1"]{
+*[style_font="h1"]{
 font: bold 25pt;
 color: #111111;
 }
-*[style="h2"]{
+*[style_font="h2"]{
 	font: bold 22pt;
 	color: #222222;
 }
-*[style="h3"]{
+*[style_font="h3"]{
 	font: bold 20pt;
 	color: #333333;
 }
-*[style="h4"]{
+*[style_font="h4"]{
 	font: bold 16pt;
 	color: #444444;
 }
-*[style="h5"]{
+*[style_font="h5"]{
 	font: bold 12pt;
 }
 
@@ -55,7 +55,7 @@ QLabel{
 QPushButton{
 	background: transparent;
 	border: 1px solid #dddddd;
-	border-radius: 2px;
+	border-radius: 5px;
 	height: 28px;
 	width: 56px;
 }
@@ -64,15 +64,31 @@ QPushButton:hover{
 	border-color: #1296db;
 }
 
-QPushButton#btnLogin{
+QPushButton:disabled{
+	background-color: #dddddd;
+}
+
+/*QPushButton#btnLogin{
 	background: #1296db;
 	color:white;
     font: bold 12pt;
-}
+}*/
 
 /*QPushButton#btnClose:hover{
 	color:red;
 }*/
+
+QPushButton[style_button="main"] {
+	background: #0063e5;
+	color: white;
+	border-color: #0063e5;
+}
+
+QPushButton[style_button="main"]:hover {
+	background: #006eff;
+}
+
+
 
 
 

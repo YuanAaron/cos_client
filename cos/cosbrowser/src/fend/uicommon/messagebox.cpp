@@ -1,4 +1,5 @@
 ﻿#include "messagebox.h"
+#include "pushbutton.h"
 #include "ui_messagebox.h"
 
 #include <QDebug>
@@ -31,7 +32,7 @@ QString MessageBox::showMessage(const QString &title, const QString &text, const
 void MessageBox::createBtns(const QStringList &textList)
 {
     for(const auto& text: qAsConst(textList)) {
-        QPushButton* btn = new QPushButton(text,this);
+        PushButton* btn = new PushButton(this);
         btn->setText(text);
         connect(btn, &QPushButton::clicked, [=]() {
             m_text = text;

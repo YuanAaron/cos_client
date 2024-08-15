@@ -18,6 +18,9 @@ ObjectsTableWidget::ObjectsTableWidget(QWidget *parent) :
     ui(new Ui::ObjectsWidget)
 {
     ui->setupUi(this);
+    //美化 创建桶 按钮
+    ui->btnBuckets->setProperty("style_button", "main");
+
     ui->tableView->setModel(MG->m_model->modelObjects());
 
     //设置表格标题栏的标题（放到了ManagerModel中）
