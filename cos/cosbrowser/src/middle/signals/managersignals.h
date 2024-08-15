@@ -24,14 +24,14 @@ signals:
     void objectsSuccess(const QList<MyObject>& objects);
 
     // 开始下载
-//    void startDownload(const QString &jobId, const QString &key, const QString &localPath, qulonglong total);
+    void startDownload(const QString &jobId, const QString &key, const QString &localPath, qulonglong total);
     //下载对象进度
     void downloadProcess(const QString& jobId, qulonglong transferred, qulonglong total);
     //下载对象成功
     void downloadSuccess(const QString& jobId);
 
     // 开始上传
-//    void startUpload(const QString &jobId, const QString &key, const QString &localPath);
+    void startUpload(const QString &jobId, const QString &key, const QString &localPath);
     //上传对象进度
     void uploadProcess(const QString& jobId, qulonglong transferred, qulonglong total);
     //上传对象成功

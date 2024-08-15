@@ -129,6 +129,7 @@ void ObjectsTableWidget::on_btnUpload_clicked()
         MG->m_gate->send(API::OBJECTS::PUT, params);
         lastDir = info.dir().absolutePath();
 //        qDebug() << lastDir;
+        emit MG->m_signal->startUpload(jobId, key, filePath);
     }
 
 }
@@ -182,6 +183,7 @@ void ObjectsTableWidget::on_btnDownload_clicked()
         MG->m_gate->send(API::OBJECTS::GET, params);
         lastDir = info.dir().absolutePath();
 //        qDebug() << lastDir;
+        emit MG->m_signal->startDownload(jobId, key, filePath, obj.size);
     }
 }
 

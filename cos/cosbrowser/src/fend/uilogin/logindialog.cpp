@@ -16,6 +16,7 @@ LoginDialog::LoginDialog(QWidget *parent)
     : CosDialog(parent)
     , ui(new Ui::LoginDialog)
 {
+    qDebug() << QString::fromLocal8Bit("LoginDialog 构造");
     ui->setupUi(body());
 
     setTitle(QString::fromLocal8Bit("登录"));
@@ -42,6 +43,8 @@ LoginDialog::LoginDialog(QWidget *parent)
     //关心 退出登录 的信号
     connect(MG->m_signal,&ManagerSignals::unLogin, this, &LoginDialog::show);
     updateLoginInfo();
+
+    qDebug() << QString::fromLocal8Bit("LoginDialog 构造结束");
 }
 
 LoginDialog::~LoginDialog()

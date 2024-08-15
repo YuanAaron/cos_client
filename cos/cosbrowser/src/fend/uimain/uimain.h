@@ -33,12 +33,12 @@ protected slots:
     void onObjectsSuccess(const QList<MyObject>& objects);
 
     void onError(int api, const QString& msg, const QJsonValue& req);
-//    void showTransfer();
+    void showTransfer();
 
 private:
     Ui::UiMain *ui;
 //    LoginDialog* m_loginDialog = nullptr;
-//    Transfer* m_transfer = nullptr;
+    Transfer* m_transfer = nullptr;
 };
 
 #endif // UIMAIN_H

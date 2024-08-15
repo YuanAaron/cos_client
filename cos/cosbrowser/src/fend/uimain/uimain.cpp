@@ -15,11 +15,12 @@ UiMain::UiMain(QWidget *parent) :
     CosDialog(parent),
     ui(new Ui::UiMain)
 {
+    qDebug() << QString::fromLocal8Bit("UiMain 构造");
     ui->setupUi(body());
 
     //添加传输列表和退出登录按钮
     QPushButton* transferBtn = addButton(GLOBAL::PATH::TRANS, GLOBAL::PATH::TRANS_HOVER);
-//    connect(transferBtn, &QPushButton::clicked, this, &UiMain::showTransfer);
+    connect(transferBtn, &QPushButton::clicked, this, &UiMain::showTransfer);
     QPushButton* quitBtn = addButton(GLOBAL::PATH::QUIT, GLOBAL::PATH::QUIT_HOVER);
     //这里要进行信号传递，不能直接通过onUnLogin进行处理，因为可能有其他窗口（比如登录窗口）关心该信号
     connect(quitBtn, &QPushButton::clicked, MG->m_signal, &ManagerSignals::unLogin);
@@ -56,6 +57,14 @@ UiMain::UiMain(QWidget *parent) :
     connect(MG->m_signal, &ManagerSignals::objectsSuccess, this, &UiMain::onObjectsSuccess);
 
     connect(MG->m_signal, &ManagerSignals::error, this, &UiMain::onError);
+
+    if(!m_transfer)
+    {
+//        m_transfer = new Transfer(this); //写法报错
+        m_transfer = new Transfer;
+    }
+
+    qDebug() << QString::fromLocal8Bit("UiMain 构造结束");
 }
 
 UiMain::~UiMain()
@@ -69,12 +78,12 @@ UiMain::~UiMain()
 //        delete m_loginDialog;
 //    }
 
-//    //自己添加
-//    if(m_transfer)
-//    {
-//        delete m_transfer;
-//        m_transfer = nullptr;
-//    }
+    //自己添加
+    if(m_transfer)
+    {
+        delete m_transfer;
+        m_transfer = nullptr;
+    }
 }
 
 //void UiMain::showLoginDialog()
@@ -142,16 +151,19 @@ void UiMain::onError(int api, const QString &msg, const QJsonValue &req)
     }
 }
 
-//void UiMain::showTransfer()
-//{
+void UiMain::showTransfer()
+{
+//    //他这段代码放在这里，上传/下载前点击了传输列表按钮没问题，但如果上传/下载过程中点击传输列表按钮，程序过一会就会崩溃。
+      //原因：添加打印日志后发现，没有执行OnStartDownload的代码（传输按钮下载开始后才点击，错过了监听startDownload信号），
+      //执行onDownloadProgress代码的过程中崩溃。
+//    //解决方案：我将这段代码放到了UiMain的构造函数中，程序就不再崩溃，
 //    if(!m_transfer)
 //    {
 ////        m_transfer = new Transfer(this); //写法报错
 //        m_transfer = new Transfer;
 //    }
-
-//    m_transfer->show();
-//}
+    m_transfer->show();
+}
 
 //void UiMain::onRefresh()
 //{
