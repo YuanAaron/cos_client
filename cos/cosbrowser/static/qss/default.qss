@@ -89,7 +89,7 @@ QPushButton[style_button="main"]:hover {
 }
 
 /*QListView*/
-QListView, QTableView, QTableWidget {
+QAbstractItemView {
 	border: none;
 	border-top: 1px solid #dddddd;
 }
@@ -98,16 +98,12 @@ QTableView::item, QTableWidget::item {
 	border-bottom: 1px solid #dddddd;
 }
 
-QListView::item {
+QAbstractItemView::item {
 	height: 30px;
 }
 
-QListView::item:hover,
-QListView::item:selected,
-QTableView::item:hover,
-QTableView::item:selected,
-QTableWidget::item:hover,
-QTableWidget::item:selected {
+QAbstractItemView::item:hover,
+QAbstractItemView::item:selected {
 	background-color: #66dddddd; /*00表示全透明，ff表示不透明*/
 	color: blue;
 }
