@@ -25,6 +25,10 @@ namespace GLOBAL {
         static const QString TRANS_HOVER = ":/static/imgs/Trans-2.png";
         static const QString QUIT = ":/static/imgs/Quit-1.png";
         static const QString QUIT_HOVER = ":/static/imgs/Quit-2.png";
+
+        static const QString BUCKET = ":/static/imgs/bucket.png";
+        static const QString FILE = ":/static/imgs/file.png";
+        static const QString DIR = ":/static/imgs/dir.png";
     }
 
     namespace SQLITE {

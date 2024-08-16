@@ -4,6 +4,7 @@
 #include <src/plugins/managerplugin.h>
 #include "src/middle/managerglobal.h"
 #include "src/middle/signals/managersignals.h"
+#include "src/config/global.h"
 
 ManagerModel::ManagerModel(QObject* parent)
         :QObject(parent)
@@ -30,6 +31,9 @@ void ManagerModel::setBuckets(const QList<MyBucket>& buckets)
         QModelIndex index0 = m_modelBuckets->index(i,0);
         m_modelBuckets->setData(index0,bucket.name);
         m_modelBuckets->setData(index0,QString::fromLocal8Bit("存储桶名称: %1").arg(bucket.name), Qt::ToolTipRole); //数据角色
+        //在桶前添加图标
+        m_modelBuckets->setData(index0,QIcon(GLOBAL::PATH::BUCKET),Qt::DecorationRole);
+
         QModelIndex index1 = m_modelBuckets->index(i,1);
         m_modelBuckets->setData(index1,bucket.location);
         QModelIndex index2 = m_modelBuckets->index(i,2);
@@ -54,6 +58,15 @@ void ManagerModel::setObjects(const QList<MyObject> &objects)
         QVariant var;
         var.setValue(obj);
         m_modelObjects->setData(index0,var,Qt::UserRole);
+        //在对象前添加图标
+        if(obj.isDir())
+        {
+            m_modelObjects->setData(index0,QIcon(GLOBAL::PATH::DIR),Qt::DecorationRole);
+        }
+        else
+        {
+            m_modelObjects->setData(index0,QIcon(GLOBAL::PATH::FILE),Qt::DecorationRole);
+        }
 
         QModelIndex index1 = m_modelObjects->index(i,1);
         m_modelObjects->setData(index1,obj.size);
