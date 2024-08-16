@@ -108,6 +108,57 @@ QAbstractItemView::item:selected {
 	color: blue;
 }
 
+/*设置滚动条*/
+QScrollBar {
+	border: none;
+	background-color: transparent;
+}
+
+QScrollBar:horizontal {
+	height: 6px;
+}
+
+QScrollBar:vertical {
+	width: 6px;
+}
+
+/*滚动条的滑块*/
+QScrollBar::handle {
+	background: #aaaaaa;
+	border-radius: 3px;
+}
+
+/*滚动条的上下箭头*/
+QScrollBar::add-line, QScrollBar::sub-line {
+	border: none;
+}
+
+/*设置进度条*/
+QProgressBar {
+	background: #edeffc;
+	border-radius: 3px;
+}
+
+/*chunk是进度条实心部分*/
+QProgressBar::chunk {
+	background: #647bfc;
+	border-radius: 3px;
+}
+
+/*QTableWidget 去掉每个标签页的边框*/
+QTableWidget::pane {
+	border: none;
+}
+
+/*设置分割器*/
+/*在设计师界面将handleWidth改成2px*/
+QSplitter::handle:horizontal {
+	background-color: #dddddd;
+}
+
+
+
+
 
 
 
