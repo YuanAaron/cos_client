@@ -36,8 +36,11 @@ void ManagerModel::setBuckets(const QList<MyBucket>& buckets)
 
         QModelIndex index1 = m_modelBuckets->index(i,1);
         m_modelBuckets->setData(index1,bucket.location);
+        m_modelBuckets->item(i,1)->setTextAlignment(Qt::AlignCenter); //设置该列居中显示
+
         QModelIndex index2 = m_modelBuckets->index(i,2);
         m_modelBuckets->setData(index2,bucket.createDate);
+        m_modelBuckets->item(i,2)->setTextAlignment(Qt::AlignCenter);
     }
 
     //设置默认按照创建时间倒序
@@ -70,9 +73,11 @@ void ManagerModel::setObjects(const QList<MyObject> &objects)
 
         QModelIndex index1 = m_modelObjects->index(i,1);
         m_modelObjects->setData(index1,obj.size);
+        m_modelObjects->item(i,1)->setTextAlignment(Qt::AlignCenter);
 
         QModelIndex index2 = m_modelObjects->index(i,2);
         m_modelObjects->setData(index2,obj.lastmodified);
+        m_modelObjects->item(i,2)->setTextAlignment(Qt::AlignCenter);
     }
 }
 
