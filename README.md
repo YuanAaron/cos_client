@@ -1,18 +1,22 @@
-### 项目截图如下
+### 项目效果图如下
 
-![](img/login.jpg)
+<p align="center"><img src="img/login.jpg" width="40%"></p>
 
-![](img/buckets%20table.jpg)
+<p align="center">
+<img src="img/buckets%20table.jpg" width="45%">
+<img src="img/objects%20table.jpg" width="45%">
+</p>
 
-![](img/objects%20table.jpg)
-
-![](img/upload.jpg)
-
-![](img/download.jpg)
+<p align="center">
+<img src="img/upload.jpg" width="45%">
+<img src="img/download.jpg" width="45%">
+</p>
 
 ### 架构设计
 
-![](img/architecture.png)
+<p align="center">
+<img src="img/architecture.png" width="60%">
+</p>
 
 - 插件思想
 	- 日志插件设计
@@ -36,7 +40,9 @@
 
 - 目录结构
 
-	![](img/tableOfContents.png)
+<p align="center">
+<img src="img/tableOfContents.png" width="70%">
+</p>
 
 - 引入插件管理器进行版本管理
 	- 一套代码分为商业版和个人版
