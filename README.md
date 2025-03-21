@@ -18,6 +18,11 @@
 <img src="img/architecture.png" width="60%">
 </p>
 
+- 前后端分离思想
+	- 前端
+	- 网关
+	- 后端
+
 - 插件思想
 	- 日志插件设计
 	- 对象存储插件设计
@@ -31,17 +36,15 @@
 	- 订阅发布（被动）
 	- 消息中心
 
-- 隔离思想/分层思想
-	- 前端
-	- 网关
-	- 后端
+- MVC思想
 
 ### 架构设计实践
 
 - 目录结构
 
 <p align="center">
-<img src="img/tableOfContents.png" width="70%">
+<img src="img/tableOfContents.png" width="64%"> &nbsp; &nbsp; &nbsp;
+<img src="img/tableOfCode.jpg" width="30%">
 </p>
 
 - 引入插件管理器进行版本管理
@@ -82,40 +85,33 @@
 
 - 网关
 	- 网关的功能（鉴权<客户端不注重>、转发、限流、统计）类似海关的功能（合法、转发、限流、统计）
-	- 转发
-		- 当一个请求发到后端时，如果后端处理该请求耗时较长，就会造成前端界面的卡顿，所以增加转发的功能，将该请求转发给线程池中的一个线程，这样前端界面就不会卡顿，改善用户体验
+	- 转发：当一个请求发到后端时，如果后端处理该请求耗时较长，就会造成前端界面的卡顿，所以增加转发的功能，将该请求转发给线程池中的一个线程，这样前端界面就不会卡顿，改善用户体验
 	- 代码逻辑
-		- 
-			- 前端调用后端不涉及远程调用？？？
+		
+		<p align="center"><img src="img/zhuanfa.png"></p>
 
 - 消息中心
 
-	- 
+	<p align="center"><img src="img/xinhaozainan.png"></p>
 
-		- 信号槽属于发布-订阅机制，但太多的信号槽会导致信号灾难，所以要成立消息中心（相当于村委会），所有发布的消息都经过消息中心，然后窗口订阅消息中心中的其关心的消息即可
+	信号槽属于发布-订阅机制，但太多的信号槽会导致信号灾难，所以要成立消息中心（相当于村委会），所有发布的消息都经过消息中心，然后窗口订阅消息中心中的其关心的消息即可
 
 	- 消息中心代码
-
 		- 创建消息中心：定义单例，声明 登录、退出登录、错误 信号
 		- 登录成功后 网关 发出登录成功的信号：谁关心，谁连接该信号（登录窗口、主窗口）
 		- 登录失败后 网关 发出错误信号，谁关心，谁连接该信号（登录窗口）
 		- 退出按钮 发出退出登录的信号：谁关心，谁连接该信号（登录窗口、主窗口）
 
 - 全局管理模块
-
 	- 单例类剧增问题
-
 		- 使用单例来管理单例
-
 			- 创建ManagerGlobal，将其他单例类删除，然后作为ManagerGlobal的数据成员
 			- 迁移日志单例宏
 			- 整理main方法中的代码
-
 				- 初始化方法放到全局单例类中
 				- 增加打印，验证单例释放内存
 
 	- 完善 显示存储桶列表
-
 		- 在ManagerCloud的login方法中直接调用setBucket方法会报如下错误：
 ......
 QObject::connect: Cannot queue arguments of type 'QVector<int>'
@@ -129,7 +125,6 @@ QObject::connect: Cannot queue arguments of type 'QList<QPersistentModelIndex>'
 		- 使用qRegisterMetaType<MyClass>("MyClass")，通过信号传递容器或自定义类型
 
 - 错误码编码设计
-
 	- 错误码示例 1 c 05 a3
 		- 1：角色（腾讯云）
 		- c：类型（对象存储）
@@ -149,6 +144,71 @@ QObject::connect: Cannot queue arguments of type 'QList<QPersistentModelIndex>'
 		- 错误码生成脚本
 			- 遍历csv中的所有行，生成错误码头文件
 
+- MVC思想
+
+	- 
+
+		- Model，模型，代表程序数据和业务逻辑。上图最左边的表格中的数据就相当于Model。
+
+			- 从上图可知，Model和View可以是一对多的关系，可以使用单例模式保证Model对象的唯一性。
+
+				- Qt中单例模式的使用：
+1、创建静态函数static T::instance();，实现中直接返回ins();
+2、cpp文件上方添加宏Q_GLOBAL_STATIC(T,ins);
+3、创建宏#define MB T::instance()简化使用，即MB->print();即可（疑问：如何验证确实是单例的呢？）
+
+		- View，视图，负责显示数据。上图相当于View
+		- Controller，控制器，负责处理输入并更新模型和视图。双击上图最左边的每个单元格就可以修改数据（处理输入），更新其数据（Model），上图也会随之改变（View数据）。
+
+	- MVC和前后端分离的对应关系
+
+		- 
+
+	- 优点
+
+		- 隔离：业务逻辑、数据显示和用户输入相隔离
+		- 可测：可以单独测试界面或模型
+		- 扩展：可单独扩展界面或模型
+
+- Qt中的MVC
+
+	- Model
+
+		- 存储数据
+
+			- 添加
+			- 删除
+			- 修改
+
+		- QStandardItemIModel
+
+			- 
+			- 
+
+				- Qt使用QModelIndex定位/获取/修改数据，其中list使用行，table使用行列，tree使用行列及其父项进行定位
+				- 每个节点（对象）有一套数据（很多属性）每个数据（属性）都有自己的数据角色，View通过角色告知Model它需要哪种类型的数据
+
+	- View
+
+		- 负责页面展示
+
+			- 排序操作
+			- 设置行高
+			- 行列的显示和隐藏
+
+		- QTableView
+
+			- 
+
+	- Delegate
+
+		- 提供交互界面
+		- QStyledItemDelegate
+
+			- 
+
+
+
 ### 后端开发
 
 - SDK使用方法
@@ -158,8 +218,7 @@ QObject::connect: Cannot queue arguments of type 'QList<QPersistentModelIndex>'
 - 数据流在项目中的传递
 	- 各个对象存储接口创建对应信号，后端执行完操作，发出对应信号到消息中心，关心该信号的前端响应该信号
 	- 调用链
-
-		- 
+		<p align="center"><img src="img/diaoyonglian.png" width="70%"></p>
 
 - 集成对象存储接口
 	- 登录接口
@@ -170,14 +229,15 @@ QObject::connect: Cannot queue arguments of type 'QList<QPersistentModelIndex>'
 		- 删除桶
 			- 桶是否存在 isBucketExist
 			- DeleteBucket
-			- 获取存储桶地域 GetBucketLocation
+			- 获取存储桶地域GetBucketLocation
 		- 桶列表
 
 	- 对象操作
 		- 对象列表
 			- 对象与目录：页面上用目录的展示方式模拟了对象，实际不是目录。比如新建test/，实际上是新建了一个key为“test/”，值为空的对象
 			- GetBucket
-				- 
+				<p align="center"><img src="img/getBucket.png" width="70%"></p>
+
 				- SetPrefix
 				- SetDelimiter
 
@@ -190,52 +250,37 @@ QObject::connect: Cannot queue arguments of type 'QList<QPersistentModelIndex>'
 			- AsyncGetObject
 
 - 单元测试
-
-	- 企业中集成单元测试
-
-		- 
-
 	- 登录接口测试用例
-
 		- 创建TestCos测试类
 		- 引用登录方法的头文件
 		- 引入其他依赖文件
 		- 拷贝动态库、修改工作目录以配合cosconfig.json
 
 	- 合并多个单元测试套件
-
 		- 前面的单元测试存在的问题：需要维护多个测试工程
 		- 解决办法：合并多个main函数
-
 			- 创建main函数，将测试套件迁移至main函数
 			- 添加头文件，修改源文件
 
 	- 使用pri文件管理整个工程
-
 		- 问题：项目代码和测试代码的pro内容很多是重复的，即多次添加头和源文件
 		- 作用相当于一个子pro
-
 			- 创建pri，将pro中的部分内容移动到pri中
 			- 在pro中使用include()包含pri文件
-
 		- 将pro按模块拆分成更小的“pro”，pro可以包含第三方库pri、后端文件pri、前端文件pri
 
 	- 数据驱动单元测试
-
 		- 数据准备阶段
-
 			- 在单元测试用例函数后加“_data”
 			- QTest::addColumn添加字段
 			- QTest::newRow添加测试数据
 
 		- 执行测试用例阶段
-
 			- 从表格中读取数据，依次跑单元测试函数
 			- QFETCH定义变量
 			- QCOMPARE或其他判断方法，测试结果是否符合预期
 
 	- 单元测试中处理预期异常
-
 		- QVERIFY_EXCEPTION_THROWN，捕获预期异常
 
 	- 单元测试小结
@@ -517,9 +562,7 @@ QObject::connect: Cannot queue arguments of type 'QList<QPersistentModelIndex>'
 
 			- 创建
 			- 查询
-			- 删除
-
-				- 右键删除
+			- 删除：右键删除
 
 		- 对象操作
 
@@ -532,114 +575,83 @@ QObject::connect: Cannot queue arguments of type 'QList<QPersistentModelIndex>'
 			- 下载
 
 	- 传输列表
-
 		- 上传进度
 		- 下载进度
 
 - 功能界面开发实践
-
 	- 原理
+		<p align="center"><img src="img/yuanli.png" width="70%"></p>
 
-		- 
-
-			- 代码编写方式：关注信号、发送请求、界面响应信号
+		代码编写方式：关注信号、发送请求、界面响应信号
 
 	- 显示对象详情代码实现
-
 		- 创建对象model
-
 			- 修改model单例中的model为modelBuckets
 			- 新建modelObjects
 
 		- 调用显示对象详情接口
-
 			- Gateway::send
 
 		- 谁关心bucketsSuccess、objectsSuccess信号
-
 			- ManagerModel
 			- UiMain
 
 		- 解决前面已经出现过的 自定义参数在信号中的传递 问题
-
 			- 使用Q_DECLARE_METATYPE进行声明（没有好像也没问题）
 			- 使用qRegisterMetaType进行注册
 
 		- 从对象列表返回存储桶列表
 		- 下钻和上钻
-
 			- 下钻
-
 				- 双击目录进入子目录
 				- 发送展示对象详情请求
 				- 关注展示对象详情的信号
-
 			- 上钻
-
 				- 通过面包屑导航实现
 
 		- 翻页功能
-
 			- 对象表格集成翻页
-
 				- 初始化翻页实例，连接翻页信号
 				- 展示指定数量的对象详情
-
 			- 存储桶表格集成翻页
-
 				- 同上
 
 	- 搜素桶代码
-
 		- 搜索框触发查询桶内容操作
-
 			- 将单行输入框提升为ComboLine
 			- 通过ComboLine的信号触发查询根目录的请求
-
 		- 搜索框和桶列表实现筛选功能
-
 			- 捕获ComboLine::textEdited 信号
 
 	- 创建桶
-
 		- 新建创建桶的Ui类
-
 			- 创建Ui文件，继承自项目通用对话框
 			- 点击对话框中的“确定”按钮后，通过该对话框能够获取到对应的存储桶信息（获取对话框结果）
-
 		- 发送创建桶的请求
 
 	- 删除桶
-
 		- 删除桶，创建右键菜单
 		- 弹出提示信息，确认后，发出删除桶的请求
 
 	- 刷新操作
-
 		- 刷新存储桶详情
 		- 刷新对象详情
 
 	- 上传和下载对象
-
 		- 上传
-
 			- 选择要上传的文件
 			- 发送上传请求
 			- 显示上传成功的消息
 
 		- 下载
-
 			- 同上传类似
 
 	- 传输列表
-
 		- UiMain
-
 			- 创建传输列表
 			- 显示传输列表
 
 		- UiUpload/UiDownload
-
 			- 初始化表格
 			- 开始上传/下载
 			- 显示进度
@@ -647,149 +659,91 @@ QObject::connect: Cannot queue arguments of type 'QList<QPersistentModelIndex>'
 			- 上传/下载记录表添加异常处理
 
 	- 功能界面开发注意事项
-
 		- 单一原则：槽函数（关注者）只做自己该做的事，比如UiMain::onObjectsSuccess
 		- 信号自定义参数：使用Q_DECLARE_METATYPE进行声明，用qRegisterMetaType进行注册
 
 - 前端代码的阅读方法
-
 	- 搜索信号，找到信号发出处，按连接信号的槽去阅读
 
 ### 界面美化
 
 - 样式表叠加与冲突的解决方案
-
 	- 不同选择器，匹配到了相同的控件
-
-		- 不同属性
-
-			- 叠加显示
-
-		- 相同属性
-
-			- 谁特殊（优先级高），谁优先
-			- 同样特殊，新（后）覆盖旧（前）
+		- 不同属性：叠加显示
+		- 相同属性：谁特殊（优先级高），谁优先；同样特殊，新（后）覆盖旧（前）
 
 - 美化对象存储所有控件
-
 	- QPushButton
-
 		- 所有按钮
-
 			- 登录
-
 				- 登录按钮
-
 			- 标题栏
-
 				- 最大/最小化/关闭
 				- 传输列表
 				- 退出登录
-
 			- 桶表格界面
-
 				- 创建桶
 				- 刷新
 				- 翻页按钮
-
 			- 对象表格界面
-
 				- 桶列表
 				- 刷新
 				- 上传/下载
 				- 翻页按钮
 
 		- 按钮分类
-
 			- 普通按钮
-
-				- 刷新/上传/下载
-
-					- 使用QPushButton进行通用设置
-
-			- 系统按钮
-
-				- 最大/最小...
+				- 刷新/上传/下载：使用QPushButton进行通用设置
+			- 系统按钮：最大/最小...
 
 			- 加强按钮
-
-				- 登录/创建桶/桶列表
-
-					- 使用系统属性进行特殊化处理
+				- 登录/创建桶/桶列表：使用系统属性进行特殊化处理
 
 		- 按状态美化
-
 			- 添加disabled伪状态
 			- 为所有按钮添加手指手势
 
 	- 视图QAbstractItemView
-
 		- 列表QListTable
-
 			- 存储桶列表
-
 				- 去除边框
 				- 增加item之间的间隔
 				- 鼠标悬停/选中时，背景透明灰色，文字为蓝色
-
 			- 面包屑
-
 				- 鼠标悬停，鼠标变为手形
-
 		- 表格
-
 			- QTableVIew（桶和对象表格）
-
 				- 去除边框和竖线
-
 					- 在Ui设计师界面去除网格线
-
-						- showGrid去掉勾选
-
+：showGrid去掉勾选
 					- Qss去除边框
-
 				- 增加行之间的间隔
-
 					- Qt的bug：Qss无法增加间隔（行高），需使用代码实现
-
 				- 鼠标悬停/选中，整行背景浅灰色、文字蓝色
-
 					- 鼠标选中整行而非item
-
 						- selectionBehavior设为SelectRows
-
 					- Qss只能实现鼠标悬停，item hover的效果；无法实现鼠标悬停，整行hover的效果，需要用代码 代理item 实现
-
 						- 继承QStyledItemDelegate
 						- 重写paint方法
 						- 调用QTableView::setItemDelegate进行设置生效
-
 					- Qss实现背景浅灰色、文字蓝色
-
 			- QTableWidget（传输列表）
-
 				- 大部分同QTableView
 				- 不同点：在新增行时，设置行高
 
 			- 使用QAbstractItemView统一Qss中上面各种View的样式
 
 		- 图标
-
 			- 桶前面加图标
 			- 对象前面加图标（文件夹/文件）
 
 	- 输入提示框的下拉列表（QListView)
-
 		- 复用QListView的样式
-
 			- 复用TableItemDelegate实现
-
-				- QAbstractItemView::setItemDelegate进行设置生效
-
+，QAbstractItemView::setItemDelegate进行设置生效
 		- 手形鼠标
 
 	- 进度条/滚动条
-
 		- Qss设置
 
 - 美化步骤总结
