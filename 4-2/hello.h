@@ -4,7 +4,7 @@
 #include <QWidget>
 
 QT_BEGIN_NAMESPACE
-namespace Ui { class Hello; }
+namespace Ui { class Hello; } //注意：这里的Hello可不是自己创建的Hello哦
 QT_END_NAMESPACE
 
 class Hello : public QWidget //QWidget是所有应用程序窗口类的基类
